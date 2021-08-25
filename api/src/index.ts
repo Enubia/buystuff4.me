@@ -1,5 +1,16 @@
 import { config } from 'dotenv';
+import { Mongoose } from './db/connection';
+import { logger } from './helper/logger';
 
-config();
+const boot = async (): Promise<void> => {
+  config();
+  Mongoose.connect();
+  Mongoose.disconnect();
+};
 
-console.log('running');
+process.on('unhandledRejection', (error) => logger.error(error));
+
+boot().catch((err) => {
+  logger.error(err);
+  process.exit(0);
+});
