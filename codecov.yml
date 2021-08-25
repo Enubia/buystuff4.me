@@ -18,9 +18,9 @@ coverage:
   #       message: "template string"    # [advanced] -> see "customized message" below
 
   status:
-    project: yes
-    patch: yes
-    changes: no
+    project: true
+    patch: true
+    changes: false
 
 parsers:
   gcov:
@@ -33,4 +33,4 @@ parsers:
 comment:
   layout: 'header, diff'
   behavior: default
-  require_changes: no
+  require_changes: false
