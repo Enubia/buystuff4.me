@@ -44,7 +44,7 @@ jobs:
         run: npm run lint:api && npm run lint:frontend
 
       - name: Build project
-        run: cd api && npm build && cd ../frontend && npm build
+        run: cd api && npm run build && cd ../frontend && npm run build
 
       - name: Test
         run: npm run coverage --if-present
