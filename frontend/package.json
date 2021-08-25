@@ -7,8 +7,8 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
+    "lint:js": "eslint --ext \".ts,.js,.vue\" .",
+    "lint:style": "stylelint \"**/*.{vue,css}\"",
     "lint": "npm run lint:js && npm run lint:style"
   },
   "lint-staged": {
@@ -30,11 +30,14 @@
     "@nuxtjs/tailwindcss": "^4.2.0",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "2.24.2",
     "eslint-plugin-nuxt": "^2.0.0",
+    "eslint-plugin-prettier": "3.4.1",
+    "eslint-plugin-unicorn": "35.0.0",
     "eslint-plugin-vue": "^7.12.1",
     "lint-staged": "^10.5.4",
+    "nuxt-property-decorator": "^2.9.1",
     "postcss": "^8.3.5",
-    "prettier": "^2.3.2",
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^22.0.0"

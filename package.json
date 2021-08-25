@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "Share your amazon wishlists and let a stranger be your donator",
   "scripts": {
-    "lint:api": "eslint --cache --fix --ext .ts --ignore-path .eslintignore api/",
-    "lint:frontend": "npm run lint:js && npm run lint:style",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore frontend/",
-    "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore frontend/",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:api": "cd api && npm run dev",
+    "lint:api": "cd api && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
     "prepare": "husky install"
   },
   "devDependencies": {
-    "husky": "7.0.2"
+    "husky": "^7.0.2",
+    "prettier": "2.3.2"
   },
   "repository": {
     "type": "git",

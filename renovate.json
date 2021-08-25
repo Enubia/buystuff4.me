@@ -1,5 +1,25 @@
 {
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "paths": [
+        "api/package.json"
+      ],
+      "labels": [
+        "api",
+        "Renovate"
+      ]
+    },
+    {
+      "paths": [
+        "frontend/package.json"
+      ],
+      "labels": [
+        "frontend",
+        "Renovate"
+      ]
+    }
   ]
 }

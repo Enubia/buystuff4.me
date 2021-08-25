@@ -76,18 +76,6 @@
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-useless-constructor": "error",
     "@typescript-eslint/no-parameter-properties": "error",
-    // "@typescript-eslint/naming-convention": [
-    //   "error",
-    //   {
-    //     "selector": "interface",
-    //     "format": [
-    //       "PascalCase"
-    //     ],
-    //     "prefix": [
-    //       "I"
-    //     ]
-    //   }
-    // ],
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/explicit-member-accessibility": "error",
     "import/prefer-default-export": 0,
@@ -133,7 +121,8 @@
         "args": "after-used",
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "react/jsx-filename-extension": "off"
   },
   "env": {
     "jest": true,
