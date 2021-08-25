@@ -37,18 +37,19 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install modules
-        run: npm install
+        run:
+          npm install && cd api && npm install && cd ../frontend && npm install
 
       - name: Eslint
-        run: npm run lint
+        run: npm run lint:api && npm run lint:frontend
 
       - name: Build project
-        run: npm run build
+        run: cd api && npm build && cd ../frontend && npm build
 
       - name: Test
-        run: npm run coverage
+        run: npm run coverage --if-present
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN}}
+#      - name: Upload coverage to Codecov
+#        uses: codecov/codecov-action@v2
+#        with:
+#          token: ${{ secrets.CODECOV_TOKEN}}
