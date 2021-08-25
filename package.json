@@ -1,0 +1,25 @@
+{
+  "name": "buystuff4.me",
+  "version": "1.0.0",
+  "description": "Share your amazon wishlists and let a stranger be your donator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Enubia/buystuff4.me.git"
+  },
+  "keywords": [
+    "amazon",
+    "wishlists",
+    "donations",
+    "donation-website"
+  ],
+  "author": "Marco Schuster",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Enubia/buystuff4.me/issues"
+  },
+  "homepage": "https://github.com/Enubia/buystuff4.me#readme"
+}
