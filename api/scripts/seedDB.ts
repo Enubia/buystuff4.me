@@ -8,11 +8,11 @@ import { Priority, WishList } from '../src/db/models/wishlist';
 import { User } from '../src/db/models/user';
 
 (async () => {
-  await Mongoose.connect();
+  const connection = await Mongoose.connect();
 
-  await User.deleteMany();
-  await WishList.deleteMany();
-  await Category.deleteMany();
+  await connection.dropCollection('user');
+  await connection.dropCollection('wishList');
+  await connection.dropCollection('category');
 
   // categories
   const available = [
@@ -67,7 +67,7 @@ import { User } from '../src/db/models/user';
   const getUsableCategories = () => {
     const result = [];
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < faker.datatype.number({ min: 1, max: 3 }); i++) {
       const category =
         categoryIds[faker.datatype.number(categoryIds.length - 1)]._id;
 
@@ -97,9 +97,9 @@ import { User } from '../src/db/models/user';
 
   for (let i = 0; i < 100; i++) {
     const data = {
-      list: getUsableUrl(),
+      link: getUsableUrl(),
       priority: Priority[faker.datatype.number(3)],
-      categories: getUsableCategories(),
+      categoryIds: getUsableCategories(),
     };
 
     wishListPromises.push(WishList.create(data));
@@ -155,7 +155,7 @@ import { User } from '../src/db/models/user';
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email: getUsableEmail(),
-      wishLists: getUsableLists(),
+      wishListIds: getUsableLists(),
     };
 
     userPromises.push(User.create(data));

@@ -5,7 +5,7 @@ export interface IUser extends Document {
   firstName: string;
   lastName: string;
   email: string;
-  wishLists: string[];
+  wishListIds: ObjectId[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;
@@ -22,7 +22,7 @@ const UserSchema = new Schema(
       trim: true,
       unique: true,
     },
-    wishLists: [
+    wishListIds: [
       {
         type: Schema.Types.ObjectId,
         ref: 'wishlist',

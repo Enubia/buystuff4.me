@@ -1,4 +1,3 @@
-import { join } from 'path';
 import { createServer } from 'http';
 import { config } from 'dotenv';
 import { GraphQLError, execute, subscribe } from 'graphql';
@@ -16,11 +15,14 @@ import { Mongoose } from './db/connection';
 config();
 
 export const boot = async (): Promise<void> => {
-  await Mongoose.connect();
+  const connection = await Mongoose.connect();
   const schema = createSchema();
 
   const server = new ApolloServer({
     schema,
+    context: {
+      mongoose: connection,
+    },
     formatError: (err: GraphQLError) => {
       if (err.originalError) {
         const { message } = err.originalError;
@@ -48,8 +50,6 @@ export const boot = async (): Promise<void> => {
         delete response.data.__type;
       }
 
-      logger.info('request.user:', context.user);
-
       return response;
     },
   });
@@ -60,14 +60,24 @@ export const boot = async (): Promise<void> => {
 
   app.use(
     cors({
-      origin: environment[process.env.NODE_ENV || 'development'].origin,
+      origin(origin, callback) {
+        if (
+          environment[process.env.NODE_ENV || 'development'].origin.includes(
+            origin,
+          )
+        ) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
       optionsSuccessStatus: 200,
     }),
   );
 
-  app.use('/graphiql', (_req, res) => {
-    res.sendFile(join(__dirname, '../resources/graphiql.html'));
-  });
+  // app.use('/graphiql', (_req, res) => {
+  //   res.sendFile(join(__dirname, '../resources/graphiql.html'));
+  // });
 
   app.use(
     (
@@ -130,7 +140,7 @@ export const boot = async (): Promise<void> => {
     logger.info(
       `Subscriptions ready at ws://localhost:${PORT}${server.graphqlPath}`,
     );
-    logger.info(`GraphiQL ready at http://localhost:${PORT}/graphiql`);
+    // logger.info(`GraphiQL ready at http://localhost:${PORT}/graphiql`);
   });
 };
 

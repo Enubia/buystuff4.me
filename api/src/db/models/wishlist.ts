@@ -9,9 +9,9 @@ export const Priority = {
 
 export interface IWishList extends Document {
   _id: ObjectId;
-  list: string;
+  link: string;
   priority: number;
-  categories: ObjectId[];
+  categoryIds: ObjectId[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
@@ -19,7 +19,7 @@ export interface IWishList extends Document {
 
 const WishlistSchema = new Schema(
   {
-    list: {
+    link: {
       type: String,
       required: true,
       unique: true,
@@ -28,7 +28,7 @@ const WishlistSchema = new Schema(
       type: Number,
       default: Priority.NONE,
     },
-    categories: [
+    categoryIds: [
       {
         type: Schema.Types.ObjectId,
         ref: 'category',

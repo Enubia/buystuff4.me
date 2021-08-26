@@ -1,11 +1,14 @@
-import { composeMongoose } from 'graphql-compose-mongoose';
-import { Category } from '../db/models/category';
+import {
+  composeMongoose,
+  ObjectTypeComposerWithMongooseResolvers,
+} from 'graphql-compose-mongoose';
+import { Category, ICategory } from '../db/models/category';
 import { addToSchema } from './addToSchema';
 
-export function applyCategoryToSchema(): any {
+export function applyCategoryToSchema(): ObjectTypeComposerWithMongooseResolvers<ICategory> {
   const customizationOptions = {};
-  return addToSchema(
-    'Category',
+  return addToSchema<ICategory>(
+    'category',
     composeMongoose(Category, customizationOptions),
   );
 }

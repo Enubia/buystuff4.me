@@ -78,6 +78,8 @@
     "@typescript-eslint/no-parameter-properties": "error",
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/explicit-member-accessibility": "error",
+    "@typescript-eslint/naming-convention": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "import/prefer-default-export": 0,
     "import/order": "error",
     "import/first": "error",

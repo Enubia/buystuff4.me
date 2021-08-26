@@ -1,33 +1,50 @@
-import { composeMongoose } from 'graphql-compose-mongoose';
-import { WishList } from '../db/models/wishlist';
+import {
+  composeMongoose,
+  ObjectTypeComposerWithMongooseResolvers,
+} from 'graphql-compose-mongoose';
+import { NonNullComposer } from 'graphql-compose';
+import { Types } from 'mongoose';
+import { IWishList, WishList } from '../db/models/wishlist';
+import { ICategory } from '../db/models/category';
+import { IUser } from '../db/models/user';
+import { Context } from '../types/context';
 import { addToSchema } from './addToSchema';
 
-export function applyWishListToSchema(): any {
+export function applyWishListToSchema(): ObjectTypeComposerWithMongooseResolvers<IWishList> {
   const customizationOptions = {};
-  return addToSchema(
-    'WishList',
+  return addToSchema<IWishList>(
+    'wishList',
     composeMongoose(WishList, customizationOptions),
   );
 }
 
-export function resolveWishListRelations({
+export function customWishListResolver({
   WishListTC,
   UserTC,
   CategoryTC,
+}: {
+  WishListTC: ObjectTypeComposerWithMongooseResolvers<IWishList>;
+  UserTC: ObjectTypeComposerWithMongooseResolvers<IUser>;
+  CategoryTC: ObjectTypeComposerWithMongooseResolvers<ICategory>;
 }): void {
-  WishListTC.addRelation('user', {
-    resolver: () => UserTC.mongooseResolvers.findById(),
+  WishListTC.addRelation('categories', {
+    resolver: () => CategoryTC.mongooseResolvers.findByIds(),
     prepareArgs: {
-      _id: (source) => source.user || null,
-    },
-    projection: { user: true },
-  });
-
-  WishListTC.addRelation('category', {
-    resolver: () => CategoryTC.mongooseResolvers.findById(),
-    prepareArgs: {
-      _id: (source) => source.category || null,
+      _ids: (source) => source.categoryIds || [],
     },
     projection: { category: true },
+  });
+
+  WishListTC.setField('userByWishListId', {
+    type: new NonNullComposer(UserTC),
+    resolve: async (source, args, context: Context, _info) => {
+      const { _id } = source;
+
+      const user = await context.mongoose.db.collection('user').findOne<IUser>({
+        wishListIds: { $in: [new Types.ObjectId(String(_id))] },
+      });
+
+      return user || null;
+    },
   });
 }

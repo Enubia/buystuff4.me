@@ -1,6 +1,11 @@
 import { schemaComposer } from 'graphql-compose';
+import { ObjectTypeComposerWithMongooseResolvers } from 'graphql-compose-mongoose';
+import { Document } from 'mongoose';
 
-export function addToSchema(collection: string, TC: any): any {
+export function addToSchema<T extends Document>(
+  collection: string,
+  TC: ObjectTypeComposerWithMongooseResolvers<T, any>,
+): ObjectTypeComposerWithMongooseResolvers<T, any> {
   const query = {};
   query[`${collection}ById`] = TC.mongooseResolvers.findById();
   query[`${collection}ByIds`] = TC.mongooseResolvers.findByIds();
