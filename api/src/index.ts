@@ -134,6 +134,8 @@ export const boot = async (): Promise<void> => {
   });
 };
 
+process.on('unhandledRejection', (reason) => logger.error(reason));
+
 (async () => {
   await boot();
 })();
