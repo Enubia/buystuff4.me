@@ -1,6 +1,6 @@
-import { model, Model, ObjectId, Schema } from 'mongoose';
+import { Document, model, Model, ObjectId, Schema } from 'mongoose';
 
-export interface ICategory {
+export interface ICategory extends Document {
   _id: ObjectId;
   name: string;
   createdAt: Date;
@@ -23,10 +23,17 @@ const CategorySchema = new Schema(
       type: Date,
       default: Date.now(),
     },
+    deletedAt: {
+      type: Date,
+      default: null,
+    },
   },
   {
     collection: 'category',
   },
 );
 
-export const Category: Model<ICategory> = model('Category', CategorySchema);
+export const Category: Model<ICategory> = model<ICategory>(
+  'Category',
+  CategorySchema,
+);

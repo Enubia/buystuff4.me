@@ -10,7 +10,21 @@
     "lint": "eslint --cache --fix --ext .ts --ignore-path .eslintignore src/",
     "upgradeDeps": "npx ncu -u"
   },
+  "dependencies": {
+    "apollo-server-express": "^3.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.1",
+    "graphql-compose": "^9.0.2",
+    "graphql-compose-mongoose": "^9.5.4",
+    "graphql-subscriptions": "^1.2.1",
+    "log4js": "^6.3.0",
+    "mongoose": "5.13.8",
+    "subscriptions-transport-ws": "^0.9.19"
+  },
   "devDependencies": {
+    "@types/faker": "^5.5.8",
     "@types/node": "16.7.1",
     "@typescript-eslint/eslint-plugin": "4.29.3",
     "@typescript-eslint/parser": "4.29.3",
@@ -27,6 +41,7 @@
     "eslint-plugin-prettier": "3.4.1",
     "eslint-plugin-unicorn": "35.0.0",
     "eslint-plugin-unused-imports": "1.1.4",
+    "faker": "^5.5.3",
     "jest": "27.0.6",
     "jest-mock-extended": "2.0.1",
     "nodemon": "2.0.12",
@@ -35,10 +50,5 @@
     "ts-jest": "27.0.5",
     "ts-node": "10.2.1",
     "typescript": "4.3.5"
-  },
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "log4js": "^6.3.0",
-    "mongoose": "^6.0.0"
   }
 }

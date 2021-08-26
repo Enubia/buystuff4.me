@@ -1,20 +1,11 @@
 import { Document, Model, model, ObjectId, Schema } from 'mongoose';
-import { ICategory } from './category';
 
-export enum Priority {
-  'NONE' = 0,
-  'LOW' = 1,
-  'MEDIUM' = 2,
-  'HIGH' = 3,
-}
 export interface IUser extends Document {
   _id: ObjectId;
   firstName: string;
   lastName: string;
   email: string;
   wishLists: string[];
-  categories: ICategory[];
-  priority: Priority;
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;
@@ -31,20 +22,15 @@ const UserSchema = new Schema(
       trim: true,
       unique: true,
     },
-    wishLists: {
-      type: [String],
-      required: true,
-      trim: true,
-    },
-    categories: {
-      type: Schema.Types.ObjectId,
-      ref: 'category',
-      required: true,
-    },
-    priority: {
-      type: Number,
-      default: Priority.NONE,
-    },
+    wishLists: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'wishlist',
+        required: true,
+        trim: true,
+        unique: true,
+      },
+    ],
     createdAt: {
       type: Date,
       default: Date.now(),
@@ -55,7 +41,7 @@ const UserSchema = new Schema(
     },
     deletedAt: {
       type: Date,
-      default: undefined,
+      default: null,
     },
   },
   {
@@ -63,4 +49,4 @@ const UserSchema = new Schema(
   },
 );
 
-export const User: Model<IUser> = model('User', UserSchema);
+export const User: Model<IUser> = model<IUser>('User', UserSchema);
