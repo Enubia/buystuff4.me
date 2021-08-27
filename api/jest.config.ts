@@ -1,5 +1,5 @@
 const config = {
-  roots: ['<rootDir>/api/tests'],
+  roots: ['<rootDir>/tests'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
