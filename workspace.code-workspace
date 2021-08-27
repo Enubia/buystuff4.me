@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "frontend",
+			"path": "frontend"
+		},
+		{
+			"name": "api",
+			"path": "api"
+		},
+		{
+			"name": "buystuff4.me",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
