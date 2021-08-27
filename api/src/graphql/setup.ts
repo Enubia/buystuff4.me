@@ -8,7 +8,7 @@ import {
 import { applyCategoryToSchema } from './categoryModelToSchema';
 import { customQueries } from './customQueries';
 
-export function createSchema(): GraphQLSchema {
+function createSchema(): GraphQLSchema {
   const UserTC = applyUserToSchema();
   const WishListTC = applyWishListToSchema();
   const CategoryTC = applyCategoryToSchema();
@@ -20,3 +20,5 @@ export function createSchema(): GraphQLSchema {
 
   return schemaComposer.buildSchema();
 }
+
+export const schema = createSchema();

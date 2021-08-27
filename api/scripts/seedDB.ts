@@ -118,14 +118,9 @@ import { User } from '../src/db/models/user';
   const getUsableLists = (): ObjectId[] => {
     const result = [];
 
-    let maxlists = faker.datatype.number(3);
-    if (maxlists === 0) {
-      maxlists = 1;
-    }
-
     // eslint-disable-next-line @typescript-eslint/naming-convention
     for (const { _id } of wishListIds) {
-      if (result.length < maxlists) {
+      if (result.length < 4) {
         if (!usedLists.has(_id)) {
           usedLists.add(_id);
           result.push(_id);
@@ -150,7 +145,7 @@ import { User } from '../src/db/models/user';
     return email;
   };
 
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 25; i++) {
     const data = {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
