@@ -1,22 +1,25 @@
 import { GraphQLSchema } from 'graphql';
 import { schemaComposer } from 'graphql-compose';
-import { applyUserToSchema, customUserResolver } from './userModelToSchema';
+import {
+  applyUserToSchema,
+  applyCustomUserResolver,
+} from './userModelToSchema';
 import {
   applyWishListToSchema,
-  customWishListResolver,
+  applyCustomWishListResolver,
 } from './wishListModelToSchema';
 import { applyCategoryToSchema } from './categoryModelToSchema';
-import { customQueries } from './customQueries';
+import { applyCustomQueries } from './applyCustomQueries';
 
 function createSchema(): GraphQLSchema {
   const UserTC = applyUserToSchema();
   const WishListTC = applyWishListToSchema();
   const CategoryTC = applyCategoryToSchema();
 
-  customUserResolver({ UserTC, WishListTC });
-  customWishListResolver({ WishListTC, UserTC, CategoryTC });
+  applyCustomUserResolver({ UserTC, WishListTC });
+  applyCustomWishListResolver({ WishListTC, UserTC, CategoryTC });
 
-  customQueries({ UserTC, WishListTC, CategoryTC });
+  applyCustomQueries({ UserTC, WishListTC, CategoryTC });
 
   return schemaComposer.buildSchema();
 }

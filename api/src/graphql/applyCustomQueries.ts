@@ -10,7 +10,7 @@ import { IUser } from '../db/models/user';
 import { IWishList } from '../db/models/wishlist';
 import { Context } from '../types/context';
 
-export function customQueries({
+export function applyCustomQueries({
   WishListTC,
   UserTC,
   CategoryTC,

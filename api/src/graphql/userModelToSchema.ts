@@ -14,7 +14,7 @@ export function applyUserToSchema(): ObjectTypeComposerWithMongooseResolvers<IUs
   );
 }
 
-export function customUserResolver({
+export function applyCustomUserResolver({
   UserTC,
   WishListTC,
 }: {

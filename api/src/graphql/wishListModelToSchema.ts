@@ -18,7 +18,7 @@ export function applyWishListToSchema(): ObjectTypeComposerWithMongooseResolvers
   );
 }
 
-export function customWishListResolver({
+export function applyCustomWishListResolver({
   WishListTC,
   UserTC,
   CategoryTC,

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { ObjectId } from 'mongoose';
 import * as faker from 'faker';
+import { Types } from 'mongoose';
 import { Category } from '../src/db/models/category';
 import { logger } from '../src/helper/logger';
 import { Mongoose } from '../src/db/connection';
@@ -114,9 +114,9 @@ import { User } from '../src/db/models/user';
   // user
   const wishListIds = await WishList.find().select('_id').lean().exec();
 
-  const usedLists = new Set<ObjectId>();
-  const getUsableLists = (): ObjectId[] => {
-    const result = [];
+  const usedLists = new Set<Types.ObjectId>();
+  const getUsableLists = (): Types.ObjectId[] => {
+    const result: Types.ObjectId[] = [];
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
     for (const { _id } of wishListIds) {
