@@ -11,16 +11,19 @@ import { pubsub } from './helper/pubsub';
 import { environment, PORT } from './config';
 import { Mongoose } from './db/connection';
 import { Context } from './types/context';
+import { WishList } from './db/models/wishlist';
+import { Category } from './db/models/category';
+import { User } from './db/models/user';
 
 // load env file
 config();
 
 export const boot = async (): Promise<void> => {
-  const connection = await Mongoose.connect();
+  await Mongoose.connect();
   const server = new ApolloServer({
     schema,
     context: {
-      mongoose: connection,
+      mongo: { User, WishList, Category },
     },
     formatError: (err: GraphQLError) => {
       if (err.originalError) {
@@ -42,7 +45,7 @@ export const boot = async (): Promise<void> => {
 
       return err;
     },
-    formatResponse: (response, { context }) => {
+    formatResponse: (response) => {
       // prevent introspection for prod
       if (process.env.NODE_ENV === 'production') {
         delete response.data.__schema;

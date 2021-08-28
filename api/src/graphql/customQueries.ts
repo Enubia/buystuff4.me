@@ -25,9 +25,11 @@ export function customQueries({
       _id: GraphQLNonNull(GraphQLMongoID),
     },
     resolve: async (_source, args, context: Context, _info) => {
-      const user = await context.mongoose.db.collection('user').findOne<IUser>({
+      const user = await context.mongo.User.findOne({
         wishListIds: { $in: [new Types.ObjectId(String(args._id))] },
-      });
+      })
+        .lean()
+        .exec();
 
       return user || null;
     },

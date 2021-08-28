@@ -40,9 +40,11 @@ export function customWishListResolver({
     resolve: async (source, args, context: Context, _info) => {
       const { _id } = source;
 
-      const user = await context.mongoose.db.collection('user').findOne<IUser>({
-        wishListIds: { $in: [new Types.ObjectId(String(_id))] },
-      });
+      const user = await context.mongo.User.findOne({
+        wishListIds: { $in: [new Types.ObjectId(_id)] },
+      })
+        .lean()
+        .exec();
 
       return user || null;
     },

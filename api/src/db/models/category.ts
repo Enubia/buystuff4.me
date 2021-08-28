@@ -1,13 +1,13 @@
-import { Document, model, Model, ObjectId, Schema } from 'mongoose';
+import { model, Schema, Types, Document } from 'mongoose';
 
 export interface ICategory extends Document {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   name: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-const CategorySchema = new Schema(
+const CategorySchema = new Schema<ICategory>(
   {
     name: {
       type: String,
@@ -33,7 +33,4 @@ const CategorySchema = new Schema(
   },
 );
 
-export const Category: Model<ICategory> = model<ICategory>(
-  'Category',
-  CategorySchema,
-);
+export const Category = model<ICategory>('Category', CategorySchema);

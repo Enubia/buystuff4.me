@@ -4,15 +4,15 @@ import { Document } from 'mongoose';
 
 export function addToSchema<T extends Document>(
   collection: string,
-  TC: ObjectTypeComposerWithMongooseResolvers<T, any>,
-): ObjectTypeComposerWithMongooseResolvers<T, any> {
+  TC: ObjectTypeComposerWithMongooseResolvers<T>,
+): ObjectTypeComposerWithMongooseResolvers<T> {
   const query = {};
-  query[`${collection}ById`] = TC.mongooseResolvers.findById();
-  query[`${collection}ByIds`] = TC.mongooseResolvers.findByIds();
-  query[`${collection}One`] = TC.mongooseResolvers.findOne();
-  query[`${collection}Many`] = TC.mongooseResolvers.findMany();
-  query[`${collection}DataLoader`] = TC.mongooseResolvers.dataLoader();
-  query[`${collection}DataLoaderMany`] = TC.mongooseResolvers.dataLoaderMany();
+  // query[`${collection}ById`] = TC.mongooseResolvers.findById();
+  // query[`${collection}ByIds`] = TC.mongooseResolvers.findByIds();
+  // query[`${collection}One`] = TC.mongooseResolvers.findOne();
+  // query[`${collection}Many`] = TC.mongooseResolvers.findMany();
+  // query[`${collection}DataLoader`] = TC.mongooseResolvers.dataLoader();
+  // query[`${collection}DataLoaderMany`] = TC.mongooseResolvers.dataLoaderMany();
   query[`${collection}ByIdLean`] = TC.mongooseResolvers.findById({
     lean: true,
   });
@@ -29,19 +29,19 @@ export function addToSchema<T extends Document>(
   query[`${collection}DataLoaderManyLean`] =
     TC.mongooseResolvers.dataLoaderMany({ lean: true });
   query[`${collection}Count`] = TC.mongooseResolvers.count();
-  query[`${collection}Connection`] = TC.mongooseResolvers.connection();
+  // query[`${collection}Connection`] = TC.mongooseResolvers.connection();
   query[`${collection}Pagination`] = TC.mongooseResolvers.pagination();
   schemaComposer.Query.addFields(query);
 
   const mutations = {};
   mutations[`${collection}CreateOne`] = TC.mongooseResolvers.createOne();
-  mutations[`${collection}CreateMany`] = TC.mongooseResolvers.createMany();
+  // mutations[`${collection}CreateMany`] = TC.mongooseResolvers.createMany();
   mutations[`${collection}UpdateById`] = TC.mongooseResolvers.updateById();
-  mutations[`${collection}UpdateOne`] = TC.mongooseResolvers.updateOne();
-  mutations[`${collection}UpdateMany`] = TC.mongooseResolvers.updateMany();
+  // mutations[`${collection}UpdateOne`] = TC.mongooseResolvers.updateOne();
+  // mutations[`${collection}UpdateMany`] = TC.mongooseResolvers.updateMany();
   mutations[`${collection}RemoveById`] = TC.mongooseResolvers.removeById();
-  mutations[`${collection}RemoveOne`] = TC.mongooseResolvers.removeOne();
-  mutations[`${collection}RemoveMany`] = TC.mongooseResolvers.removeMany();
+  // mutations[`${collection}RemoveOne`] = TC.mongooseResolvers.removeOne();
+  // mutations[`${collection}RemoveMany`] = TC.mongooseResolvers.removeMany();
   schemaComposer.Mutation.addFields(mutations);
 
   return TC;

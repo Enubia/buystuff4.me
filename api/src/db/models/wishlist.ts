@@ -1,4 +1,4 @@
-import { Document, model, Model, ObjectId, Schema } from 'mongoose';
+import { Document, model, Schema, Types } from 'mongoose';
 
 export const Priority = {
   NONE: 0,
@@ -8,16 +8,16 @@ export const Priority = {
 };
 
 export interface IWishList extends Document {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   link: string;
   priority: number;
-  categoryIds: ObjectId[];
+  categoryIds: Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
 }
 
-const WishlistSchema = new Schema(
+const WishlistSchema = new Schema<IWishList>(
   {
     link: {
       type: String,
@@ -30,7 +30,7 @@ const WishlistSchema = new Schema(
     },
     categoryIds: [
       {
-        type: Schema.Types.ObjectId,
+        type: Types.ObjectId,
         ref: 'category',
         required: true,
       },
@@ -53,7 +53,4 @@ const WishlistSchema = new Schema(
   },
 );
 
-export const WishList: Model<IWishList> = model<IWishList>(
-  'WishList',
-  WishlistSchema,
-);
+export const WishList = model<IWishList>('WishList', WishlistSchema);

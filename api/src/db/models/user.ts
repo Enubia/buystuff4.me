@@ -1,17 +1,17 @@
-import { Document, Model, model, ObjectId, Schema } from 'mongoose';
+import { model, Schema, Document, Types } from 'mongoose';
 
 export interface IUser extends Document {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   firstName: string;
   lastName: string;
   email: string;
-  wishListIds: ObjectId[];
+  wishListIds: Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;
 }
 
-const UserSchema = new Schema(
+const UserSchema = new Schema<IUser>(
   {
     firstName: { type: String, required: true, trim: true },
     lastName: { type: String, required: true, trim: true },
@@ -24,7 +24,7 @@ const UserSchema = new Schema(
     },
     wishListIds: [
       {
-        type: Schema.Types.ObjectId,
+        type: Types.ObjectId,
         ref: 'wishlist',
         required: true,
         trim: true,
@@ -49,4 +49,4 @@ const UserSchema = new Schema(
   },
 );
 
-export const User: Model<IUser> = model<IUser>('User', UserSchema);
+export const User = model<IUser>('User', UserSchema);
