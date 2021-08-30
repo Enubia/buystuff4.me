@@ -4,7 +4,7 @@ export interface ICategory extends Document {
   _id: Types.ObjectId;
   name: string;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt: Date | null;
 }
 
 const CategorySchema = new Schema<ICategory>(
@@ -20,10 +20,6 @@ const CategorySchema = new Schema<ICategory>(
       default: Date.now(),
     },
     updatedAt: {
-      type: Date,
-      default: Date.now(),
-    },
-    deletedAt: {
       type: Date,
       default: null,
     },

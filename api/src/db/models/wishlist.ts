@@ -13,8 +13,7 @@ export interface IWishList extends Document {
   priority: number;
   categoryIds: Types.ObjectId[];
   createdAt: Date;
-  updatedAt: Date;
-  deletedAt: Date;
+  updatedAt: Date | null;
 }
 
 const WishlistSchema = new Schema<IWishList>(
@@ -40,10 +39,6 @@ const WishlistSchema = new Schema<IWishList>(
       default: Date.now(),
     },
     updatedAt: {
-      type: Date,
-      default: Date.now(),
-    },
-    deletedAt: {
       type: Date,
       default: null,
     },

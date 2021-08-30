@@ -80,6 +80,7 @@
     "@typescript-eslint/explicit-member-accessibility": "error",
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/return-await": "off",
     "import/prefer-default-export": 0,
     "import/order": "error",
     "import/first": "error",

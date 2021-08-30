@@ -19,12 +19,12 @@ export function applyWishListToSchema(): ObjectTypeComposerWithMongooseResolvers
 }
 
 export function applyCustomWishListResolver({
-  WishListTC,
   UserTC,
+  WishListTC,
   CategoryTC,
 }: {
-  WishListTC: ObjectTypeComposerWithMongooseResolvers<IWishList>;
   UserTC: ObjectTypeComposerWithMongooseResolvers<IUser>;
+  WishListTC: ObjectTypeComposerWithMongooseResolvers<IWishList>;
   CategoryTC: ObjectTypeComposerWithMongooseResolvers<ICategory>;
 }): void {
   WishListTC.addRelation('categories', {

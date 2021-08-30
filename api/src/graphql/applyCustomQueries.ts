@@ -9,14 +9,15 @@ import { ICategory } from '../db/models/category';
 import { IUser } from '../db/models/user';
 import { IWishList } from '../db/models/wishlist';
 import { Context } from '../types/context';
+import { logger } from '../helper/logger';
 
 export function applyCustomQueries({
-  WishListTC,
   UserTC,
+  WishListTC,
   CategoryTC,
 }: {
-  WishListTC: ObjectTypeComposerWithMongooseResolvers<IWishList>;
   UserTC: ObjectTypeComposerWithMongooseResolvers<IUser>;
+  WishListTC: ObjectTypeComposerWithMongooseResolvers<IWishList>;
   CategoryTC: ObjectTypeComposerWithMongooseResolvers<ICategory>;
 }): void {
   schemaComposer.Query.setField('userByWishListId', {
@@ -25,13 +26,16 @@ export function applyCustomQueries({
       _id: GraphQLNonNull(GraphQLMongoID),
     },
     resolve: async (_source, args, context: Context, _info) => {
-      const user = await context.mongo.User.findOne({
-        wishListIds: { $in: [new Types.ObjectId(String(args._id))] },
-      })
-        .lean()
-        .exec();
-
-      return user || null;
+      try {
+        return await context.mongo.User.findOne({
+          wishListIds: { $in: [new Types.ObjectId(String(args._id))] },
+        })
+          .lean()
+          .exec();
+      } catch (error) {
+        logger.error(error);
+        return null;
+      }
     },
   });
 }

@@ -7,8 +7,7 @@ export interface IUser extends Document {
   email: string;
   wishListIds: Types.ObjectId[];
   createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date;
+  updatedAt: Date | null;
 }
 
 const UserSchema = new Schema<IUser>(
@@ -36,10 +35,6 @@ const UserSchema = new Schema<IUser>(
       default: Date.now(),
     },
     updatedAt: {
-      type: Date,
-      default: Date.now(),
-    },
-    deletedAt: {
       type: Date,
       default: null,
     },
