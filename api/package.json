@@ -7,6 +7,7 @@
     "clean": "rimraf ./dist ./coverage ./node_modules",
     "coverage": "jest --runInBand --coverage",
     "dev": "nodemon --inspect=0.0.0.0:9229 -e ts,js -w src --exec node -r ts-node/register src/",
+    "dev:seed-db": "npx ts-node ./scripts/seedDB.ts",
     "lint": "eslint --cache --fix --ext .ts --ignore-path .eslintignore src/",
     "upgradeDeps": "npx ncu -u"
   },

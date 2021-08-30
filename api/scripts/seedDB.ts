@@ -98,7 +98,8 @@ import { User } from '../src/db/models/user';
   for (let i = 0; i < 100; i++) {
     const data = {
       link: getUsableUrl(),
-      priority: Priority[faker.datatype.number(3)],
+      priority:
+        Priority[faker.random.arrayElement(['NONE', 'LOW', 'MEDIUM', 'HIGH'])],
       categoryIds: getUsableCategories(),
     };
 
