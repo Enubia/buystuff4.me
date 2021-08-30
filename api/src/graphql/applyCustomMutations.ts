@@ -82,6 +82,10 @@ export function applyCustomMutations({
         result = await context.mongo.User.findOneAndRemove({ email })
           .lean()
           .exec();
+
+        if (!result) {
+          return { success: false, message: ErrorMessages.NO_USER_FOUND };
+        }
       } catch (error) {
         logger.error(error);
         return { success: false, message: ErrorMessages.REMOVE_USER };
