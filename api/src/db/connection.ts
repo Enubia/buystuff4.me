@@ -1,8 +1,14 @@
-import { connect, connection, disconnect, ConnectOptions } from 'mongoose';
+import {
+  connect,
+  connection,
+  disconnect,
+  ConnectOptions,
+  Connection,
+} from 'mongoose';
 import { environment } from '../config';
 import { logger } from '../helper/logger';
 
-async function createConnection(): Promise<typeof connection> {
+async function createConnection(): Promise<Connection> {
   const options: ConnectOptions & {
     useNewUrlParser: boolean;
     useFindAndModify: boolean;

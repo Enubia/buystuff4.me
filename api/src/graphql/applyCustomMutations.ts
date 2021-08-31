@@ -8,7 +8,7 @@ import { schemaComposer } from 'graphql-compose';
 import { OAuth2Client } from 'google-auth-library';
 import { ObjectTypeComposerWithMongooseResolvers } from 'graphql-compose-mongoose';
 import { LeanDocument, Types } from 'mongoose';
-import { Context } from '../types/context';
+import { IContext } from '../types/IContext';
 import { logger } from '../helper/logger';
 import { ICategory } from '../db/models/category';
 import { IUser } from '../db/models/user';
@@ -24,20 +24,26 @@ export function applyCustomMutations({
   WishListTC: ObjectTypeComposerWithMongooseResolvers<IWishList>;
   CategoryTC: ObjectTypeComposerWithMongooseResolvers<ICategory>;
 }): void {
+  // --------------------- user ---------------------
   schemaComposer.Mutation.setField('google', {
     type: UserTC,
     description: 'Endpoint for the google sign-in token verification',
     args: {
       token: GraphQLNonNull(GraphQLString),
     },
-    resolve: async (_source, args, context: Context, _info) => {
+    resolve: async (
+      _source,
+      args: { token: string },
+      context: IContext,
+      _info,
+    ) => {
       const clientId = String(process.env.G_CLIENT_ID);
       const client = new OAuth2Client();
       const { token } = args;
 
       try {
         const ticket = await client.verifyIdToken({
-          idToken: String(token),
+          idToken: token,
           audience: clientId,
         });
         const payload = ticket.getPayload();
@@ -74,7 +80,12 @@ export function applyCustomMutations({
     args: {
       email: GraphQLNonNull(GraphQLString),
     },
-    resolve: async (_source, args, context: Context, _info) => {
+    resolve: async (
+      _source,
+      args: { email: string },
+      context: IContext,
+      _info,
+    ) => {
       const { email } = args;
 
       let result: LeanDocument<IUser>;
@@ -97,6 +108,12 @@ export function applyCustomMutations({
             $in: result.wishListIds.map((id) => new Types.ObjectId(id)),
           },
         }).exec();
+
+        await context.mongo.ResultQueue.deleteMany({
+          wishListIds: {
+            $in: result.wishListIds.map((id) => new Types.ObjectId(id)),
+          },
+        }).exec();
       } catch (error) {
         logger.error(error);
         return { success: false, message: ErrorMessages.DELETE_WISHLISTS };
@@ -105,4 +122,6 @@ export function applyCustomMutations({
       return { ok: true };
     },
   });
+
+  // --------------------- wishlist ---------------------
 }

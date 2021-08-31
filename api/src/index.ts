@@ -1,25 +1,27 @@
-import { createServer } from 'http';
 import { config } from 'dotenv';
-import { GraphQLError, execute, subscribe } from 'graphql';
+import { GraphQLError } from 'graphql';
 import { ApolloError, ApolloServer } from 'apollo-server-express';
 import * as express from 'express';
-import cors = require('cors');
-import { SubscriptionServer } from 'subscriptions-transport-ws';
+import * as cors from 'cors';
+import * as expressBasicAuth from 'express-basic-auth';
+import * as Agendash from 'agendash';
 import { logger } from './helper/logger';
 import { schema } from './graphql/setup';
-import { pubsub } from './helper/pubsub';
 import { environment, PORT } from './config';
 import { Mongoose } from './db/connection';
-import { Context } from './types/context';
 import { WishList } from './db/models/wishlist';
 import { Category } from './db/models/category';
 import { User } from './db/models/user';
+import { createAgenda } from './scheduler/agenda';
 
 // load env file
 config();
 
 export const boot = async (): Promise<void> => {
   await Mongoose.connect();
+
+  const agenda = await createAgenda();
+
   const server = new ApolloServer({
     schema,
     context: {
@@ -61,6 +63,7 @@ export const boot = async (): Promise<void> => {
   const app = express();
 
   app.use(
+    '/graphql',
     cors({
       origin(origin, callback) {
         if (
@@ -78,12 +81,23 @@ export const boot = async (): Promise<void> => {
   );
 
   app.use(
+    '/agendash',
+    cors(),
+    expressBasicAuth({
+      users: { [process.env.USER]: process.env.PASSWORD },
+      challenge: true,
+    }),
+    Agendash(agenda),
+  );
+
+  app.use(
     (
       error: Error,
       _req: express.Request,
       res: express.Response,
       _next: express.NextFunction,
     ) => {
+      logger.error(error);
       res.send({
         errors: [new ApolloError(error.message)],
       });
@@ -92,36 +106,36 @@ export const boot = async (): Promise<void> => {
 
   server.applyMiddleware({ app });
 
-  const httpServer = createServer(app);
+  // const httpServer = createServer(app);
+  //
+  // const subscriptionServer = SubscriptionServer.create(
+  //   {
+  //     schema,
+  //     execute,
+  //     subscribe,
+  //     onConnect: (connectionParams, _webSocket, context: IContext) => {
+  //       return {
+  //         ...context,
+  //         // revisit pubsub since it's not recommended for production
+  //         // maybe Redis or RabbitMQ?
+  //         // https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries
+  //         pubsub,
+  //       };
+  //     },
+  //   },
+  //   {
+  //     server: httpServer,
+  //     path: server.graphqlPath,
+  //   },
+  // );
+  //
+  // // Shut down in the case of interrupt and termination signals
+  // // We expect to handle this more cleanly in the future. See (#5074)[https://github.com/apollographql/apollo-server/issues/5074] for reference.
+  // ['SIGINT', 'SIGTERM'].forEach((signal) => {
+  //   process.on(signal, () => subscriptionServer.close());
+  // });
 
-  const subscriptionServer = SubscriptionServer.create(
-    {
-      schema,
-      execute,
-      subscribe,
-      onConnect: (connectionParams, _webSocket, context: Context) => {
-        return {
-          ...context,
-          // revisit pubsub since it's not recommended for production
-          // maybe Redis or RabbitMQ?
-          // https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries
-          pubsub,
-        };
-      },
-    },
-    {
-      server: httpServer,
-      path: server.graphqlPath,
-    },
-  );
-
-  // Shut down in the case of interrupt and termination signals
-  // We expect to handle this more cleanly in the future. See (#5074)[https://github.com/apollographql/apollo-server/issues/5074] for reference.
-  ['SIGINT', 'SIGTERM'].forEach((signal) => {
-    process.on(signal, () => subscriptionServer.close());
-  });
-
-  httpServer.listen(PORT, () => {
+  app.listen(PORT, () => {
     logger.info(`Listening on port ${PORT} ... 🚀`);
     logger.info(
       `Server ready at http://localhost:${PORT}${server.graphqlPath}`,
@@ -139,6 +153,4 @@ export const boot = async (): Promise<void> => {
 
 process.on('unhandledRejection', (reason) => logger.error(reason));
 
-(async () => {
-  await boot();
-})();
+boot().catch((err) => logger.error(err));

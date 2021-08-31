@@ -7,7 +7,7 @@ import { Types } from 'mongoose';
 import { IWishList, WishList } from '../db/models/wishlist';
 import { ICategory } from '../db/models/category';
 import { IUser } from '../db/models/user';
-import { Context } from '../types/context';
+import { IContext } from '../types/IContext';
 import { addToSchema } from './addToSchema';
 
 export function applyWishListToSchema(): ObjectTypeComposerWithMongooseResolvers<IWishList> {
@@ -37,7 +37,7 @@ export function applyCustomWishListResolver({
 
   WishListTC.setField('userByWishListId', {
     type: new NonNullComposer(UserTC),
-    resolve: async (source, args, context: Context, _info) => {
+    resolve: async (source, args, context: IContext, _info) => {
       const { _id } = source;
 
       const user = await context.mongo.User.findOne({

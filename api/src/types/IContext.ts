@@ -4,11 +4,13 @@ import { Model } from 'mongoose';
 import { IUser } from '../db/models/user';
 import { IWishList } from '../db/models/wishlist';
 import { ICategory } from '../db/models/category';
+import { IResultQueue } from '../db/models/resultQueue';
 
-export interface Context extends GraphQLRequestContext {
+export interface IContext extends GraphQLRequestContext {
   mongo: {
     User: Model<IUser>;
     WishList: Model<IWishList>;
     Category: Model<ICategory>;
+    ResultQueue: Model<IResultQueue>;
   };
 }

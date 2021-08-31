@@ -12,6 +12,8 @@ export interface IWishList extends Document {
   link: string;
   priority: number;
   categoryIds: Types.ObjectId[];
+  isPublished: boolean;
+  lastPublishedAt: Date | null;
   createdAt: Date;
   updatedAt: Date | null;
 }
@@ -34,6 +36,14 @@ const WishlistSchema = new Schema<IWishList>(
         required: true,
       },
     ],
+    isPublished: {
+      type: Boolean,
+      default: false,
+    },
+    lastPublishedAt: {
+      type: Date,
+      default: null,
+    },
     createdAt: {
       type: Date,
       default: Date.now(),
