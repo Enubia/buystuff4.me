@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Share your amazon wishlists and let a stranger be your donator",
   "scripts": {
+    "clean": "npm run clean:api && npm run clean:frontend",
+    "clean:api": "cd api && npm run clean",
+    "clean:frontend": "cd frontend && npm run clean",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:api": "cd api && npm run dev",
     "lint:api": "cd api && npm run lint",

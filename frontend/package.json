@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "clean": "rimraf ./.nuxt ./node_modules",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
@@ -38,6 +39,7 @@
     "lint-staged": "11.1.2",
     "nuxt-property-decorator": "2.9.1",
     "postcss": "8.3.6",
+    "rimraf": "3.0.2",
     "stylelint": "13.13.1",
     "stylelint-config-prettier": "8.0.2",
     "stylelint-config-standard": "22.0.0"
