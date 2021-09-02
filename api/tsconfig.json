@@ -6,7 +6,7 @@
       "ES2020",
       "ESNext.AsyncIterable"
     ],
-    "outDir": "build",
+    "outDir": "dist",
     "skipLibCheck": true,
     "moduleResolution": "node",
     "sourceMap": true,
@@ -21,13 +21,11 @@
     "files": true
   },
   "include": [
-    "*/**/*.ts",
-    "*/**/*.js",
-    "*.ts",
-    "*.js"
+    "src/**/*.ts",
+    "src/**/*.js"
   ],
   "exclude": [
     "node_modules",
-    "build"
-  ],
+    "dist"
+  ]
 }

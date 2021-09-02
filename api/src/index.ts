@@ -15,7 +15,9 @@ import { User } from './db/models/user';
 import { createAgenda } from './scheduler/agenda';
 
 // load env file
-config();
+if (process.env.NODE_ENV !== 'production') {
+  config();
+}
 
 export const boot = async (): Promise<void> => {
   await Mongoose.connect();
