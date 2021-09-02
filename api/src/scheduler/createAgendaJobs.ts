@@ -1,7 +1,7 @@
 import { Agenda } from 'agenda';
 import { Types } from 'mongoose';
-import { WishList } from '../db/models/wishlist';
-import { ResultQueue } from '../db/models/resultQueue';
+import { WishList } from '../db/models/wishList';
+import { WishListQueue } from '../db/models/wishListQueue';
 
 export function createAgendaJobs(agenda: Agenda): void {
   agenda.define('update wishlist queue', async () => {
@@ -16,23 +16,22 @@ export function createAgendaJobs(agenda: Agenda): void {
     );
 
     if (result.nModified > 0) {
-      const { wishListIds } = await ResultQueue.findOne().lean().exec();
+      const queueResult = await WishListQueue.find().lean().exec();
 
       // update result queue according to how many lists are affected
       for (let i = 0; i < result.nModified; i++) {
-        const id = wishListIds[i];
+        const item = queueResult[i];
 
         // set the next item in queue to published
         await WishList.updateOne(
-          { _id: new Types.ObjectId(id) },
+          { _id: new Types.ObjectId(item.wishListId) },
           { isPublished: true },
         ).exec();
 
         // remove it from the queue
-        await ResultQueue.updateOne(
-          { wishListIds: { $in: [new Types.ObjectId(id)] } },
-          { $pull: new Types.ObjectId(id) },
-        ).exec();
+        await WishListQueue.remove({
+          wishListId: new Types.ObjectId(item.wishListId),
+        }).exec();
       }
     }
   });

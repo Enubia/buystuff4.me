@@ -4,7 +4,7 @@ import {
 } from 'graphql-compose-mongoose';
 import { NonNullComposer } from 'graphql-compose';
 import { Types } from 'mongoose';
-import { IWishList, WishList } from '../db/models/wishlist';
+import { IWishList, WishList } from '../db/models/wishList';
 import { ICategory } from '../db/models/category';
 import { IUser } from '../db/models/user';
 import { IContext } from '../types/IContext';

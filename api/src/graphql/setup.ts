@@ -11,17 +11,26 @@ import {
 import { applyCategoryToSchema } from './categoryModelToSchema';
 import { applyCustomQueries } from './applyCustomQueries';
 import { applyCustomMutations } from './applyCustomMutations';
-import { applyResultQueueToSchema } from './resultQueueModelToSchema';
+import {
+  applyCustomWishListQueueResolver,
+  applyWishlistQueueToSchema,
+} from './wishlistQueueModelToSchema';
 
 function createSchema(): GraphQLSchema {
   const UserTC = applyUserToSchema();
   const WishListTC = applyWishListToSchema();
   const CategoryTC = applyCategoryToSchema();
   // only apply it, we don't need the TC anywhere
-  applyResultQueueToSchema();
+  const WishListQueueTC = applyWishlistQueueToSchema();
 
   applyCustomUserResolver({ UserTC, WishListTC });
   applyCustomWishListResolver({ UserTC, WishListTC, CategoryTC });
+  applyCustomWishListQueueResolver({
+    UserTC,
+    WishListTC,
+    CategoryTC,
+    WishListQueueTC,
+  });
 
   applyCustomQueries({ UserTC, WishListTC, CategoryTC });
   applyCustomMutations({ UserTC, WishListTC, CategoryTC });

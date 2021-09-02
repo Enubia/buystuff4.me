@@ -9,7 +9,7 @@ import { logger } from './helper/logger';
 import { schema } from './graphql/setup';
 import { environment, PORT } from './config';
 import { Mongoose } from './db/connection';
-import { WishList } from './db/models/wishlist';
+import { WishList } from './db/models/wishList';
 import { Category } from './db/models/category';
 import { User } from './db/models/user';
 import { createAgenda } from './scheduler/agenda';

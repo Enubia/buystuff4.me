@@ -1,7 +1,7 @@
 import { ObjectTypeComposerWithMongooseResolvers } from 'graphql-compose-mongoose';
 import { ICategory } from '../db/models/category';
 import { IUser } from '../db/models/user';
-import { IWishList } from '../db/models/wishlist';
+import { IWishList } from '../db/models/wishList';
 
 export function applyCustomQueries({
   UserTC,

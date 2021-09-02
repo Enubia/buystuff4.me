@@ -1,3 +1,4 @@
+export const MAX_DOCUMENT_COUNT = 100;
 export const PORT = 3001;
 export const environment = {
   development: {

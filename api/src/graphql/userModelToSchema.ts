@@ -3,7 +3,7 @@ import {
   ObjectTypeComposerWithMongooseResolvers,
 } from 'graphql-compose-mongoose';
 import { IUser, User } from '../db/models/user';
-import { IWishList } from '../db/models/wishlist';
+import { IWishList } from '../db/models/wishList';
 import { addToSchema } from './addToSchema';
 
 export function applyUserToSchema(): ObjectTypeComposerWithMongooseResolvers<IUser> {

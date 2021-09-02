@@ -4,8 +4,9 @@ import { Types } from 'mongoose';
 import { Category } from '../src/db/models/category';
 import { logger } from '../src/helper/logger';
 import { Mongoose } from '../src/db/connection';
-import { Priority, WishList } from '../src/db/models/wishlist';
+import { Priority, WishList } from '../src/db/models/wishList';
 import { User } from '../src/db/models/user';
+import { WishListQueue } from '../src/db/models/wishListQueue';
 
 (async () => {
   const connection = await Mongoose.connect();
@@ -13,6 +14,7 @@ import { User } from '../src/db/models/user';
   await connection.dropCollection('user');
   await connection.dropCollection('wishList');
   await connection.dropCollection('category');
+  await connection.dropCollection('wishListQueue');
 
   // categories
   const available = [
@@ -50,6 +52,7 @@ import { User } from '../src/db/models/user';
   const categoryPromises = [];
   const wishListPromises = [];
   const userPromises = [];
+  const queuePromises = [];
 
   for (const category of available) {
     categoryPromises.push(Category.create({ name: category }));
@@ -96,11 +99,14 @@ import { User } from '../src/db/models/user';
   };
 
   for (let i = 0; i < 100; i++) {
+    const published = faker.datatype.number({ min: 0, max: 1 });
     const data = {
       link: getUsableUrl(),
       priority:
         Priority[faker.random.arrayElement(['NONE', 'LOW', 'MEDIUM', 'HIGH'])],
       categoryIds: getUsableCategories(),
+      lastPublishedAt: published ? null : new Date(),
+      isPublished: Boolean(published),
     };
 
     wishListPromises.push(WishList.create(data));
@@ -158,6 +164,21 @@ import { User } from '../src/db/models/user';
   }
 
   await Promise.all(userPromises);
+
+  // wishListQueue
+  const wishlistResult = await WishList.find().lean().exec();
+
+  for (const list of wishlistResult) {
+    if (!list.isPublished) {
+      queuePromises.push(
+        WishListQueue.create({
+          wishListId: new Types.ObjectId(list._id),
+        }),
+      );
+    }
+  }
+
+  await Promise.all(queuePromises);
 
   await Mongoose.disconnect();
 })();

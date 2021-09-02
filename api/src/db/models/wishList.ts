@@ -18,7 +18,7 @@ export interface IWishList extends Document {
   updatedAt: Date | null;
 }
 
-const WishlistSchema = new Schema<IWishList>(
+const WishListSchema = new Schema<IWishList>(
   {
     link: {
       type: String,
@@ -58,4 +58,4 @@ const WishlistSchema = new Schema<IWishList>(
   },
 );
 
-export const WishList = model<IWishList>('WishList', WishlistSchema);
+export const WishList = model<IWishList>('WishList', WishListSchema);

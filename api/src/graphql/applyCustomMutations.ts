@@ -1,5 +1,6 @@
 import {
   GraphQLBoolean,
+  GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
@@ -12,8 +13,9 @@ import { IContext } from '../types/IContext';
 import { logger } from '../helper/logger';
 import { ICategory } from '../db/models/category';
 import { IUser } from '../db/models/user';
-import { IWishList } from '../db/models/wishlist';
+import { IWishList } from '../db/models/wishList';
 import { ErrorMessages } from '../helper/errorMessages';
+import { MAX_DOCUMENT_COUNT } from '../config';
 
 export function applyCustomMutations({
   UserTC,
@@ -109,7 +111,7 @@ export function applyCustomMutations({
           },
         }).exec();
 
-        await context.mongo.ResultQueue.deleteMany({
+        await context.mongo.WishListQueue.deleteMany({
           wishListIds: {
             $in: result.wishListIds.map((id) => new Types.ObjectId(id)),
           },
@@ -124,4 +126,80 @@ export function applyCustomMutations({
   });
 
   // --------------------- wishlist ---------------------
+  schemaComposer.Mutation.setField('wishListCreateOne', {
+    type: schemaComposer.createObjectTC({
+      name: 'WishListCreateResult',
+      fields: {
+        wishListId: GraphQLString,
+        isPublished: { type: GraphQLNonNull(GraphQLBoolean) },
+        message: { type: GraphQLString },
+      },
+    }),
+    args: {
+      link: GraphQLNonNull(GraphQLString),
+      userId: GraphQLNonNull(GraphQLString),
+      categoryIds: [GraphQLNonNull(GraphQLString)],
+      priority: GraphQLInt,
+    },
+    resolve: async (
+      _source,
+      args: {
+        link: string;
+        userId: string;
+        categoryIds: string[];
+        priority: number;
+      },
+      context: IContext,
+      _info,
+    ) => {
+      const { link, userId, categoryIds, priority } = args;
+
+      let result: IWishList;
+
+      try {
+        const documentCount = await context.mongo.WishList.countDocuments({
+          isPublished: true,
+        })
+          .lean()
+          .exec();
+
+        const data: Pick<IWishList, 'link' | 'categoryIds' | 'priority'> & {
+          lastPublishedAt?: Date;
+        } = {
+          link,
+          categoryIds: categoryIds.map((id) => new Types.ObjectId(id)),
+          priority,
+        };
+
+        if (documentCount < MAX_DOCUMENT_COUNT) {
+          data.lastPublishedAt = new Date();
+        }
+
+        result = await context.mongo.WishList.create(data);
+      } catch (error) {
+        logger.error(error);
+        return { isPublished: false, message: ErrorMessages.CREATE_WISHLIST };
+      }
+
+      try {
+        await context.mongo.User.updateOne(
+          { _id: userId },
+          {
+            $addToSet: { wishlistIds: new Types.ObjectId(result._id) },
+          },
+        );
+      } catch (error) {
+        logger.error(error);
+        return {
+          isPublished: false,
+          message: ErrorMessages.ADD_WISHLIST_TO_USER,
+        };
+      }
+
+      return {
+        wishListId: result._id,
+        isPublished: result.isPublished,
+      };
+    },
+  });
 }
