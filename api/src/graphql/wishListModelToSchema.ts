@@ -41,7 +41,7 @@ export function applyCustomWishListResolver({
       const { _id } = source;
 
       const user = await context.mongo.User.findOne({
-        wishListIds: { $in: [new Types.ObjectId(_id)] },
+        wishListIds: { $in: [Types.ObjectId(String(_id))] },
       })
         .lean()
         .exec();

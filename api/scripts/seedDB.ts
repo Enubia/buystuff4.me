@@ -2,7 +2,6 @@
 import * as faker from 'faker';
 import { Types } from 'mongoose';
 import { Category } from '../src/db/models/category';
-import { logger } from '../src/helper/logger';
 import { Mongoose } from '../src/db/connection';
 import { Priority, WishList } from '../src/db/models/wishList';
 import { User } from '../src/db/models/user';
@@ -58,11 +57,7 @@ import { WishListQueue } from '../src/db/models/wishListQueue';
     categoryPromises.push(Category.create({ name: category }));
   }
 
-  try {
-    await Promise.all(categoryPromises);
-  } catch (err) {
-    logger.error(err);
-  }
+  await Promise.all(categoryPromises);
 
   // wishlists
   const categoryIds = await Category.find().select('_id').lean().exec();
@@ -112,11 +107,7 @@ import { WishListQueue } from '../src/db/models/wishListQueue';
     wishListPromises.push(WishList.create(data));
   }
 
-  try {
-    await Promise.all(wishListPromises);
-  } catch (err) {
-    logger.error(err);
-  }
+  await Promise.all(wishListPromises);
 
   // user
   const wishListIds = await WishList.find().select('_id').lean().exec();
@@ -172,7 +163,7 @@ import { WishListQueue } from '../src/db/models/wishListQueue';
     if (!list.isPublished) {
       queuePromises.push(
         WishListQueue.create({
-          wishListId: new Types.ObjectId(list._id),
+          wishListId: Types.ObjectId(String(list._id)),
         }),
       );
     }

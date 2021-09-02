@@ -7,7 +7,7 @@ export function createAgendaJobs(agenda: Agenda): void {
   agenda.define('update wishlist queue', async () => {
     const result = await WishList.updateMany(
       {
-        // get every list that older than 30 days and set to unpublished
+        // get every list that is older than 30 days and set to unpublished
         lastPublishedAt: { $lt: new Date(new Date().getDate() - 30) },
       },
       {
@@ -15,22 +15,22 @@ export function createAgendaJobs(agenda: Agenda): void {
       },
     );
 
-    if (result.nModified > 0) {
+    if (result.upserted.length > 0) {
       const queueResult = await WishListQueue.find().lean().exec();
 
       // update result queue according to how many lists are affected
-      for (let i = 0; i < result.nModified; i++) {
+      for (let i = 0; i < result.upserted.length; i++) {
         const item = queueResult[i];
 
         // set the next item in queue to published
         await WishList.updateOne(
-          { _id: new Types.ObjectId(item.wishListId) },
+          { _id: Types.ObjectId(String(item.wishListId)) },
           { isPublished: true },
         ).exec();
 
         // remove it from the queue
         await WishListQueue.remove({
-          wishListId: new Types.ObjectId(item.wishListId),
+          wishListId: Types.ObjectId(String(item.wishListId)),
         }).exec();
       }
     }
