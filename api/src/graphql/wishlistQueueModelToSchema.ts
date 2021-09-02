@@ -17,9 +17,7 @@ export function applyWishlistQueueToSchema(): ObjectTypeComposerWithMongooseReso
 }
 
 export function applyCustomWishListQueueResolver({
-  UserTC,
   WishListTC,
-  CategoryTC,
   WishListQueueTC,
 }: {
   UserTC: ObjectTypeComposerWithMongooseResolvers<IUser>;

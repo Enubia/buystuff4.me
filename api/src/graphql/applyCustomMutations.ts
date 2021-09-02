@@ -19,8 +19,6 @@ import { MAX_DOCUMENT_COUNT } from '../config';
 
 export function applyCustomMutations({
   UserTC,
-  WishListTC,
-  CategoryTC,
 }: {
   UserTC: ObjectTypeComposerWithMongooseResolvers<IUser>;
   WishListTC: ObjectTypeComposerWithMongooseResolvers<IWishList>;
@@ -193,6 +191,20 @@ export function applyCustomMutations({
         return {
           isPublished: false,
           message: ErrorMessages.ADD_WISHLIST_TO_USER,
+        };
+      }
+
+      try {
+        if (!result.isPublished) {
+          await context.mongo.WishListQueue.create({
+            wishListId: new Types.ObjectId(result._id),
+          });
+        }
+      } catch (error) {
+        logger.error(error);
+        return {
+          isPublished: result.isPublished,
+          message: ErrorMessages.ADD_TO_QUEUE,
         };
       }
 
