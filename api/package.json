@@ -21,7 +21,7 @@
     "express": "4.17.1",
     "express-basic-auth": "1.2.0",
     "google-auth-library": "7.7.0",
-    "graphql": "15.5.1",
+    "graphql": "15.5.2",
     "graphql-compose": "9.0.2",
     "graphql-compose-mongoose": "9.5.4",
     "graphql-subscriptions": "1.2.1",
