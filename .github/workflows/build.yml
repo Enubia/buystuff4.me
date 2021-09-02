@@ -1,18 +1,12 @@
 name: Run build and test pipeline
 
-on: [push]
+on: [ push ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     if: github.event.pull_request.draft == false
-
-    env:
-      POSTGRES_USER: pg
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DATABASE: buystuff4me
-      POSTGRES_URL: postgresql://pg:postgres@localhost:5432/buystuff4me
 
     steps:
       - name: Checkout
