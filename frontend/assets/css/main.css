@@ -5,6 +5,10 @@
 @tailwind screens;
 
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-weight: theme('fontWeight.medium');
 }

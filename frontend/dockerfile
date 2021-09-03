@@ -5,16 +5,13 @@ RUN mkdir -p /app
 WORKDIR app/
 
 ADD package*.json /app/
-ADD dist/ /app/dist/
+ADD build/ /app/build/
 
 RUN npm ci --only=production
 
 ENV NODE_ENV=${NODE_ENV}
-ENV MONGO_URL=${MONGO_URL}
 ENV G_CLIENT_ID=${G_CLIENT_ID}
-ENV USER=${USER}
-ENV PASSWORD=${PASSWORD}
 
-EXPOSE 3001
+EXPOSE 3000
 
 RUN npm start

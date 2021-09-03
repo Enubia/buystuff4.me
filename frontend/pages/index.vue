@@ -2,21 +2,22 @@
   <div
     class="flex justify-center min-h-full bg-gray-100 sm:items-center sm:pt-0"
   >
-    <img
-      style="width: 20vw"
-      src="../assets/svg/RisaruDesign_Logo_BK_transparent.svg"
-      alt="Risaru design logo"
-    />
+    <Button />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'nuxt-property-decorator';
+import Input from '../components/Input.vue';
+import Button from '../components/Button.vue';
 
 @Component({
   name: 'Index',
-  components: {},
+  components: {
+    Input,
+    Button,
+  },
 })
 export default class extends Vue {}
 </script>
