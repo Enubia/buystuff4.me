@@ -23,7 +23,7 @@
     "google-auth-library": "7.7.0",
     "graphql": "15.5.2",
     "graphql-compose": "9.0.2",
-    "graphql-compose-mongoose": "9.5.4",
+    "graphql-compose-mongoose": "9.6.0",
     "graphql-subscriptions": "1.2.1",
     "log4js": "6.3.0",
     "mongoose": "5.13.8",
