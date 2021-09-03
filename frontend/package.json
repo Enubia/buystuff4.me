@@ -23,23 +23,23 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.15.4",
-    "@hokify/eslint-config-vue": "^1.1.13",
+    "@hokify/eslint-config-vue": "1.1.13",
     "@nuxt/types": "2.15.8",
     "@nuxt/typescript-build": "2.1.0",
     "@nuxtjs/eslint-config-typescript": "6.0.1",
     "@nuxtjs/eslint-module": "3.0.2",
     "@nuxtjs/stylelint-module": "4.0.0",
-    "@nuxtjs/tailwindcss": "^4.2.1",
+    "@nuxtjs/tailwindcss": "4.2.1",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
     "lint-staged": "11.1.2",
     "nuxt-property-decorator": "2.9.1",
-    "postcss": "^8.3.6",
+    "postcss": "8.3.6",
     "rimraf": "3.0.2",
     "stylelint": "13.13.1",
     "stylelint-config-prettier": "8.0.2",
     "stylelint-config-standard": "22.0.0",
-    "tailwindcss": "^2.2.9"
+    "tailwindcss": "2.2.9"
   }
 }
