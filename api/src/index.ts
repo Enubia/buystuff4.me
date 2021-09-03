@@ -13,6 +13,7 @@ import { WishList } from './db/models/wishList';
 import { Category } from './db/models/category';
 import { User } from './db/models/user';
 import { createAgenda } from './scheduler/agenda';
+import { WishListQueue } from './db/models/wishListQueue';
 
 // load env file
 if (process.env.NODE_ENV !== 'production') {
@@ -27,7 +28,7 @@ export const boot = async (): Promise<void> => {
   const server = new ApolloServer({
     schema,
     context: {
-      mongo: { User, WishList, Category },
+      mongo: { User, WishList, Category, WishListQueue },
     },
     formatError: (err: GraphQLError) => {
       if (err.originalError) {

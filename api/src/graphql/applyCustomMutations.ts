@@ -105,13 +105,13 @@ export function applyCustomMutations({
       try {
         await context.mongo.WishList.deleteMany({
           _id: {
-            $in: result.wishListIds.map((id) => Types.ObjectId(String(id))),
+            $in: result.wishListIds.map((id) => new Types.ObjectId(String(id))),
           },
         }).exec();
 
         await context.mongo.WishListQueue.deleteMany({
           wishListIds: {
-            $in: result.wishListIds.map((id) => Types.ObjectId(String(id))),
+            $in: result.wishListIds.map((id) => new Types.ObjectId(String(id))),
           },
         }).exec();
       } catch (error) {
@@ -165,7 +165,7 @@ export function applyCustomMutations({
           lastPublishedAt?: Date;
         } = {
           link,
-          categoryIds: categoryIds.map((id) => Types.ObjectId(String(id))),
+          categoryIds: categoryIds.map((id) => new Types.ObjectId(String(id))),
           priority,
         };
 
@@ -183,7 +183,7 @@ export function applyCustomMutations({
         await context.mongo.User.updateOne(
           { _id: userId },
           {
-            $addToSet: { wishlistIds: Types.ObjectId(String(result._id)) },
+            $addToSet: { wishlistIds: new Types.ObjectId(String(result._id)) },
           },
         );
       } catch (error) {
@@ -197,7 +197,7 @@ export function applyCustomMutations({
       try {
         if (!result.isPublished) {
           await context.mongo.WishListQueue.create({
-            wishListId: Types.ObjectId(String(result._id)),
+            wishListId: new Types.ObjectId(String(result._id)),
           });
         }
       } catch (error) {

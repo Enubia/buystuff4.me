@@ -23,7 +23,7 @@ const UserSchema = new Schema<IUser>(
     },
     wishListIds: [
       {
-        type: Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'wishlist',
         required: true,
         trim: true,
@@ -32,7 +32,7 @@ const UserSchema = new Schema<IUser>(
     ],
     createdAt: {
       type: Date,
-      default: Date.now(),
+      default: new Date(),
     },
     updatedAt: {
       type: Date,

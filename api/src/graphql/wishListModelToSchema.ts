@@ -41,7 +41,10 @@ export function applyCustomWishListResolver({
       const { _id } = source;
 
       const user = await context.mongo.User.findOne({
-        wishListIds: { $in: [Types.ObjectId(String(_id))] },
+        // TODO: types are messed up here for some reason, this is a temporarily fix
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        wishListIds: { $in: [new Types.ObjectId(String(_id))] },
       })
         .lean()
         .exec();

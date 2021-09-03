@@ -9,17 +9,7 @@ import { environment } from '../config';
 import { logger } from '../helper/logger';
 
 async function createConnection(): Promise<Connection> {
-  const options: ConnectOptions & {
-    useNewUrlParser: boolean;
-    useFindAndModify: boolean;
-    useCreateIndex: boolean;
-    useUnifiedTopology: boolean;
-  } = {
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  };
+  const options: ConnectOptions = {};
 
   await connect(
     environment[process.env.NODE_ENV || 'development'].dbString,

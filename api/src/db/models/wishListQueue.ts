@@ -9,14 +9,13 @@ export interface IWishListQueue extends Document {
 const wishlistQueueSchema = new Schema<IWishListQueue>(
   {
     wishListId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'wishlist',
       required: true,
-      unique: true,
     },
     createdAt: {
       type: Date,
-      default: Date.now(),
+      default: new Date(),
     },
   },
   {

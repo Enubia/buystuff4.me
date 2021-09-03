@@ -31,7 +31,7 @@ const WishListSchema = new Schema<IWishList>(
     },
     categoryIds: [
       {
-        type: Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'category',
         required: true,
       },
@@ -46,7 +46,7 @@ const WishListSchema = new Schema<IWishList>(
     },
     createdAt: {
       type: Date,
-      default: Date.now(),
+      default: new Date(),
     },
     updatedAt: {
       type: Date,

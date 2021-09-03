@@ -5,4 +5,6 @@ export enum ErrorMessages {
   CREATE_WISHLIST = 'Failed to create wishlist',
   ADD_TO_QUEUE = 'Failed to add wishlist to queue',
   ADD_WISHLIST_TO_USER = 'Failed to add wishlist to user',
+  WISHLIST_COUNT = 'Failed to get the wishlist count',
+  WISHLIST_QUEUE_COUNT = 'Failed to get the wishlist queue count',
 }

@@ -15,22 +15,22 @@ export function createAgendaJobs(agenda: Agenda): void {
       },
     );
 
-    if (result.upserted.length > 0) {
+    if (result.modifiedCount > 0) {
       const queueResult = await WishListQueue.find().lean().exec();
 
       // update result queue according to how many lists are affected
-      for (let i = 0; i < result.upserted.length; i++) {
+      for (let i = 0; i < result.modifiedCount; i++) {
         const item = queueResult[i];
 
         // set the next item in queue to published
         await WishList.updateOne(
-          { _id: Types.ObjectId(String(item.wishListId)) },
+          { _id: new Types.ObjectId(String(item.wishListId)) },
           { isPublished: true },
         ).exec();
 
         // remove it from the queue
         await WishListQueue.remove({
-          wishListId: Types.ObjectId(String(item.wishListId)),
+          wishListId: new Types.ObjectId(String(item.wishListId)),
         }).exec();
       }
     }
