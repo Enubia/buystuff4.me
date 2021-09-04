@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="min-w-full">
     <NavBar />
     <Nuxt />
     <Footer />
