@@ -8,6 +8,8 @@
     "components",
     "layouts",
     "pages",
-    "store"
+    "store",
+    "i18n",
+    "plugins"
   ]
 }

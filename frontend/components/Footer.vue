@@ -9,17 +9,23 @@
             </span>
           </div>
           <div class="link-wrapper">
-            <NuxtLink class="link" to="/about">About</NuxtLink>
+            <NuxtLink class="link" :to="localePath('about')">
+              {{ $t('about') }}
+            </NuxtLink>
           </div>
           <div class="link-wrapper">
-            <NuxtLink class="link" to="/how-to">How to</NuxtLink>
+            <NuxtLink class="link" :to="localePath('how-to')">
+              {{ $t('howTo') }}
+            </NuxtLink>
           </div>
           <div class="link-wrapper">
-            <NuxtLink class="link" to="/faq">FAQ</NuxtLink>
+            <NuxtLink class="link" :to="localePath('faq')">
+              {{ $t('faq') }}
+            </NuxtLink>
           </div>
           <div class="link-wrapper">
-            <NuxtLink class="link" to="/privacy-policy">
-              Privacy Policy
+            <NuxtLink class="link" :to="localePath('privacy-policy')">
+              {{ $t('privacyPolicy') }}
             </NuxtLink>
           </div>
         </div>

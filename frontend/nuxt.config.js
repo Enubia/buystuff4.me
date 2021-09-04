@@ -3,25 +3,34 @@ export default {
   target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: 'buystuff4.me',
-    htmlAttrs: {
-      lang: 'en',
-    },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  head() {
+    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
+
+    return {
+      title: 'buystuff4.me',
+      htmlAttrs: {
+        lang: 'en',
+        ...i18nHead.htmlAttrs,
+      },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: '' },
+        { name: 'format-detection', content: 'telephone=no' },
+        ...i18nHead.meta,
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        ...i18nHead.link,
+      ],
+    };
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/scss/main'],
+  css: ['./node_modules/flag-icon-css/css/flag-icon.css', '~/assets/scss/main'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/i18n.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: false,
@@ -47,6 +56,34 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/apollo',
+    [
+      '@nuxtjs/i18n',
+      {
+        useCookie: true,
+        cookieKey: 'i18n_redirected',
+        redirectOn: 'root',
+        locales: [
+          {
+            code: 'en',
+            name: 'English',
+            ico: 'us',
+            iso: 'en-US',
+            file: 'en-US.js',
+          },
+          {
+            code: 'de',
+            name: 'Deutsch',
+            ico: 'de',
+            iso: 'de-DE',
+            file: 'de-DE.js',
+          },
+        ],
+        baseUrl: 'https://buystuff4.me',
+        lazy: true,
+        langDir: 'i18n/',
+        defaultLocale: 'en',
+      },
+    ],
   ],
 
   apollo: {

@@ -4,7 +4,7 @@
       <div class="flex justify-between">
         <div class="flex space-x-10">
           <!-- Website Logo -->
-          <nuxt-link to="/" class="flex items-center py-4 px-2">
+          <nuxt-link :to="localePath('/')" class="flex items-center py-4 px-2">
             <img
               src="../assets/svg/RisaruDesign_Logo_BK_transparent.svg"
               alt="Logo"
@@ -13,14 +13,23 @@
           </nuxt-link>
           <!-- Primary Navbar items -->
           <div class="hidden md:flex items-center space-x-1">
-            <nuxt-link to="/how-to" class="main-menu-items"> How To</nuxt-link>
-            <nuxt-link to="/about" class="main-menu-items"> About</nuxt-link>
-            <nuxt-link to="/faq" class="main-menu-items"> FAQ</nuxt-link>
+            <nuxt-link :to="localePath('how-to')" class="main-menu-items">
+              {{ $t('howTo') }}
+            </nuxt-link>
+            <nuxt-link :to="localePath('about')" class="main-menu-items">
+              {{ $t('about') }}
+            </nuxt-link>
+            <nuxt-link :to="localePath('faq')" class="main-menu-items">
+              {{ $t('faq') }}
+            </nuxt-link>
           </div>
         </div>
         <!-- Secondary Navbar items -->
         <div class="hidden md:flex items-center space-x-3">
-          <button class="btn-accent py-2 px-2">Sign Up</button>
+          <button class="btn-accent py-2 px-2 w-28">
+            {{ $t('signIn') }}
+          </button>
+          <LanguageSwitcher />
         </div>
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center">
@@ -45,13 +54,19 @@
     <div ref="mobile-menu" class="hidden">
       <ul>
         <li>
-          <nuxt-link to="/how-to" class="mobile-menu-items"> How To</nuxt-link>
+          <nuxt-link :to="localePath('how-to')" class="mobile-menu-items">
+            How To
+          </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/about" class="mobile-menu-items"> About</nuxt-link>
+          <nuxt-link :to="localePath('about')" class="mobile-menu-items">
+            About
+          </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/faq" class="mobile-menu-items"> FAQ</nuxt-link>
+          <nuxt-link :to="localePath('faq')" class="mobile-menu-items">
+            FAQ
+          </nuxt-link>
         </li>
       </ul>
     </div>
@@ -60,9 +75,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
+import LanguageSwitcher from './LanguageSwitcher.vue';
 
 @Component({
   name: 'NavBar',
+  components: { LanguageSwitcher },
 })
 export default class NavBar extends Vue {
   toggleMenu() {
