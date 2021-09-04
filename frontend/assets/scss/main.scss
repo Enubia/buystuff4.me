@@ -7,6 +7,22 @@
 
   html, body {
     font-weight: theme('fontWeight.medium');
+
+    .btn-primary {
+      @apply p-2 rounded text-white bg-primary-500 hover:bg-primary-700;
+    }
+
+    .btn-secondary {
+      @apply p-2 rounded text-white bg-secondary-500 hover:bg-secondary-700;
+    }
+
+    .btn-accent {
+      @apply p-2 rounded text-white bg-accent-500 hover:bg-accent-700;
+    }
+
+    .btn-highlight {
+      @apply p-2 rounded text-white bg-highlight-500 hover:bg-highlight-700;
+    }
   }
 }
 

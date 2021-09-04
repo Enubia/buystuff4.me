@@ -1,3 +1,5 @@
+import { writeFileSync } from 'fs';
+import * as path from 'path';
 import { GraphQLSchema } from 'graphql';
 import { schemaComposer } from 'graphql-compose';
 import {
@@ -34,6 +36,13 @@ function createSchema(): GraphQLSchema {
 
   applyCustomQueries({ UserTC, WishListTC, CategoryTC });
   applyCustomMutations({ UserTC, WishListTC, CategoryTC });
+
+  if (process.env.NODE_ENV !== 'production') {
+    writeFileSync(
+      path.join(__dirname, 'schema.graphql'),
+      schemaComposer.toSDL(),
+    );
+  }
 
   return schemaComposer.buildSchema();
 }
