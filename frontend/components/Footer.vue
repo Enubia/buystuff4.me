@@ -4,9 +4,9 @@
       <div class="w-2/3 flex">
         <div class="md:flex w-full md:text-center">
           <div class="md:w-2/5 py-1 grid content-center">
-            <span class="text-sm"
-              >&#169; {{ new Date().getFullYear() }} Marco Schuster</span
-            >
+            <span class="text-sm">
+              &#169; {{ new Date().getFullYear() }} Marco Schuster
+            </span>
           </div>
           <div class="link-wrapper">
             <NuxtLink class="link" to="/about">About</NuxtLink>
