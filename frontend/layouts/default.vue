@@ -1,5 +1,5 @@
 <template>
-  <div class="font-sans">
+  <div>
     <NavBar />
     <Nuxt />
     <Footer />

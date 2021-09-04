@@ -21,34 +21,42 @@ export default class extends Vue {
   client = this.$apollo.getClient();
 
   async mounted() {
-    const data = await this.client.query({
-      query: gql`
-        query userOneLean {
-          userOneLean {
-            email
+    try {
+      const data = await this.client.query({
+        query: gql`
+          query userOneLean {
+            userOneLean {
+              email
+            }
           }
-        }
-      `,
-    });
+        `,
+      });
 
-    console.log(data.data.userOneLean.email);
+      console.log(data.data.userOneLean.email);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async fetchUser() {
-    const data = await this.client.query({
-      query: gql`
-        query {
-          userOneLean {
-            _id
-            firstName
-            lastName
-            email
+    try {
+      const data = await this.client.query({
+        query: gql`
+          query {
+            userOneLean {
+              _id
+              firstName
+              lastName
+              email
+            }
           }
-        }
-      `,
-    });
+        `,
+      });
 
-    console.log(data.data.userOneLean);
+      console.log(data.data.userOneLean);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 </script>
