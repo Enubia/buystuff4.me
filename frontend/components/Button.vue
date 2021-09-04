@@ -45,7 +45,7 @@ export default class Button extends Vue {
   @Prop({ type: String, default: 'secondary' }) type!: string;
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
 button {
   @apply p-2 rounded text-white;
 }

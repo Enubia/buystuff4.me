@@ -38,9 +38,12 @@
     "nuxt-property-decorator": "2.9.1",
     "postcss": "8.3.6",
     "rimraf": "3.0.2",
+    "sass": "1.39.0",
+    "sass-loader": "10.2.0",
     "stylelint": "13.13.1",
     "stylelint-config-prettier": "8.0.2",
     "stylelint-config-standard": "22.0.0",
-    "tailwindcss": "2.2.9"
+    "tailwindcss": "2.2.9",
+    "webpack": "4.46.0"
   }
 }

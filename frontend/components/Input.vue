@@ -22,13 +22,13 @@ export default class Input extends Vue {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 input {
   @apply rounded
-    focus:ring focus:ring-accent-500 focus:ring-opacity-50
-    border-gray-300
-    shadow-sm
-    focus:border-accent-200
-    w-full;
+  focus:ring focus:ring-accent-500 focus:ring-opacity-50
+  border-gray-300
+  shadow-sm
+  focus:border-accent-200
+  w-full;
 }
 </style>
