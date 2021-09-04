@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&family=Roboto&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind screens;
+@import "tailwind.css";
 
 * {
     margin: 0;

@@ -163,7 +163,7 @@ import { WishListQueue } from '../src/db/models/wishListQueue';
     if (!list.isPublished) {
       queuePromises.push(
         WishListQueue.create({
-          wishListId: Types.ObjectId(String(list._id)),
+          wishListId: new Types.ObjectId(String(list._id)),
         }),
       );
     }
