@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator';
+import { Component, Vue, Prop, Ref } from 'nuxt-property-decorator';
 
 @Component({
   name: 'Input',
@@ -29,6 +29,8 @@ export default class Input extends Vue {
   })
   inputType!: string;
 
+  @Ref('urlLink') urlLink!: Element;
+
   // https://regex101.com/r/AISC65/1
   urlPattern =
     /(https:\/\/)([w]{3}.amazon.[a-z]{2})(\/[a-z]{2})(\/wishlist)(\/[a-z]{2})(\/[A-Z\d]+)(\?ref_=wl_share)/;
@@ -38,17 +40,17 @@ export default class Input extends Vue {
   }
 
   verifyUrl() {
-    const { value } = this.$refs.urlLink;
+    const { value }: any = this.urlLink;
 
     if (value !== '') {
       if (!String(value.trim()).match(this.urlPattern)) {
-        this.$refs.urlLink.classList.add('error');
+        this.urlLink.classList.add('error');
       } else {
-        this.$refs.urlLink.classList.remove('error');
+        this.urlLink.classList.remove('error');
         this.dataChange(value);
       }
     } else {
-      this.$refs.urlLink.classList.remove('error');
+      this.urlLink.classList.remove('error');
     }
   }
 }
