@@ -29,7 +29,6 @@
           <button class="btn-accent py-2 px-2 w-28">
             {{ $t('signIn') }}
           </button>
-          <LanguageSwitcher />
         </div>
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center">
@@ -75,11 +74,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import LanguageSwitcher from './LanguageSwitcher.vue';
 
 @Component({
   name: 'NavBar',
-  components: { LanguageSwitcher },
+  components: {},
 })
 export default class NavBar extends Vue {
   toggleMenu() {
