@@ -11,18 +11,21 @@
               class="h-20 w-20 mr-2"
             />
           </nuxt-link>
-          <!-- Primary Navbar items -->
           <div class="hidden md:flex items-center space-x-1">
-            <nuxt-link :to="localePath('how-to')" class="main-menu-items">
-              {{ $t('howTo') }}
-            </nuxt-link>
-            <nuxt-link :to="localePath('about')" class="main-menu-items">
-              {{ $t('about') }}
-            </nuxt-link>
-            <nuxt-link :to="localePath('faq')" class="main-menu-items">
-              {{ $t('faq') }}
-            </nuxt-link>
+            <h1 class="text-2xl text-gray-300">{{ $t('navbartitle') }}</h1>
           </div>
+          <!-- Primary Navbar items -->
+          <!--          <div class="hidden md:flex items-center space-x-1">-->
+          <!--            <nuxt-link :to="localePath('how-to')" class="main-menu-items">-->
+          <!--              {{ $t('howTo') }}-->
+          <!--            </nuxt-link>-->
+          <!--            <nuxt-link :to="localePath('about')" class="main-menu-items">-->
+          <!--              {{ $t('about') }}-->
+          <!--            </nuxt-link>-->
+          <!--            <nuxt-link :to="localePath('faq')" class="main-menu-items">-->
+          <!--              {{ $t('faq') }}-->
+          <!--            </nuxt-link>-->
+          <!--          </div>-->
         </div>
         <!-- Secondary Navbar items -->
         <div class="hidden md:flex items-center space-x-3">
@@ -50,25 +53,25 @@
       </div>
     </div>
     <!-- mobile menu -->
-    <div ref="mobile-menu" class="hidden">
-      <ul>
-        <li>
-          <nuxt-link :to="localePath('how-to')" class="mobile-menu-items">
-            How To
-          </nuxt-link>
-        </li>
-        <li>
-          <nuxt-link :to="localePath('about')" class="mobile-menu-items">
-            About
-          </nuxt-link>
-        </li>
-        <li>
-          <nuxt-link :to="localePath('faq')" class="mobile-menu-items">
-            FAQ
-          </nuxt-link>
-        </li>
-      </ul>
-    </div>
+    <!--    <div ref="mobile-menu" class="hidden">-->
+    <!--      <ul>-->
+    <!--        <li>-->
+    <!--          <nuxt-link :to="localePath('how-to')" class="mobile-menu-items">-->
+    <!--            How To-->
+    <!--          </nuxt-link>-->
+    <!--        </li>-->
+    <!--        <li>-->
+    <!--          <nuxt-link :to="localePath('about')" class="mobile-menu-items">-->
+    <!--            About-->
+    <!--          </nuxt-link>-->
+    <!--        </li>-->
+    <!--        <li>-->
+    <!--          <nuxt-link :to="localePath('faq')" class="mobile-menu-items">-->
+    <!--            FAQ-->
+    <!--          </nuxt-link>-->
+    <!--        </li>-->
+    <!--      </ul>-->
+    <!--    </div>-->
   </nav>
 </template>
 

@@ -99,7 +99,7 @@ export default class VDropDown extends Vue {
     py-1
     px-2
     text-sm
-    mt-4
+    mt-2
     bg-white;
   }
 

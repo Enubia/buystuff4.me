@@ -4,4 +4,5 @@ export default {
   faq: 'FAQ',
   privacyPolicy: 'Datenschutz-Bestimmungen',
   signIn: 'Einloggen',
+  navbartitle: 'Dein Wunsch ist jemandes Vergnügen',
 };

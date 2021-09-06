@@ -4,4 +4,5 @@ export default {
   faq: 'FAQ',
   privacyPolicy: 'Privacy Policy',
   signIn: 'Sign In',
+  navbartitle: 'Your wish is someones pleasure',
 };

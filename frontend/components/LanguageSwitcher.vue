@@ -1,5 +1,5 @@
 <template>
-  <VDropDown>
+  <VDropDown placement="left">
     <!-- Button content -->
     <template #button>
       <span
