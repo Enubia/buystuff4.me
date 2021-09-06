@@ -30,7 +30,13 @@ export default {
   css: ['./node_modules/flag-icon-css/css/flag-icon.css', '~/assets/scss/main'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/i18n.js'],
+  plugins: [
+    '~/plugins/i18n.js',
+    {
+      src: './plugins/gtag.js',
+      mode: 'client',
+    },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: false,
@@ -86,6 +92,9 @@ export default {
     ],
   ],
 
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {},
+
   apollo: {
     clientConfigs: {
       default: {
@@ -96,9 +105,6 @@ export default {
       },
     },
   },
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

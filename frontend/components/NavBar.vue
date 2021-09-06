@@ -15,23 +15,26 @@
             <h1 class="text-2xl text-gray-300">{{ $t('navbartitle') }}</h1>
           </div>
           <!-- Primary Navbar items -->
-          <!--          <div class="hidden md:flex items-center space-x-1">-->
-          <!--            <nuxt-link :to="localePath('how-to')" class="main-menu-items">-->
-          <!--              {{ $t('howTo') }}-->
-          <!--            </nuxt-link>-->
-          <!--            <nuxt-link :to="localePath('about')" class="main-menu-items">-->
-          <!--              {{ $t('about') }}-->
-          <!--            </nuxt-link>-->
-          <!--            <nuxt-link :to="localePath('faq')" class="main-menu-items">-->
-          <!--              {{ $t('faq') }}-->
-          <!--            </nuxt-link>-->
-          <!--          </div>-->
+          <!-- <div class="hidden md:flex items-center space-x-1"> -->
+          <!--   <nuxt-link :to="localePath('how-to')" class="main-menu-items"> -->
+          <!--     {{ $t('howTo') }} -->
+          <!--   </nuxt-link> -->
+          <!--   <nuxt-link :to="localePath('about')" class="main-menu-items"> -->
+          <!--     {{ $t('about') }} -->
+          <!--   </nuxt-link> -->
+          <!--   <nuxt-link :to="localePath('faq')" class="main-menu-items"> -->
+          <!--     {{ $t('faq') }} -->
+          <!--   </nuxt-link> -->
+          <!-- </div> -->
         </div>
         <!-- Secondary Navbar items -->
         <div class="hidden md:flex items-center space-x-3">
-          <button class="btn-accent py-2 px-2 w-28">
+          <nuxt-link
+            class="btn-accent py-2 px-2 w-28"
+            :to="localePath('sign-in')"
+          >
             {{ $t('signIn') }}
-          </button>
+          </nuxt-link>
         </div>
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center">
@@ -56,25 +59,28 @@
     <div ref="mobile-menu" class="hidden">
       <ul>
         <li class="flex justify-center">
-          <button class="mb-2 text-base btn-accent py-2 px-2 w-28">
+          <nuxt-link
+            class="mb-2 text-base btn-accent py-2 px-2 w-28"
+            :to="localePath('sign-in')"
+          >
             {{ $t('signIn') }}
-          </button>
+          </nuxt-link>
         </li>
-        <!--        <li>-->
-        <!--          <nuxt-link :to="localePath('how-to')" class="mobile-menu-items">-->
-        <!--            How To-->
-        <!--          </nuxt-link>-->
-        <!--        </li>-->
-        <!--        <li>-->
-        <!--          <nuxt-link :to="localePath('about')" class="mobile-menu-items">-->
-        <!--            About-->
-        <!--          </nuxt-link>-->
-        <!--        </li>-->
-        <!--        <li>-->
-        <!--          <nuxt-link :to="localePath('faq')" class="mobile-menu-items">-->
-        <!--            FAQ-->
-        <!--          </nuxt-link>-->
-        <!--        </li>-->
+        <!-- <li> -->
+        <!--   <nuxt-link :to="localePath('how-to')" class="mobile-menu-items"> -->
+        <!--     How To -->
+        <!--   </nuxt-link> -->
+        <!-- </li> -->
+        <!-- <li> -->
+        <!--   <nuxt-link :to="localePath('about')" class="mobile-menu-items"> -->
+        <!--     About -->
+        <!--   </nuxt-link> -->
+        <!-- </li> -->
+        <!-- <li> -->
+        <!--   <nuxt-link :to="localePath('faq')" class="mobile-menu-items"> -->
+        <!--     FAQ -->
+        <!--   </nuxt-link> -->
+        <!-- </li> -->
       </ul>
     </div>
   </nav>
@@ -85,7 +91,6 @@ import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
   name: 'NavBar',
-  components: {},
 })
 export default class NavBar extends Vue {
   toggleMenu() {

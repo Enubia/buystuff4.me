@@ -28,7 +28,8 @@
       "@nuxtjs/i18n",
       "@nuxtjs/axios",
       "@types/node",
-      "vue-apollo/types"
+      "vue-apollo/types",
+      "vue-gtag"
     ]
   },
   "exclude": [
