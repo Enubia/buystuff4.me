@@ -25,20 +25,7 @@
     >
       <div
         v-if="open"
-        class="
-          hidden
-          md:block
-          absolute
-          shadow-lg
-          border
-          w-48
-          rounded
-          py-1
-          px-2
-          text-sm
-          mt-4
-          bg-white
-        "
+        class="drop-down-select"
         :class="placement === 'right' ? 'right-0' : 'left-0'"
       >
         <slot name="content"></slot>
@@ -54,22 +41,7 @@
       leave-class="opacity-100 scale-100"
       leave-to-class="opacity-0 scale-75"
     >
-      <div
-        v-if="open"
-        class="
-          md:hidden
-          fixed
-          inset-x-0
-          bottom-0
-          bg-white
-          w-full
-          z-20
-          px-2
-          py-2
-          shadow-2xl
-          leading-loose
-        "
-      >
+      <div v-if="open" class="drop-down-items">
         <slot name="content"></slot>
       </div>
     </transition>
@@ -113,3 +85,36 @@ export default class VDropDown extends Vue {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.drop-down {
+  &-select {
+    @apply hidden
+    md:block
+    absolute
+    shadow-lg
+    border
+    w-48
+    rounded
+    py-1
+    px-2
+    text-sm
+    mt-4
+    bg-white;
+  }
+
+  &-items {
+    @apply md:hidden
+    fixed
+    inset-x-0
+    bottom-0
+    bg-white
+    w-full
+    z-20
+    px-2
+    py-2
+    shadow-2xl
+    leading-loose;
+  }
+}
+</style>
