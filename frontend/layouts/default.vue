@@ -1,7 +1,9 @@
 <template>
-  <div class="min-w-full">
+  <div class="min-w-full h-screen">
     <NavBar />
-    <Nuxt />
+    <main>
+      <Nuxt />
+    </main>
     <Footer />
     <client-only>
       <CookieBanner />

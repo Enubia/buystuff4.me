@@ -1,13 +1,8 @@
 <template>
-  <div class="flex bg-accent-800 grid text-gray-300">
+  <footer class="fixed bottom-0 w-full bg-gray-700 grid text-gray-300">
     <div class="w-full flex inline p-3">
-      <div class="w-2/3 flex">
+      <div class="w-2/3 flex justify-end">
         <div class="md:flex w-full md:text-center">
-          <div class="md:w-2/5 py-1 grid content-center">
-            <span class="text-sm">
-              &#169; {{ new Date().getFullYear() }} Marco Schuster
-            </span>
-          </div>
           <div class="link-wrapper">
             <NuxtLink class="link" :to="localePath('about')">
               {{ $t('about') }}
@@ -44,9 +39,14 @@
             />
           </a>
         </div>
+        <div class="md:w-full py-1 grid text-center">
+          <span class="text-sm">
+            &#169; {{ new Date().getFullYear() }} Marco Schuster
+          </span>
+        </div>
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 
 <script lang="ts">
