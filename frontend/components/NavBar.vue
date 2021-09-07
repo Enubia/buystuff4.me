@@ -14,26 +14,23 @@
           <div class="flex items-center space-x-1">
             <h1 class="text-2xl text-gray-300">{{ $t('navbartitle') }}</h1>
           </div>
-          <!-- Primary Navbar items -->
-          <!-- <div class="hidden md:flex items-center space-x-1"> -->
-          <!--   <nuxt-link :to="localePath('how-to')" class="main-menu-items"> -->
-          <!--     {{ $t('howTo') }} -->
-          <!--   </nuxt-link> -->
-          <!--   <nuxt-link :to="localePath('about')" class="main-menu-items"> -->
-          <!--     {{ $t('about') }} -->
-          <!--   </nuxt-link> -->
-          <!--   <nuxt-link :to="localePath('faq')" class="main-menu-items"> -->
-          <!--     {{ $t('faq') }} -->
-          <!--   </nuxt-link> -->
-          <!-- </div> -->
         </div>
         <!-- Secondary Navbar items -->
         <div class="hidden md:flex items-center space-x-3">
           <nuxt-link
-            class="btn-accent py-2 px-2 w-28"
+            class="
+              py-2
+              px-2
+              w-28
+              text-gray-300
+              hover:text-highlight-700
+              flex
+              content-center
+            "
             :to="localePath('sign-in')"
           >
-            {{ $t('signIn') }}
+            <span class="p-1">{{ $t('signIn') }}</span>
+            <span class="material-icons p-1">login</span>
           </nuxt-link>
         </div>
         <!-- Mobile menu button -->
@@ -60,27 +57,21 @@
       <ul>
         <li class="flex justify-center">
           <nuxt-link
-            class="mb-2 text-base btn-accent py-2 px-2 w-28"
+            class="
+              py-2
+              px-2
+              w-28
+              text-gray-300
+              hover:text-highlight-700
+              flex
+              content-center
+            "
             :to="localePath('sign-in')"
           >
-            {{ $t('signIn') }}
+            <span class="p-1">{{ $t('signIn') }}</span>
+            <span class="material-icons p-1">login</span>
           </nuxt-link>
         </li>
-        <!-- <li> -->
-        <!--   <nuxt-link :to="localePath('how-to')" class="mobile-menu-items"> -->
-        <!--     How To -->
-        <!--   </nuxt-link> -->
-        <!-- </li> -->
-        <!-- <li> -->
-        <!--   <nuxt-link :to="localePath('about')" class="mobile-menu-items"> -->
-        <!--     About -->
-        <!--   </nuxt-link> -->
-        <!-- </li> -->
-        <!-- <li> -->
-        <!--   <nuxt-link :to="localePath('faq')" class="mobile-menu-items"> -->
-        <!--     FAQ -->
-        <!--   </nuxt-link> -->
-        <!-- </li> -->
       </ul>
     </div>
   </nav>

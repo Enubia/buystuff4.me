@@ -1,7 +1,9 @@
 <template>
   <div
-    class="justify-center min-h-full bg-gray-100 sm:items-center sm:pt-0"
-  ></div>
+    class="flex justify-center min-h-full bg-gray-100 sm:items-center sm:pt-0"
+  >
+    <Input label="asfd" input-type="url" />
+  </div>
 </template>
 
 <script lang="ts">

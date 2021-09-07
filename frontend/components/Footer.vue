@@ -62,7 +62,7 @@ export default class Footer extends Vue {}
 .link-wrapper {
   @apply md:w-1/6 py-1 grid content-center;
   .link {
-    @apply hover:text-highlight-700 hover:underline;
+    @apply hover:text-highlight-700;
   }
 }
 </style>
