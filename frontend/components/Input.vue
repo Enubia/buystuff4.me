@@ -69,7 +69,6 @@ input {
 .error {
   @apply rounded
   ring ring-red-400 focus:ring-opacity-50
-  border-gray-300
   shadow-sm
   border-red-400;
 }
