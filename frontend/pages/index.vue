@@ -1,8 +1,8 @@
 <template>
-  <div
-    class="flex justify-center min-h-full bg-gray-100 sm:items-center sm:pt-0"
-  >
-    <Input label="asfd" input-type="url" />
+  <div>
+    <KitWindHeader />
+    <KitWindSteps />
+    <KitWindStats />
   </div>
 </template>
 
@@ -13,14 +13,22 @@ import LanguageSwitcher from '../components/LanguageSwitcher.vue';
 import Checkbox from '../components/Checkbox.vue';
 import Input from '../components/Input.vue';
 import Alert from '../components/Alert.vue';
+import KitWindStats from '../components/kitwind/index/KitWindStats.vue';
+import KitWindSteps from '../components/kitwind/index/KitWindSteps.vue';
+import KitWindHeader from '../components/kitwind/index/KitWindHeader.vue';
 
 @Component({
   name: 'Index',
-  components: { Alert, Input, Checkbox, LanguageSwitcher },
+  layout: 'kitwind',
+  components: {
+    KitWindHeader,
+    KitWindSteps,
+    KitWindStats,
+    Alert,
+    Input,
+    Checkbox,
+    LanguageSwitcher,
+  },
 })
-export default class extends Vue {
-  processCheckbox(value: { name: string; value: string }) {
-    console.log(value);
-  }
-}
+export default class extends Vue {}
 </script>

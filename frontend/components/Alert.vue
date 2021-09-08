@@ -49,14 +49,7 @@ export default class Alert extends Vue {
   }
 
   &-icon {
-    @apply h-10
-    w-10
-    text-white
-    bg-green-600
-    rounded-full
-    flex
-    justify-center
-    items-center;
+    @apply h-10 w-10 text-white bg-green-600 rounded-full flex justify-center items-center;
   }
 
   &-message {
@@ -70,14 +63,7 @@ export default class Alert extends Vue {
   }
 
   &-icon {
-    @apply h-10
-    w-10
-    text-white
-    bg-blue-600
-    rounded-full
-    flex
-    justify-center
-    items-center;
+    @apply h-10 w-10 text-white bg-blue-600 rounded-full flex justify-center items-center;
   }
 
   &-message {
@@ -91,14 +77,7 @@ export default class Alert extends Vue {
   }
 
   &-icon {
-    @apply h-10
-    w-10
-    text-white
-    bg-highlight-600
-    rounded-full
-    flex
-    justify-center
-    items-center;
+    @apply h-10 w-10 text-white bg-highlight-600 rounded-full flex justify-center items-center;
   }
 
   &-message {
@@ -112,14 +91,7 @@ export default class Alert extends Vue {
   }
 
   &-icon {
-    @apply h-10
-    w-10
-    text-white
-    bg-red-600
-    rounded-full
-    flex
-    justify-center
-    items-center;
+    @apply h-10 w-10 text-white bg-red-600 rounded-full flex justify-center items-center;
   }
 
   &-message {
