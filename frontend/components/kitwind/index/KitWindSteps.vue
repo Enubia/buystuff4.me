@@ -26,48 +26,10 @@
           md:mx-auto
         "
       >
-        <span class="relative inline-block">
-          <svg
-            viewBox="0 0 52 24"
-            fill="currentColor"
-            class="
-              absolute
-              top-0
-              left-0
-              z-0
-              hidden
-              w-32
-              -mt-8
-              -ml-20
-              text-blue-gray-100
-              lg:w-32 lg:-ml-28 lg:-mt-10
-              sm:block
-            "
-          >
-            <defs>
-              <pattern
-                id="d5589eeb-3fca-4f01-ac3e-983224745704"
-                x="0"
-                y="0"
-                width=".135"
-                height=".30"
-              >
-                <circle cx="1" cy="1" r=".7"></circle>
-              </pattern>
-            </defs>
-            <rect
-              fill="url(#d5589eeb-3fca-4f01-ac3e-983224745704)"
-              width="52"
-              height="24"
-            ></rect>
-          </svg>
-          <span class="relative">The</span>
-        </span>
-        quick, brown fox jumps over a lazy dog
+        {{ $t('index.steps.title') }}
       </h2>
       <p class="text-base text-gray-700 md:text-lg">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium doloremque rem aperiam, eaque ipsa quae.
+        {{ $t('index.steps.description') }}
       </p>
     </div>
     <div class="grid max-w-2xl mx-auto">
@@ -75,39 +37,13 @@
         <div class="flex flex-col items-center mr-6">
           <div class="w-px h-10 opacity-0 sm:h-full"></div>
           <div>
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                w-8
-                h-8
-                text-xs
-                font-medium
-                border
-                rounded-full
-              "
-            >
-              1
-            </div>
+            <div class="number-indicator">1</div>
           </div>
           <div class="w-px h-full bg-gray-300"></div>
         </div>
         <div class="flex flex-col pb-6 sm:items-center sm:flex-row sm:pb-0">
           <div class="sm:mr-5">
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                w-16
-                h-16
-                my-3
-                rounded-full
-                bg-indigo-50
-                sm:w-24 sm:h-24
-              "
-            >
+            <div class="lightning-svg">
               <svg
                 class="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
                 stroke="currentColor"
@@ -124,11 +60,14 @@
             </div>
           </div>
           <div>
-            <p class="text-xl font-semibold sm:text-base">Read the recipe</p>
+            <p class="text-xl font-semibold sm:text-base">
+              {{ $t('index.steps.one.title') }}
+            </p>
             <p class="text-sm text-gray-700">
-              All recipes are written using certain conventions, which define
-              the characteristics of common ingredients. The rules vary from
-              place to place.
+              {{ $t('index.steps.one.description.text') }}
+              <b>
+                {{ $t('index.steps.one.description.hint') }}
+              </b>
             </p>
           </div>
         </div>
@@ -137,39 +76,13 @@
         <div class="flex flex-col items-center mr-6">
           <div class="w-px h-10 bg-gray-300 sm:h-full"></div>
           <div>
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                w-8
-                h-8
-                text-xs
-                font-medium
-                border
-                rounded-full
-              "
-            >
-              2
-            </div>
+            <div class="number-indicator">2</div>
           </div>
           <div class="w-px h-full bg-gray-300"></div>
         </div>
         <div class="flex flex-col pb-6 sm:items-center sm:flex-row sm:pb-0">
           <div class="sm:mr-5">
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                w-16
-                h-16
-                my-3
-                rounded-full
-                bg-indigo-50
-                sm:w-24 sm:h-24
-              "
-            >
+            <div class="lightning-svg">
               <svg
                 class="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
                 stroke="currentColor"
@@ -186,11 +99,11 @@
             </div>
           </div>
           <div>
-            <p class="text-xl font-semibold sm:text-base">Heart attack</p>
+            <p class="text-xl font-semibold sm:text-base">
+              {{ $t('index.steps.two.title') }}
+            </p>
             <p class="text-sm text-gray-700">
-              A flower in my garden, a mystery in my panties. Heart attack never
-              stopped old Big Bear. I didn't even know we were calling him Big
-              Bear.
+              {{ $t('index.steps.two.description') }}
             </p>
           </div>
         </div>
@@ -199,39 +112,13 @@
         <div class="flex flex-col items-center mr-6">
           <div class="w-px h-10 bg-gray-300 sm:h-full"></div>
           <div>
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                w-8
-                h-8
-                text-xs
-                font-medium
-                border
-                rounded-full
-              "
-            >
-              3
-            </div>
+            <div class="number-indicator">3</div>
           </div>
           <div class="w-px h-full bg-gray-300"></div>
         </div>
         <div class="flex flex-col pb-6 sm:items-center sm:flex-row sm:pb-0">
           <div class="sm:mr-5">
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                w-16
-                h-16
-                my-3
-                rounded-full
-                bg-indigo-50
-                sm:w-24 sm:h-24
-              "
-            >
+            <div class="lightning-svg">
               <svg
                 class="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
                 stroke="currentColor"
@@ -248,11 +135,11 @@
             </div>
           </div>
           <div>
-            <p class="text-xl font-semibold sm:text-base">Never stop</p>
+            <p class="text-xl font-semibold sm:text-base">
+              {{ $t('index.steps.three.title') }}
+            </p>
             <p class="text-sm text-gray-700">
-              The first mate and his Skipper too will do their very best to make
-              the others comfortable in their tropic island nest. Michael Knight
-              a young loner.
+              {{ $t('index.steps.three.description') }}
             </p>
           </div>
         </div>
@@ -261,39 +148,13 @@
         <div class="flex flex-col items-center mr-6">
           <div class="w-px h-10 bg-gray-300 sm:h-full"></div>
           <div>
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                w-8
-                h-8
-                text-xs
-                font-medium
-                border
-                rounded-full
-              "
-            >
-              4
-            </div>
+            <div class="number-indicator">4</div>
           </div>
           <div class="w-px h-full opacity-0"></div>
         </div>
         <div class="flex flex-col pb-6 sm:items-center sm:flex-row sm:pb-0">
           <div class="sm:mr-5">
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                w-16
-                h-16
-                my-3
-                rounded-full
-                bg-indigo-50
-                sm:w-24 sm:h-24
-              "
-            >
+            <div class="lightning-svg">
               <svg
                 class="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
                 stroke="currentColor"
@@ -310,11 +171,11 @@
             </div>
           </div>
           <div>
-            <p class="text-xl font-semibold sm:text-base">Profit</p>
+            <p class="text-xl font-semibold sm:text-base">
+              {{ $t('index.steps.four.title') }}
+            </p>
             <p class="text-sm text-gray-700">
-              The first mate and his Skipper too will do their very best to make
-              the others comfortable in their tropic island nest. Michael Knight
-              a young loner.
+              {{ $t('index.steps.four.description') }}
             </p>
           </div>
         </div>
@@ -323,5 +184,36 @@
   </div>
 </template>
 <script>
-export default {};
+import { Component, Vue } from 'nuxt-property-decorator';
+
+@Component({
+  name: 'KitWindSteps',
+})
+export default class KitWindSteps extends Vue {}
 </script>
+
+<style scoped lang="scss">
+.number-indicator {
+  @apply flex
+  items-center
+  justify-center
+  w-8
+  h-8
+  text-xs
+  font-medium
+  border
+  rounded-full;
+}
+
+.lightning-svg {
+  @apply flex
+  items-center
+  justify-center
+  w-16
+  h-16
+  my-3
+  rounded-full
+  bg-indigo-50
+  sm:w-24 sm:h-24;
+}
+</style>

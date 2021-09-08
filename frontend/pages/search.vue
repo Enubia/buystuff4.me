@@ -1,13 +1,13 @@
 <template>
-  <div>about page</div>
+  <div></div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
-  name: 'about',
+  name: 'Search',
   layout: 'kitwind',
 })
-export default class About extends Vue {}
+export default class Search extends Vue {}
 </script>

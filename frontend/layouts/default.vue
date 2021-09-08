@@ -1,7 +1,7 @@
 <template>
   <div class="min-w-full h-screen">
     <header>
-      <KitWindNav />
+      <NavBar />
     </header>
     <main>
       <Nuxt />

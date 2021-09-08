@@ -95,6 +95,8 @@ export default class VDropDown extends Vue {
     shadow-lg
     border
     w-48
+    max-h-36
+    overflow-y-auto
     rounded
     py-1
     px-2

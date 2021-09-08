@@ -24,10 +24,10 @@
       >
         <ul class="flex items-center hidden space-x-8 lg:flex">
           <li>
-            <a
-              href="/"
-              aria-label="Our product"
-              title="Our product"
+            <nuxt-link
+              :to="localePath('search')"
+              aria-label="Browse Lists"
+              title="Browse Lists"
               class="
                 font-medium
                 tracking-wide
@@ -37,48 +37,14 @@
                 hover:text-teal-accent-400
               "
             >
-              Product
-            </a>
-          </li>
-          <li>
-            <a
-              href="/"
-              aria-label="Our product"
-              title="Our product"
-              class="
-                font-medium
-                tracking-wide
-                text-gray-100
-                transition-colors
-                duration-200
-                hover:text-teal-accent-400
-              "
-            >
-              Features
-            </a>
-          </li>
-          <li>
-            <a
-              href="/"
-              aria-label="Product pricing"
-              title="Product pricing"
-              class="
-                font-medium
-                tracking-wide
-                text-gray-100
-                transition-colors
-                duration-200
-                hover:text-teal-accent-400
-              "
-            >
-              Pricing
-            </a>
+              {{ $t('search.link') }}
+            </nuxt-link>
           </li>
         </ul>
-        <a
-          href="/"
-          aria-label="Company"
-          title="Company"
+        <nuxt-link
+          :to="localePath('index')"
+          aria-label="buystuff4.me"
+          title="buystuff4.me"
           class="inline-flex items-center"
         >
           <svg
@@ -99,30 +65,13 @@
           <span
             class="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase"
           >
-            Company
+            buystuff4.me
           </span>
-        </a>
+        </nuxt-link>
         <ul class="flex items-center hidden space-x-8 lg:flex">
           <li>
-            <a
-              href="/"
-              aria-label="About us"
-              title="About us"
-              class="
-                font-medium
-                tracking-wide
-                text-gray-100
-                transition-colors
-                duration-200
-                hover:text-teal-accent-400
-              "
-            >
-              About us
-            </a>
-          </li>
-          <li>
-            <a
-              href="/"
+            <nuxt-link
+              :to="localePath('sign-in')"
               aria-label="Sign in"
               title="Sign in"
               class="
@@ -134,25 +83,8 @@
                 hover:text-teal-accent-400
               "
             >
-              Sign in
-            </a>
-          </li>
-          <li>
-            <a
-              href="/"
-              aria-label="Sign up"
-              title="Sign up"
-              class="
-                font-medium
-                tracking-wide
-                text-gray-100
-                transition-colors
-                duration-200
-                hover:text-teal-accent-400
-              "
-            >
-              Sign up
-            </a>
+              {{ $t('signIn.link') }}
+            </nuxt-link>
           </li>
         </ul>
         <div class="lg:hidden">
@@ -188,8 +120,8 @@
             <div class="p-5 bg-white border rounded boxShadow-sm">
               <div class="flex items-center justify-between mb-4">
                 <div>
-                  <a
-                    href="/"
+                  <nuxt-link
+                    :to="localePath('index')"
                     aria-label="Company"
                     title="Company"
                     class="inline-flex items-center"
@@ -219,9 +151,9 @@
                         uppercase
                       "
                     >
-                      Company
+                      buystuff4.me
                     </span>
-                  </a>
+                  </nuxt-link>
                 </div>
                 <div>
                   <button
@@ -253,76 +185,25 @@
               <nav>
                 <ul class="space-y-4">
                   <li>
-                    <a
-                      href="/"
-                      aria-label="Our product"
-                      title="Our product"
+                    <nuxt-link
+                      :to="localePath('search')"
+                      aria-label="Browse Lists"
+                      title="Browse Lists"
                       class="
                         font-medium
                         tracking-wide
                         text-gray-700
                         transition-colors
                         duration-200
-                        hover:text-deep-purple-accent-400
+                        hover:text-teal-accent-400
                       "
                     >
-                      Product
-                    </a>
+                      {{ $t('search.link') }}
+                    </nuxt-link>
                   </li>
                   <li>
-                    <a
-                      href="/"
-                      aria-label="Our product"
-                      title="Our product"
-                      class="
-                        font-medium
-                        tracking-wide
-                        text-gray-700
-                        transition-colors
-                        duration-200
-                        hover:text-deep-purple-accent-400
-                      "
-                    >
-                      Features
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
-                      aria-label="Product pricing"
-                      title="Product pricing"
-                      class="
-                        font-medium
-                        tracking-wide
-                        text-gray-700
-                        transition-colors
-                        duration-200
-                        hover:text-deep-purple-accent-400
-                      "
-                    >
-                      Pricing
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
-                      aria-label="About us"
-                      title="About us"
-                      class="
-                        font-medium
-                        tracking-wide
-                        text-gray-700
-                        transition-colors
-                        duration-200
-                        hover:text-deep-purple-accent-400
-                      "
-                    >
-                      About us
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
+                    <nuxt-link
+                      :to="localePath('sign-in')"
                       aria-label="Sign in"
                       title="Sign in"
                       class="
@@ -331,38 +212,11 @@
                         text-gray-700
                         transition-colors
                         duration-200
-                        hover:text-deep-purple-accent-400
+                        hover:text-teal-accent-400
                       "
                     >
-                      Sign in
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
-                      class="
-                        inline-flex
-                        items-center
-                        justify-center
-                        w-full
-                        h-12
-                        px-6
-                        font-medium
-                        tracking-wide
-                        text-white
-                        transition
-                        duration-200
-                        rounded
-                        boxShadow-md
-                        bg-deep-purple-accent-400
-                        hover:bg-deep-purple-accent-700
-                        focus:boxShadow-outline focus:outline-none
-                      "
-                      aria-label="Sign up"
-                      title="Sign up"
-                    >
-                      Sign up
-                    </a>
+                      {{ $t('signIn.link') }}
+                    </nuxt-link>
                   </li>
                 </ul>
               </nav>
@@ -370,16 +224,22 @@
           </div>
         </div>
       </div>
+      <div class="hidden lg:block lg:absolute lg:top-8 lg:right-8">
+        <LanguageSwitcher />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      isMenuOpen: false,
-    };
-  },
-};
+import { Component, Vue } from 'nuxt-property-decorator';
+import LanguageSwitcher from '../LanguageSwitcher.vue';
+
+@Component({
+  name: 'KitWindNav',
+  components: { LanguageSwitcher },
+})
+export default class KitWindNav extends Vue {
+  isMenuOpen = false;
+}
 </script>

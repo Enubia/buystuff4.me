@@ -9,7 +9,7 @@
       md:flex
       items-center
       p-4
-      bg-gray-100
+      bg-blue-gray-200
       shadow-sm
       justify-center
       w-full
@@ -25,7 +25,7 @@
         <p>
           {{ $t('cookieBanner.start') }}
           <nuxt-link
-            class="text-highlight-700 underline"
+            class="text-purple-400 underline"
             :to="localePath('privacy-policy')"
           >
             {{ $t('cookieBanner.link') }}
@@ -35,11 +35,52 @@
       </div>
     </div>
     <div class="flex justify-center mt-4 md:mt-0">
-      <div class="btn-highlight ml-2" @click="accept">
-        {{ $t('cookieBanner.yes') }}
-      </div>
-      <div class="btn-secondary ml-2" @click="deny">
+      <div
+        class="
+          inline-flex
+          items-center
+          justify-center
+          h-12
+          px-6
+          font-semibold
+          tracking-wide
+          hover:text-teal-accent-400
+          transition
+          duration-200
+          rounded
+          text-deep-purple-900
+          bg-transparent
+          focus:shadow-outline focus:outline-none
+          cursor-pointer
+          mr-2
+        "
+        @click="deny"
+      >
         {{ $t('cookieBanner.no') }}
+      </div>
+      <div
+        class="
+          inline-flex
+          items-center
+          justify-center
+          h-12
+          px-6
+          font-semibold
+          tracking-wide
+          text-teal-900
+          transition
+          duration-200
+          rounded
+          shadow-md
+          hover:text-deep-purple-900
+          bg-teal-accent-400
+          hover:bg-deep-purple-accent-100
+          focus:shadow-outline focus:outline-none
+          cursor-pointer
+        "
+        @click="accept"
+      >
+        {{ $t('cookieBanner.yes') }}
       </div>
     </div>
   </div>

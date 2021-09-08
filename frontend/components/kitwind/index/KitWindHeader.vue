@@ -100,18 +100,17 @@
                     height="24"
                   ></rect>
                 </svg>
-                <span class="relative">The</span>
+                <span class="relative">{{ $t('index.header.titleOne') }}</span>
               </span>
-              quick, brown fox jumps over a lazy dog
+              {{ $t('index.header.titleTwo') }}
             </h2>
             <p class="text-base text-indigo-100 md:text-lg">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam, eaque ipsa quae.
+              {{ $t('index.header.description') }}
             </p>
           </div>
           <div>
-            <a
-              href="/"
+            <nuxt-link
+              :to="localePath('sign-in')"
               class="
                 inline-flex
                 items-center
@@ -131,8 +130,8 @@
                 focus:shadow-outline focus:outline-none
               "
             >
-              Get started
-            </a>
+              {{ $t('index.header.button') }}
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -141,5 +140,10 @@
 </template>
 
 <script>
-export default {};
+import { Component, Vue } from 'nuxt-property-decorator';
+
+@Component({
+  name: 'KitWindHeader',
+})
+export default class KitWindHeader extends Vue {}
 </script>

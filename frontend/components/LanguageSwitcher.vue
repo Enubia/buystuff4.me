@@ -1,5 +1,5 @@
 <template>
-  <VDropDown placement="left">
+  <VDropDown placement="right">
     <!-- Button content -->
     <template #button>
       <span
@@ -36,6 +36,7 @@
         :key="locale.code"
         class="drop-down-item"
         :to="switchLocalePath(locale.code)"
+        :alt="locale.name"
         @click.native="updateLocale(locale)"
       >
         <span :class="`flag-icon flag-icon-${locale.ico}`"></span>
@@ -91,6 +92,6 @@ export default class LanguageSwitcher extends Vue {
   px-2
   py-1
   my-1
-  hover:bg-accent-600 hover:text-white;
+  hover:bg-deep-purple-accent-100 hover:text-white;
 }
 </style>
