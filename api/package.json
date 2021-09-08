@@ -22,7 +22,7 @@
     "express-basic-auth": "^1.2.0",
     "google-auth-library": "^7.9.1",
     "graphql": "^15.5.3",
-    "graphql-compose": "^9.0.2",
+    "graphql-compose": "^9.0.3",
     "graphql-compose-mongoose": "^9.6.0",
     "graphql-subscriptions": "^1.2.1",
     "log4js": "^6.3.0",
