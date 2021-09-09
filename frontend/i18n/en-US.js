@@ -72,6 +72,9 @@ export default {
   search: {
     link: 'Browse Lists',
   },
+  profile: {
+    link: 'Profile',
+  },
   navbarTitle: 'Your wish is someones pleasure',
   footer: {
     descriptionPartOne: `

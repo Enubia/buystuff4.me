@@ -13,9 +13,9 @@ import LanguageSwitcher from '../components/LanguageSwitcher.vue';
 import Checkbox from '../components/Checkbox.vue';
 import Input from '../components/Input.vue';
 import Alert from '../components/Alert.vue';
-import KitWindStats from '../components/kitwind/index/KitWindStats.vue';
-import KitWindSteps from '../components/kitwind/index/KitWindSteps.vue';
-import KitWindHeader from '../components/kitwind/index/KitWindHeader.vue';
+import KitWindStats from '../components/kitwind/KitWindStats.vue';
+import KitWindSteps from '../components/kitwind/KitWindSteps.vue';
+import KitWindHeader from '../components/kitwind/KitWindHeader.vue';
 
 @Component({
   name: 'Index',
