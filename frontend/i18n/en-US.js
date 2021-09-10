@@ -78,7 +78,7 @@ export default {
   },
   privacyPolicy: {
     link: 'Privacy Policy',
-    sections: ppEn.sections,
+    sections: ppEn,
   },
   search: {
     link: 'Browse Lists',
@@ -100,6 +100,7 @@ export default {
     links: {
       header: 'Useful links',
     },
+    copyright: 'All rights reserved.',
   },
   cookieBanner: {
     start: 'Can I use cookies for analytics? Read',

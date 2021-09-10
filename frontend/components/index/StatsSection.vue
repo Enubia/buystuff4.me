@@ -39,7 +39,6 @@
         p-px
         mx-auto
         mb-4
-        overflow-hidden
         transition-shadow
         duration-300
         border
@@ -177,37 +176,39 @@ export default class StatsSection extends Vue {
   listedWishlists = 0;
 
   async mounted() {
-    const users = await this.client.query({
-      query: gql`
-        query getUsersTotal {
-          userCount {
-            count
-            message
+    try {
+      const users = await this.client.query({
+        query: gql`
+          query getUsersTotal {
+            userCount {
+              count
+            }
           }
-        }
-      `,
-    });
-
-    const wishLists = await this.client.query({
-      query: gql`
-        query getWishlistsTotal {
-          wishListCount {
-            count
-            message
-          }
-        }
-      `,
-    });
-
-    if (!users.errors && !wishLists.errors) {
-      this.registeredUsers = users.data.userCount.count;
-      this.listedWishlists = wishLists.data.wishListCount.count;
-    } else if (process.env.NODE_ENV !== 'production') {
-      // TODO: only log in dev, ignore in production for now
-      console.error({
-        user: users.errors,
-        wishLists: wishLists.errors,
+        `,
       });
+
+      const wishLists = await this.client.query({
+        query: gql`
+          query getWishlistsTotal {
+            wishListCount {
+              count
+            }
+          }
+        `,
+      });
+
+      if (!users.errors && !wishLists.errors) {
+        this.registeredUsers = users.data.userCount.count;
+        this.listedWishlists = wishLists.data.wishListCount.count;
+      } else if (process.env.NODE_ENV !== 'production') {
+        // TODO: only log in dev, ignore in production for now
+        console.error({
+          user: users.errors,
+          wishLists: wishLists.errors,
+        });
+      }
+    } catch (error) {
+      console.error(error);
     }
   }
 }

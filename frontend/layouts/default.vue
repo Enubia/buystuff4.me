@@ -1,6 +1,6 @@
 <template>
-  <div class="min-w-full h-screen">
-    <header>
+  <div class="min-w-full h-full">
+    <header class="sticky top-0 z-20">
       <NavBar />
     </header>
     <main>
@@ -17,9 +17,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import NavBar from '../components/NavBar.vue';
-import Footer from '../components/Footer.vue';
-import CookieBanner from '../components/CookieBanner.vue';
+import NavBar from '../components/layout/default/NavBar.vue';
+import Footer from '../components/layout/default/Footer.vue';
+import CookieBanner from '../components/layout/CookieBanner.vue';
 
 @Component({
   name: 'Layout',

@@ -18,7 +18,7 @@
     <div class="flex items-center justify-center">
       <img
         class="h-10 w-10 leading-none max-w-min"
-        src="../assets/svg/cookie.svg"
+        src="../../assets/svg/cookie.svg"
         alt="Cookie banner icon"
       />
       <div class="md:mr-8 ml-3 text-center">

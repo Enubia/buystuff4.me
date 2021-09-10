@@ -222,6 +222,12 @@
               </nav>
             </div>
           </div>
+          <div
+            v-if="isMenuOpen"
+            class="fixed w-full h-full inset-0 bg-gray-900 opacity-50"
+            style="z-index: -1"
+            @click="isMenuOpen = false"
+          ></div>
         </div>
       </div>
       <div class="hidden lg:block lg:absolute lg:top-8 lg:right-8">
@@ -233,7 +239,7 @@
 
 <script>
 import { Component, Vue } from 'nuxt-property-decorator';
-import LanguageSwitcher from './LanguageSwitcher.vue';
+import LanguageSwitcher from '../LanguageSwitcher.vue';
 
 @Component({
   name: 'NavBar',

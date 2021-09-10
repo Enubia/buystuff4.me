@@ -15,7 +15,7 @@ export default {
   },
   privacyPolicy: {
     link: 'Datenschutz-Bestimmungen',
-    sections: ppDE.sections,
+    sections: ppDE,
   },
   navbartitle: 'Dein Wunsch ist jemandes Vergnügen',
   cookieBanner: {

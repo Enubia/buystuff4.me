@@ -17,7 +17,6 @@
         <span
           :class="`mr-2 ml-2 flag-icon flag-icon-${currentLocale.ico}`"
         ></span>
-        <!-- <span class="mr-2 ml-2">{{ currentLocale.name }}</span> -->
         <svg
           class="w-4 h-4"
           xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +46,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import VDropDown from './V-DropDown.vue';
+import VDropDown from '../form-elements/V-DropDown.vue';
 
 interface ILocale {
   code: string;

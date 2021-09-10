@@ -112,7 +112,7 @@ export default class VDropDown extends Vue {
     bottom-0
     bg-white
     w-full
-    z-20
+    z-10
     px-2
     py-2
     shadow-2xl

@@ -56,7 +56,6 @@
                 absolute
                 top-0
                 left-0
-                z-0
                 hidden
                 w-32
                 -mt-8
