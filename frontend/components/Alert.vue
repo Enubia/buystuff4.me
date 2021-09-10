@@ -73,15 +73,15 @@ export default class Alert extends Vue {
 
 .warning {
   &-body {
-    @apply flex bg-highlight-200 p-4;
+    @apply flex text-orange-200 p-4;
   }
 
   &-icon {
-    @apply h-10 w-10 text-white bg-highlight-600 rounded-full flex justify-center items-center;
+    @apply h-10 w-10 text-white text-orange-200 rounded-full flex justify-center items-center;
   }
 
   &-message {
-    @apply text-highlight-600;
+    @apply text-orange-200;
   }
 }
 

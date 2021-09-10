@@ -17,14 +17,14 @@
           bg-white
           border-2
           rounded-md
-          border-accent-400
+          border-purple-400
           w-6
           h-6
           flex flex-shrink-0
           justify-center
           items-center
           mr-2
-          focus-within:border-accent-500
+          focus-within:border-purple-500
         "
       >
         <svg
@@ -32,7 +32,7 @@
             fill-current
             hidden
             w-3
-            h-3 h-border-accent-500
+            h-3 h-border-purple-500
             pointer-events-none
           "
           version="1.1"
@@ -75,7 +75,7 @@ input {
   &:checked {
     + {
       div {
-        @apply border-accent-500;
+        @apply border-purple-500;
         svg {
           @apply block;
         }

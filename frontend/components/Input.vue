@@ -59,10 +59,10 @@ export default class Input extends Vue {
 <style scoped lang="scss">
 input {
   @apply rounded
-  focus:ring focus:ring-accent-500 focus:ring-opacity-50
+  focus:ring focus:ring-purple-500 focus:ring-opacity-50
   border-gray-300
   shadow-sm
-  focus:border-accent-200
+  focus:border-purple-200
   w-full;
 }
 

@@ -18,6 +18,26 @@ export function applyCustomQueries(_: {
   WishListTC: ObjectTypeComposerWithMongooseResolvers<IWishList>;
   CategoryTC: ObjectTypeComposerWithMongooseResolvers<ICategory>;
 }): void {
+  schemaComposer.Query.setField('userCount', {
+    type: new GraphQLObjectType({
+      name: 'UserCountResult',
+      fields: {
+        count: { type: GraphQLNonNull(GraphQLInt) },
+        message: { type: GraphQLString },
+      },
+    }),
+    resolve: async (source, args, context: IContext, _info) => {
+      try {
+        const result = await context.mongo.User.countDocuments().lean().exec();
+
+        return { count: result };
+      } catch (error) {
+        logger.error(error);
+        return { count: 0, message: ErrorMessages.WISHLIST_COUNT };
+      }
+    },
+  });
+
   schemaComposer.Query.setField('wishListCount', {
     type: new GraphQLObjectType({
       name: 'WishListCountResult',

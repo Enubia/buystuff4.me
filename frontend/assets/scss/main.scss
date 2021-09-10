@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @import "tailwind";
@@ -6,25 +5,5 @@
 * {
   margin: 0;
   padding: 0;
-
-  html, body {
-    font-weight: theme('fontWeight.medium');
-
-    .btn-primary {
-      @apply p-2 rounded text-white bg-primary-500 hover:bg-primary-600 transition duration-300 cursor-pointer text-center;
-    }
-
-    .btn-secondary {
-      @apply p-2 rounded text-white bg-secondary-500 hover:bg-secondary-600 transition duration-300 cursor-pointer text-center;
-    }
-
-    .btn-accent {
-      @apply p-2 rounded text-white bg-accent-500 hover:bg-accent-600 transition duration-300 cursor-pointer text-center;
-    }
-
-    .btn-highlight {
-      @apply p-2 rounded text-white bg-highlight-500 hover:bg-highlight-600 transition duration-300 cursor-pointer text-center;
-    }
-  }
 }
 

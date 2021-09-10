@@ -1,3 +1,5 @@
+import ppDE from './privacyPolicy/de';
+
 export default {
   about: {
     link: 'Über uns',
@@ -13,6 +15,7 @@ export default {
   },
   privacyPolicy: {
     link: 'Datenschutz-Bestimmungen',
+    sections: ppDE.sections,
   },
   navbartitle: 'Dein Wunsch ist jemandes Vergnügen',
   cookieBanner: {

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueGtag from 'vue-gtag';
 
 export default ({ app }) => {
-  const getGDPR = localStorage.getItem('GDPR:accepted');
+  const getGDPR = localStorage.getItem('cookies:accepted');
 
   Vue.use(
     VueGtag,

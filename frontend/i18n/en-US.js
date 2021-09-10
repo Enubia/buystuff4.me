@@ -1,3 +1,5 @@
+import ppEn from './privacyPolicy/en';
+
 export default {
   index: {
     header: {
@@ -52,7 +54,15 @@ export default {
         `,
       },
     },
-    stats: {},
+    stats: {
+      title: 'Some stats for you',
+      description: `
+        If you still have doubts about how this could help you,
+        maybe the numbers below can help you with your decision
+      `,
+      wishlists: 'Currently listed wishlists',
+      users: 'Currently signed up users',
+    },
   },
   about: {
     link: 'About',
@@ -68,6 +78,7 @@ export default {
   },
   privacyPolicy: {
     link: 'Privacy Policy',
+    sections: ppEn.sections,
   },
   search: {
     link: 'Browse Lists',

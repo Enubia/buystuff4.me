@@ -26,11 +26,10 @@
           md:mx-auto
         "
       >
-        The quick, brown fox jumps over a lazy dog
+        {{ $t('index.stats.title') }}
       </h2>
       <p class="text-base text-gray-700 md:text-lg">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium doloremque rem aperiam, eaque ipsa quae.
+        {{ $t('index.stats.description') }}
       </p>
     </div>
     <div
@@ -115,6 +114,7 @@
           relative
           flex flex-col
           items-center
+          justify-center
           h-full
           py-10
           duration-300
@@ -128,10 +128,10 @@
           <h6
             class="text-4xl font-bold text-deep-purple-accent-400 sm:text-5xl"
           >
-            82%
+            {{ registeredUsers }}
           </h6>
           <p class="text-center md:text-base">
-            Lorem ipsum dolor adipiscing sit amet, consectetur elit.
+            {{ $t('index.stats.users') }}
           </p>
         </div>
         <div
@@ -151,35 +151,64 @@
           <h6
             class="text-4xl font-bold text-deep-purple-accent-400 sm:text-5xl"
           >
-            106.5K
+            {{ listedWishlists }}
           </h6>
           <p class="text-center md:text-base">
-            Lorem ipsum elit consectetur sit amet, adipiscing dolor.
+            {{ $t('index.stats.wishlists') }}
           </p>
         </div>
       </div>
     </div>
-    <p
-      class="
-        mx-auto
-        mb-4
-        text-gray-600
-        sm:text-center
-        lg:max-w-2xl lg:mb-6
-        md:px-16
-      "
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua.
-    </p>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
+import gql from 'graphql-tag';
 
 @Component({
   name: 'StatsSection',
 })
-export default class StatsSection extends Vue {}
+export default class StatsSection extends Vue {
+  client = this.$apollo.getClient();
+
+  registeredUsers = 0;
+
+  listedWishlists = 0;
+
+  async mounted() {
+    const users = await this.client.query({
+      query: gql`
+        query getUsersTotal {
+          userCount {
+            count
+            message
+          }
+        }
+      `,
+    });
+
+    const wishLists = await this.client.query({
+      query: gql`
+        query getWishlistsTotal {
+          wishListCount {
+            count
+            message
+          }
+        }
+      `,
+    });
+
+    if (!users.errors && !wishLists.errors) {
+      this.registeredUsers = users.data.userCount.count;
+      this.listedWishlists = wishLists.data.wishListCount.count;
+    } else if (process.env.NODE_ENV !== 'production') {
+      // TODO: only log in dev, ignore in production for now
+      console.error({
+        user: users.errors,
+        wishLists: wishLists.errors,
+      });
+    }
+  }
+}
 </script>
