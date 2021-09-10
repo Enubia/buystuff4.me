@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-deep-purple-accent-700">
+  <div class="bg-deep-purple-accent-400">
     <div
       class="
         px-4
@@ -14,7 +14,7 @@
     >
       <div class="max-w-xl sm:mx-auto lg:max-w-2xl">
         <div class="flex flex-col mb-16 sm:text-center sm:mb-0">
-          <a href="/" class="mb-6 sm:mx-auto">
+          <div class="mb-6 sm:mx-auto">
             <div
               class="
                 flex
@@ -40,7 +40,7 @@
                 ></polygon>
               </svg>
             </div>
-          </a>
+          </div>
           <div
             class="
               max-w-xl
