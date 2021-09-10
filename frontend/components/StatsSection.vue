@@ -179,7 +179,7 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
-  name: 'KitWindStats',
+  name: 'StatsSection',
 })
-export default class KitWindStats extends Vue {}
+export default class StatsSection extends Vue {}
 </script>

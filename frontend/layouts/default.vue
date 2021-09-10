@@ -6,7 +6,7 @@
     <main>
       <Nuxt />
     </main>
-    <footer class="fixed bottom-0 w-full bg-gray-700 grid text-gray-300">
+    <footer>
       <Footer />
     </footer>
     <client-only>

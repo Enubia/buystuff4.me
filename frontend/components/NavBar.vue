@@ -1,114 +1,245 @@
 <template>
-  <nav class="bg-primary-500 shadow-lg">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex justify-between">
-        <div class="flex space-x-10">
-          <!-- Website Logo -->
-          <nuxt-link :to="localePath('/')" class="flex items-center py-4 px-2">
-            <img
-              src="../assets/svg/RisaruDesign_Logo_BK_transparent.svg"
-              alt="Logo"
-              class="h-20 w-20 mr-2"
-            />
-          </nuxt-link>
-          <div class="flex items-center space-x-1">
-            <h1 class="text-2xl text-gray-300">{{ $t('navbartitle') }}</h1>
-          </div>
-        </div>
-        <!-- Secondary Navbar items -->
-        <div class="hidden md:flex items-center space-x-3">
-          <nuxt-link
-            class="
-              py-2
-              px-2
-              w-28
-              text-gray-300
-              hover:text-highlight-700
-              flex
-              content-center
-            "
-            :to="localePath('sign-in')"
-          >
-            <span class="p-1">{{ $t('signIn') }}</span>
-            <span class="material-icons p-1">login</span>
-          </nuxt-link>
-        </div>
-        <!-- Mobile menu button -->
-        <div class="md:hidden flex items-center">
-          <button class="outline-none mobile-menu-button" @click="toggleMenu">
-            <svg
-              class="w-6 h-6 text-gray-300 focus:text-highlight-800"
-              x-show="!showMenu"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+  <div class="bg-gray-900">
+    <div
+      class="
+        px-4
+        py-6
+        mx-auto
+        lg:py-8
+        sm:max-w-xl
+        md:max-w-full
+        lg:max-w-screen-xl
+        md:px-24
+        lg:px-8
+      "
+    >
+      <div
+        class="
+          relative
+          flex
+          items-center
+          justify-between
+          lg:justify-center lg:space-x-16
+        "
+      >
+        <ul class="flex items-center hidden space-x-8 lg:flex">
+          <li>
+            <nuxt-link
+              :to="localePath('search')"
+              aria-label="Browse Lists"
+              title="Browse Lists"
+              class="
+                font-medium
+                tracking-wide
+                text-gray-100
+                transition-colors
+                duration-200
+                hover:text-teal-accent-400
+              "
             >
-              <path d="M4 6h16M4 12h16M4 18h16"></path>
+              {{ $t('search.link') }}
+            </nuxt-link>
+          </li>
+        </ul>
+        <nuxt-link
+          :to="localePath('index')"
+          aria-label="buystuff4.me"
+          title="buystuff4.me"
+          class="inline-flex items-center"
+        >
+          <svg
+            class="w-8 text-teal-accent-400"
+            viewBox="0 0 24 24"
+            stroke-linejoin="round"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-miterlimit="10"
+            stroke="currentColor"
+            fill="none"
+          >
+            <rect x="3" y="1" width="7" height="12"></rect>
+            <rect x="3" y="17" width="7" height="6"></rect>
+            <rect x="14" y="1" width="7" height="6"></rect>
+            <rect x="14" y="11" width="7" height="12"></rect>
+          </svg>
+          <span
+            class="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase"
+          >
+            buystuff4.me
+          </span>
+        </nuxt-link>
+        <ul class="flex items-center hidden space-x-8 lg:flex">
+          <li>
+            <nuxt-link
+              :to="localePath('sign-in')"
+              aria-label="Sign in"
+              title="Sign in"
+              class="
+                font-medium
+                tracking-wide
+                text-gray-100
+                transition-colors
+                duration-200
+                hover:text-teal-accent-400
+              "
+            >
+              {{ $t('signIn.link') }}
+            </nuxt-link>
+          </li>
+        </ul>
+        <div class="lg:hidden">
+          <button
+            aria-label="Open Menu"
+            title="Open Menu"
+            class="
+              p-2
+              -mr-1
+              transition
+              duration-200
+              rounded
+              focus:outline-none focus:boxShadow-outline
+            "
+            @click="isMenuOpen = true"
+          >
+            <svg class="w-5 text-gray-600" viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
+              ></path>
+              <path
+                fill="currentColor"
+                d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z"
+              ></path>
+              <path
+                fill="currentColor"
+                d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"
+              ></path>
             </svg>
           </button>
+          <div v-if="isMenuOpen" class="absolute top-0 left-0 w-full">
+            <div class="p-5 bg-white border rounded boxShadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <nuxt-link
+                    :to="localePath('index')"
+                    aria-label="Company"
+                    title="Company"
+                    class="inline-flex items-center"
+                  >
+                    <svg
+                      class="w-8 text-deep-purple-accent-400"
+                      viewBox="0 0 24 24"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-miterlimit="10"
+                      stroke="currentColor"
+                      fill="none"
+                    >
+                      <rect x="3" y="1" width="7" height="12"></rect>
+                      <rect x="3" y="17" width="7" height="6"></rect>
+                      <rect x="14" y="1" width="7" height="6"></rect>
+                      <rect x="14" y="11" width="7" height="12"></rect>
+                    </svg>
+                    <span
+                      class="
+                        ml-2
+                        text-xl
+                        font-bold
+                        tracking-wide
+                        text-gray-800
+                        uppercase
+                      "
+                    >
+                      buystuff4.me
+                    </span>
+                  </nuxt-link>
+                </div>
+                <div>
+                  <button
+                    aria-label="Close Menu"
+                    title="Close Menu"
+                    class="
+                      p-2
+                      -mt-2
+                      -mr-2
+                      transition
+                      duration-200
+                      rounded
+                      hover:bg-gray-200
+                      focus:bg-gray-200
+                      focus:outline-none
+                      focus:boxShadow-outline
+                    "
+                    @click="isMenuOpen = false"
+                  >
+                    <svg class="w-5 text-gray-600" viewBox="0 0 24 24">
+                      <path
+                        fill="currentColor"
+                        d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <nav>
+                <ul class="space-y-4">
+                  <li>
+                    <nuxt-link
+                      :to="localePath('search')"
+                      aria-label="Browse Lists"
+                      title="Browse Lists"
+                      class="
+                        font-medium
+                        tracking-wide
+                        text-gray-700
+                        transition-colors
+                        duration-200
+                        hover:text-teal-accent-400
+                      "
+                    >
+                      {{ $t('search.link') }}
+                    </nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link
+                      :to="localePath('sign-in')"
+                      aria-label="Sign in"
+                      title="Sign in"
+                      class="
+                        font-medium
+                        tracking-wide
+                        text-gray-700
+                        transition-colors
+                        duration-200
+                        hover:text-teal-accent-400
+                      "
+                    >
+                      {{ $t('signIn.link') }}
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="hidden lg:block lg:absolute lg:top-8 lg:right-8">
+        <LanguageSwitcher />
+      </div>
     </div>
-    <!-- mobile menu -->
-    <div ref="mobile-menu" class="hidden">
-      <ul>
-        <li class="flex justify-center">
-          <nuxt-link
-            class="
-              py-2
-              px-2
-              w-28
-              text-gray-300
-              hover:text-highlight-700
-              flex
-              content-center
-            "
-            :to="localePath('sign-in')"
-          >
-            <span class="p-1">{{ $t('signIn') }}</span>
-            <span class="material-icons p-1">login</span>
-          </nuxt-link>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Component, Vue } from 'nuxt-property-decorator';
+import LanguageSwitcher from './LanguageSwitcher.vue';
 
 @Component({
   name: 'NavBar',
+  components: { LanguageSwitcher },
 })
 export default class NavBar extends Vue {
-  toggleMenu() {
-    (this.$refs['mobile-menu'] as Element).classList?.toggle('hidden');
-  }
+  isMenuOpen = false;
 }
 </script>
-
-<style scoped lang="scss">
-.main-menu-items {
-  @apply py-4
-  px-2
-  text-gray-300
-  font-semibold
-  hover:text-highlight-700
-  transition
-  duration-300;
-}
-
-.mobile-menu-items {
-  @apply block
-  text-sm
-  px-2
-  py-4
-  text-gray-300
-  focus:bg-highlight-800
-  transition
-  duration-300;
-}
-</style>

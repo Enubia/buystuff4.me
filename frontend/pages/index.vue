@@ -1,8 +1,8 @@
 <template>
   <div>
-    <KitWindHeader />
-    <KitWindSteps />
-    <KitWindStats />
+    <Header />
+    <HowToSteps />
+    <StatsSection />
   </div>
 </template>
 
@@ -13,17 +13,16 @@ import LanguageSwitcher from '../components/LanguageSwitcher.vue';
 import Checkbox from '../components/Checkbox.vue';
 import Input from '../components/Input.vue';
 import Alert from '../components/Alert.vue';
-import KitWindStats from '../components/kitwind/KitWindStats.vue';
-import KitWindSteps from '../components/kitwind/KitWindSteps.vue';
-import KitWindHeader from '../components/kitwind/KitWindHeader.vue';
+import StatsSection from '../components/StatsSection.vue';
+import HowToSteps from '../components/HowToSteps.vue';
+import Header from '../components/Header.vue';
 
 @Component({
   name: 'Index',
-  layout: 'kitwind',
   components: {
-    KitWindHeader,
-    KitWindSteps,
-    KitWindStats,
+    Header,
+    HowToSteps,
+    StatsSection,
     Alert,
     Input,
     Checkbox,

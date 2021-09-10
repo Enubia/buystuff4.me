@@ -99,7 +99,7 @@ export function applyCustomMutations({
         }
       } catch (error) {
         logger.error(error);
-        return { success: false, message: ErrorMessages.REMOVE_USER };
+        return { success: false, message: ErrorMessages.DELETE_USER };
       }
 
       try {
@@ -151,6 +151,20 @@ export function applyCustomMutations({
       _info,
     ) => {
       const { link, userId, categoryIds, priority } = args;
+
+      const wishListCount = await context.mongo.User.find(
+        { _id: new Types.ObjectId(userId) },
+        ['select'],
+      )
+        .lean()
+        .exec();
+
+      if (wishListCount.length === 3) {
+        return {
+          isPublished: false,
+          message: ErrorMessages.WISHLIST_LIMIT_REACHED,
+        };
+      }
 
       let result: IWishList;
 

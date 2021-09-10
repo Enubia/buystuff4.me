@@ -119,7 +119,6 @@ import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
   name: 'SignIn',
-  layout: 'kitwind',
 })
 export default class SignIn extends Vue {}
 </script>

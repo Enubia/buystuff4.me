@@ -6,8 +6,7 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
-  name: 'privacy-policy',
-  layout: 'kitwind',
+  name: 'PrivacyPolicy',
 })
 export default class PrivacyPolicy extends Vue {}
 </script>

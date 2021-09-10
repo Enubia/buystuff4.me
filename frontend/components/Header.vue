@@ -143,7 +143,7 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
-  name: 'KitWindHeader',
+  name: 'Header',
 })
-export default class KitWindHeader extends Vue {}
+export default class Header extends Vue {}
 </script>

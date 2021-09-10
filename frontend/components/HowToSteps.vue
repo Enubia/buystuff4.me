@@ -187,9 +187,9 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
-  name: 'KitWindSteps',
+  name: 'HowToSteps',
 })
-export default class KitWindSteps extends Vue {}
+export default class HowToSteps extends Vue {}
 </script>
 
 <style scoped lang="scss">

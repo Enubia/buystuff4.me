@@ -183,8 +183,7 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
-  name: 'faq',
-  layout: 'kitwind',
+  name: 'Faq',
 })
 export default class Faq extends Vue {}
 </script>
