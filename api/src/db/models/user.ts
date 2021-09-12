@@ -6,6 +6,7 @@ export interface IUser extends Document {
   lastName: string;
   email: string;
   wishListIds: Types.ObjectId[];
+  image?: string;
   createdAt: Date;
   updatedAt: Date | null;
 }
@@ -30,6 +31,9 @@ const UserSchema = new Schema<IUser>(
         unique: true,
       },
     ],
+    image: {
+      type: String,
+    },
     createdAt: {
       type: Date,
       default: new Date(),

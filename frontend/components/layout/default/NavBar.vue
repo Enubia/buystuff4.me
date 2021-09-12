@@ -182,7 +182,7 @@
                   </button>
                 </div>
               </div>
-              <nav>
+              <nav class="text-right">
                 <ul class="space-y-4">
                   <li>
                     <nuxt-link

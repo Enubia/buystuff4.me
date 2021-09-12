@@ -12,6 +12,7 @@ export interface IWishList extends Document {
   link: string;
   priority: number;
   categoryIds: Types.ObjectId[];
+  description?: string;
   isPublished: boolean;
   lastPublishedAt: Date | null;
   createdAt: Date;
@@ -36,6 +37,9 @@ const WishListSchema = new Schema<IWishList>(
         required: true,
       },
     ],
+    description: {
+      type: String,
+    },
     isPublished: {
       type: Boolean,
       default: false,

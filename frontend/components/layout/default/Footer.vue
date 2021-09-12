@@ -85,6 +85,19 @@
             <ul class="mt-2 space-y-2">
               <li>
                 <nuxt-link
+                  :to="localePath('about')"
+                  class="
+                    transition-colors
+                    duration-300
+                    text-deep-purple-50
+                    hover:text-teal-accent-400
+                  "
+                >
+                  {{ $t('about.link') }}
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link
                   :to="localePath('faq')"
                   class="
                     transition-colors
