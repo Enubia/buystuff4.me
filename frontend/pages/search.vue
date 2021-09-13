@@ -104,76 +104,81 @@ export default class Search extends Vue {
 
   async getUsers(useOffset?: boolean) {
     // TODO: fix user fetching, currently it pulls the same users over and over again
-    const result = await this.client.query({
-      query: gql`
-        query allUsers($skip: Int, $limit: Int) {
-          userManyLean(skip: $skip, limit: $limit) {
-            _id
-            firstName
-            lastName
-            image
-            wishListIds
-            wishLists {
-              link
-              description
-              categoryIds
-              categories {
-                name
+    // TODO: consider using load more instead of endless scrolling, better usability
+    try {
+      const result = await this.client.query({
+        query: gql`
+          query allUsers($skip: Int, $limit: Int) {
+            userManyLean(skip: $skip, limit: $limit) {
+              _id
+              firstName
+              lastName
+              image
+              wishListIds
+              wishLists {
+                link
+                description
+                categoryIds
+                categories {
+                  name
+                }
               }
             }
           }
+        `,
+        variables: {
+          limit: 10,
+          skip: useOffset ? this.offset : 0,
+        },
+      });
+
+      if (result.data.userManyLean.length < 10) {
+        // we are done loading users if the result is smaller than the limit
+        this.loaderDisabled = true;
+      }
+
+      this.offset += 10;
+
+      const preparedResult: IPreparedUser[] = [];
+      const users = result.data.userManyLean;
+
+      for (const user of users) {
+        const categories = [];
+        const wishLists = [];
+
+        let data = {} as IPreparedUser;
+
+        if (user.categories) {
+          for (const category of user.categories) {
+            categories.push({
+              name: category.name,
+            });
+          }
         }
-      `,
-      variables: {
-        limit: 10,
-        skip: useOffset ? this.offset : 0,
-      },
-    });
 
-    if (result.data.userManyLean.length < 10) {
-      // we are done loading users if the result is smaller than the limit
-      this.loaderDisabled = true;
-    }
-
-    this.offset += 10;
-
-    const preparedResult: IPreparedUser[] = [];
-    const users = result.data.userManyLean;
-
-    for (const user of users) {
-      const categories = [];
-      const wishLists = [];
-
-      let data = {} as IPreparedUser;
-
-      if (user.categories) {
-        for (const category of user.categories) {
-          categories.push({
-            name: category.name,
+        for (const list of user.wishLists) {
+          wishLists.push({
+            link: list.link,
+            description: list.description,
+            categories,
           });
         }
+
+        data = {
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          image: user.image || 'anime-away-face-no-nobody-spirited_113254.svg',
+          wishLists,
+        };
+
+        preparedResult.push(data);
       }
 
-      for (const list of user.wishLists) {
-        wishLists.push({
-          link: list.link,
-          description: list.description,
-          categories,
-        });
-      }
-
-      data = {
-        _id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        image: user.image || 'anime-away-face-no-nobody-spirited_113254.svg',
-        wishLists,
-      };
-
-      preparedResult.push(data);
+      this.users.push(...preparedResult);
+    } catch (error) {
+      console.error(error);
     }
-
-    this.users.push(...preparedResult);
   }
 }
 </script>
