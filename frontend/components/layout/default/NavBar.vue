@@ -22,71 +22,80 @@
           lg:justify-center lg:space-x-16
         "
       >
-        <ul class="flex items-center hidden space-x-8 lg:flex">
-          <li>
-            <nuxt-link
-              :to="localePath('search')"
-              aria-label="Browse Lists"
-              title="Browse Lists"
+        <div class="flex w-1/3 justify-end">
+          <nuxt-link
+            :to="localePath('search')"
+            aria-label="Browse Lists"
+            title="Browse Lists"
+            class="
+              hidden
+              lg:block
+              font-medium
+              tracking-wide
+              text-gray-100
+              transition-colors
+              duration-200
+              hover:text-teal-accent-400
+            "
+          >
+            {{ $t('search.link') }}
+          </nuxt-link>
+        </div>
+        <div class="flex w-1/3 justify-center">
+          <nuxt-link
+            :to="localePath('index')"
+            aria-label="buystuff4.me"
+            title="buystuff4.me"
+            class="inline-flex items-center"
+          >
+            <svg
+              class="w-8 text-teal-accent-400"
+              viewBox="0 0 24 24"
+              stroke-linejoin="round"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke="currentColor"
+              fill="none"
+            >
+              <rect x="3" y="1" width="7" height="12"></rect>
+              <rect x="3" y="17" width="7" height="6"></rect>
+              <rect x="14" y="1" width="7" height="6"></rect>
+              <rect x="14" y="11" width="7" height="12"></rect>
+            </svg>
+            <span
               class="
-                font-medium
+                ml-2
+                text-xl
+                font-bold
                 tracking-wide
                 text-gray-100
-                transition-colors
-                duration-200
-                hover:text-teal-accent-400
+                uppercase
               "
             >
-              {{ $t('search.link') }}
-            </nuxt-link>
-          </li>
-        </ul>
-        <nuxt-link
-          :to="localePath('index')"
-          aria-label="buystuff4.me"
-          title="buystuff4.me"
-          class="inline-flex items-center"
-        >
-          <svg
-            class="w-8 text-teal-accent-400"
-            viewBox="0 0 24 24"
-            stroke-linejoin="round"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-miterlimit="10"
-            stroke="currentColor"
-            fill="none"
+              buystuff4.me
+            </span>
+          </nuxt-link>
+        </div>
+        <div class="flex w-1/3 justify-start">
+          <nuxt-link
+            :to="localePath('sign-in')"
+            aria-label="Sign in"
+            title="Sign in"
+            class="
+              hidden
+              lg:block
+              font-medium
+              tracking-wide
+              text-gray-100
+              transition-colors
+              duration-200
+              hover:text-teal-accent-400
+            "
           >
-            <rect x="3" y="1" width="7" height="12"></rect>
-            <rect x="3" y="17" width="7" height="6"></rect>
-            <rect x="14" y="1" width="7" height="6"></rect>
-            <rect x="14" y="11" width="7" height="12"></rect>
-          </svg>
-          <span
-            class="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase"
-          >
-            buystuff4.me
-          </span>
-        </nuxt-link>
-        <ul class="flex items-center hidden space-x-8 lg:flex">
-          <li>
-            <nuxt-link
-              :to="localePath('sign-in')"
-              aria-label="Sign in"
-              title="Sign in"
-              class="
-                font-medium
-                tracking-wide
-                text-gray-100
-                transition-colors
-                duration-200
-                hover:text-teal-accent-400
-              "
-            >
-              {{ $t('signIn.link') }}
-            </nuxt-link>
-          </li>
-        </ul>
+            {{ $t('signIn.link') }}
+          </nuxt-link>
+        </div>
         <div class="lg:hidden">
           <button
             aria-label="Open Menu"
