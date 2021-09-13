@@ -4,48 +4,34 @@
       <div v-for="user in users" :key="user._id" class="px-2 w-1/3">
         <Card :user="user" />
       </div>
-    </div>
-    <div v-else class="flex flex-wrap w-full">
-      <div v-for="item of sampleCards" :key="item" class="px-2 w-1/3">
-        <ContentLoader
-          :width="476"
-          :height="124"
-          :speed="2"
-          primary-color="#f3f3f3"
-          secondary-color="#ecebeb"
+      <div v-if="showLoaderButton" class="flex w-full justify-center my-2">
+        <button
+          type="button"
           class="
-            max-w-md
-            my-3
-            mx-auto
-            bg-white
-            shadow-xl
-            border
-            rounded-xl
-            border-gray-100
-            md:max-w-2xl
+            inline-flex
+            items-center
+            justify-center
+            h-12
+            px-6
+            font-semibold
+            tracking-wide
+            text-teal-900
+            transition
+            duration-200
+            rounded
+            shadow-md
+            hover:text-deep-purple-900
+            bg-teal-accent-400
+            hover:bg-deep-purple-accent-100
+            focus:shadow-outline focus:outline-none
           "
+          :disabled="!loaderDisabled"
+          @click="getUsers(true)"
         >
-          <rect x="117" y="21" rx="3" ry="3" width="127" height="9" />
-          <rect x="117" y="101" rx="3" ry="3" width="352" height="12" />
-          <circle cx="57" cy="65" r="53" />
-          <rect x="117" y="78" rx="3" ry="3" width="352" height="12" />
-          <rect x="117" y="44" rx="3" ry="3" width="127" height="9" />
-        </ContentLoader>
-      </div>
-    </div>
-    <client-only>
-      <InfiniteScroll
-        v-if="users.length > 0"
-        id="users"
-        :enough="loaderDisabled"
-        class="flex justify-center w-full h-40"
-        @load-more="getUsers(true)"
-      >
-        <template>
           <svg
-            class="w-8 h-8 mr-3 border-0 animate-spin"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            v-if="!loaderDisabled"
+            :class="loaderDisabled ? '' : 'animate-spin'"
+            class="h-5 w-5 mr-3"
             viewBox="0 0 24 24"
           >
             <circle
@@ -62,10 +48,44 @@
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          <span class="sr-only"> Loading...</span>
-        </template>
-      </InfiniteScroll>
-    </client-only>
+          {{ loaderDisabled ? 'Load More' : 'Processing' }}
+        </button>
+      </div>
+    </div>
+    <div v-else class="md:flex md:flex-wrap w-full">
+      <div v-for="item of sampleCards" :key="item" class="px-2 md:w-1/3">
+        <div
+          class="
+            max-w-md
+            mx-auto
+            bg-white
+            shadow-xl
+            border
+            rounded-xl
+            border-gray-100
+            md:max-w-2xl
+            transition transition-colors
+            hover:border-deep-purple-accent-200
+            shadow
+            h-32
+            m-2
+            p-4
+            w-full
+          "
+        >
+          <div class="animate-pulse flex space-x-4">
+            <div class="rounded-full bg-gray-400 h-12 w-12"></div>
+            <div class="flex-1 space-y-4 py-1">
+              <div class="h-4 bg-gray-400 rounded w-3/4"></div>
+              <div class="space-y-2">
+                <div class="h-4 bg-gray-400 rounded"></div>
+                <div class="h-4 bg-gray-400 rounded w-5/6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -74,14 +94,10 @@ import { Component, Vue } from 'nuxt-property-decorator';
 import gql from 'graphql-tag';
 import Card from '../components/search/Card.vue';
 import { IPreparedUser } from '../types/IUser';
-import InfiniteScroll from '../components/search/InfiniteScroll.vue';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { ContentLoader } = require('vue-content-loader');
 
 @Component({
   name: 'Search',
-  components: { InfiniteScroll, Card, ContentLoader },
+  components: { Card },
 })
 export default class Search extends Vue {
   sampleCards = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -96,16 +112,17 @@ export default class Search extends Vue {
 
   offset = 0;
 
-  loaderDisabled = false;
+  loaderDisabled = true;
+
+  showLoaderButton = true;
 
   async mounted() {
     await this.getUsers(false);
   }
 
   async getUsers(useOffset?: boolean) {
-    // TODO: fix user fetching, currently it pulls the same users over and over again
-    // TODO: consider using load more instead of endless scrolling, better usability
     try {
+      this.loaderDisabled = false;
       const result = await this.client.query({
         query: gql`
           query allUsers($skip: Int, $limit: Int) {
@@ -135,6 +152,7 @@ export default class Search extends Vue {
       if (result.data.userManyLean.length < 10) {
         // we are done loading users if the result is smaller than the limit
         this.loaderDisabled = true;
+        this.showLoaderButton = false;
       }
 
       this.offset += 10;
@@ -175,9 +193,12 @@ export default class Search extends Vue {
         preparedResult.push(data);
       }
 
+      this.loaderDisabled = true;
+
       this.users.push(...preparedResult);
     } catch (error) {
       console.error(error);
+      this.loaderDisabled = true;
     }
   }
 }
