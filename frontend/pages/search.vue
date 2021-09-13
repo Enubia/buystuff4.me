@@ -1,12 +1,49 @@
 <template>
   <div>
-    <div v-if="users.length > 0" class="md:flex md:flex-wrap w-full">
+    <div class="flex w-full justify-center mt-4">
+      <button
+        class="
+          inline-flex
+          items-center
+          justify-center
+          h-8
+          px-6
+          font-semibold
+          tracking-wide
+          text-teal-900
+          transition
+          duration-200
+          rounded
+          shadow-md
+          hover:text-deep-purple-900
+          bg-teal-accent-400
+          hover:bg-deep-purple-accent-100
+        "
+        @click="showFilter = !showFilter"
+      >
+        Filter
+      </button>
+    </div>
+    <div v-if="wishLists.length > 0" class="md:flex md:flex-wrap w-full">
+      <div v-if="showFilter" class="flex flex-wrap w-full mx-4">
+        <Checkbox
+          v-for="category in categories"
+          :id="category._id"
+          :key="category._id"
+          :name="category.name"
+          :label="category.name"
+          :value="category._id"
+          class="w-1/5"
+          :alt="category.name"
+          @checkbox-ticked="applyFilter"
+        />
+      </div>
       <div
-        v-for="user in users"
-        :key="user._id"
+        v-for="list in wishLists"
+        :key="list._id"
         class="px-6 w-full lg:w-1/2 xl:w-1/3"
       >
-        <Card :user="user" />
+        <Card :list="list" />
       </div>
       <div v-if="showLoaderButton" class="flex w-full justify-center my-2">
         <button
@@ -30,7 +67,7 @@
             focus:shadow-outline focus:outline-none
           "
           :disabled="!loaderDisabled"
-          @click="getUsers(true)"
+          @click="getWishLists({ useOffset: true })"
         >
           <svg
             v-if="!loaderDisabled"
@@ -57,7 +94,11 @@
       </div>
     </div>
     <div v-else class="md:flex md:flex-wrap w-full">
-      <div v-for="item of sampleCards" :key="item" class="px-2 md:w-1/3">
+      <div
+        v-for="item of sampleCards"
+        :key="item"
+        class="px-6 w-full lg:w-1/2 xl:w-1/3"
+      >
         <div
           class="
             max-w-md
@@ -94,25 +135,47 @@
 </template>
 
 <script lang="ts">
+// TODO: fix weird error that happens on category select
+// checkboxes get unticked and if you select more than one box and uncheck one
+// the results will be empty for some weird reason
 import { Component, Vue } from 'nuxt-property-decorator';
 import gql from 'graphql-tag';
 import Card from '../components/search/Card.vue';
-import { IPreparedUser } from '../types/IUser';
+import CategoryFilter from '../components/search/CategoryFilter.vue';
+import { IWishList } from '../types/IWishList';
+import Checkbox from '../components/form-elements/Checkbox.vue';
+
+interface IWishListManyResult {
+  link: string;
+  description: string;
+  _id: string;
+  categoryIds: string[];
+  categories: {
+    _id: string;
+    name: string;
+  }[];
+
+  userByWishListId: {
+    firstName: string;
+    lastName: string;
+    image: string;
+  };
+}
 
 @Component({
   name: 'Search',
-  components: { Card },
+  components: { Checkbox, CategoryFilter, Card },
 })
 export default class Search extends Vue {
-  sampleCards = new Array(12);
+  sampleCards = new Array(9);
 
   client = this.$apollo.getClient();
 
-  users: IPreparedUser[] = [];
+  showFilter = false;
 
-  categories: { _id: string; name: string }[] = [];
+  wishLists: IWishList[] = [];
 
-  categoryFilter = [];
+  categoryFilter: string[] = [];
 
   offset = 0;
 
@@ -120,86 +183,159 @@ export default class Search extends Vue {
 
   showLoaderButton = true;
 
+  selectedCategories = new Set<string>();
+
+  categories: { _id: string; name: string }[] = [];
+
   async mounted() {
-    await this.getUsers(false);
+    await this.getWishLists({ useOffset: false });
+    if (this.categories.length === 0) {
+      await this.getCategories();
+    }
   }
 
-  async getUsers(useOffset?: boolean) {
+  async getCategories() {
     try {
-      this.loaderDisabled = false;
       const result = await this.client.query({
         query: gql`
-          query allUsers($skip: Int, $limit: Int) {
-            userManyLean(skip: $skip, limit: $limit) {
+          query allCategories {
+            categoryManyLean {
               _id
-              firstName
-              lastName
-              image
-              wishListIds
-              wishLists {
-                link
-                description
-                categoryIds
-                categories {
-                  name
-                }
+              name
+            }
+          }
+        `,
+        fetchPolicy: 'cache-first',
+      });
+
+      this.categories = result.data.categoryManyLean;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  applyFilter({ value }) {
+    let empty = false;
+    if (this.selectedCategories.has(value)) {
+      this.selectedCategories.delete(value);
+      empty = true;
+    } else {
+      this.selectedCategories.add(value);
+    }
+
+    this.getWishLists({
+      useOffset: false,
+      listIds: [...this.selectedCategories],
+      empty,
+    });
+  }
+
+  async getWishLists({
+    useOffset,
+    listIds,
+    empty = false,
+  }: {
+    useOffset: boolean;
+    listIds?: string[];
+    empty?: boolean;
+  }) {
+    try {
+      this.loaderDisabled = false;
+
+      if (empty) {
+        this.wishLists = [];
+      }
+
+      const variables: {
+        limit: number;
+        skip: number;
+        wishListManyLeanFilter: {
+          categoryIds?: string[];
+          isPublished: boolean;
+        };
+      } = {
+        limit: 9,
+        skip: useOffset ? this.offset : 0,
+        wishListManyLeanFilter: {
+          isPublished: true,
+        },
+      };
+
+      if (listIds?.length > 0) {
+        variables.wishListManyLeanFilter.categoryIds = listIds;
+      } else if (variables.wishListManyLeanFilter.categoryIds) {
+        delete variables.wishListManyLeanFilter.categoryIds;
+      }
+
+      const result = await this.client.query({
+        query: gql`
+          query wishListManyLean(
+            $limit: Int
+            $skip: Int
+            $wishListManyLeanFilter: FilterFindManyWishListInput
+          ) {
+            wishListManyLean(
+              limit: $limit
+              skip: $skip
+              filter: $wishListManyLeanFilter
+            ) {
+              link
+              description
+              _id
+              categoryIds
+              categories {
+                _id
+                name
+              }
+              userByWishListId {
+                firstName
+                lastName
+                image
               }
             }
           }
         `,
-        variables: {
-          limit: 10,
-          skip: useOffset ? this.offset : 0,
-        },
+        variables,
+        fetchPolicy: 'no-cache',
       });
 
-      if (result.data.userManyLean.length < 10) {
+      const wishListResult = result.data.wishListManyLean;
+
+      if (wishListResult.length < 10) {
         // we are done loading users if the result is smaller than the limit
         this.loaderDisabled = true;
         this.showLoaderButton = false;
       }
 
-      this.offset += 10;
+      this.offset += 9;
 
-      const preparedResult: IPreparedUser[] = [];
-      const users = result.data.userManyLean;
+      const preparedResult: IWishList[] = [];
+      const wishLists: IWishListManyResult[] = wishListResult;
 
-      for (const user of users) {
-        const categories = [];
-        const wishLists = [];
+      for (const list of wishLists) {
+        const found = this.wishLists.find((item) => item._id === list._id);
 
-        let data = {} as IPreparedUser;
-
-        if (user.categories) {
-          for (const category of user.categories) {
-            categories.push({
-              name: category.name,
-            });
-          }
-        }
-
-        for (const list of user.wishLists) {
-          wishLists.push({
+        if (!found) {
+          preparedResult.push({
+            _id: list._id,
             link: list.link,
             description: list.description,
-            categories,
+            categories: list.categories,
+            user: {
+              _id: list.userByWishListId._id,
+              firstName: list.userByWishListId.firstName,
+              lastName: list.userByWishListId.lastName,
+              image:
+                list.userByWishListId.image ||
+                'anime-away-face-no-nobody-spirited_113254.svg',
+            },
           });
         }
-
-        data = {
-          _id: user._id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          image: user.image || 'anime-away-face-no-nobody-spirited_113254.svg',
-          wishLists,
-        };
-
-        preparedResult.push(data);
       }
 
       this.loaderDisabled = true;
 
-      this.users.push(...preparedResult);
+      this.wishLists.push(...preparedResult);
     } catch (error) {
       console.error(error);
       this.loaderDisabled = true;

@@ -6,16 +6,3 @@ export interface IUser {
   wishListIds: string[];
   image?: string;
 }
-
-export interface IPreparedUser {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  image: string;
-  wishLists: {
-    link: string;
-    categories: {
-      name: string;
-    }[];
-  }[];
-}

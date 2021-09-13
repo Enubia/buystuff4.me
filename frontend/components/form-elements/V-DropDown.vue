@@ -26,7 +26,7 @@
       <div
         v-if="open"
         class="drop-down-select"
-        :class="placement === 'right' ? 'right-0' : 'left-0'"
+        :class="placement === 'right' ? `right-0 ${width}` : `left-0 ${width}`"
       >
         <slot name="content"></slot>
       </div>
@@ -68,6 +68,8 @@ export default class VDropDown extends Vue {
   })
   placement!: string;
 
+  @Prop({ type: String, default: 'w-min' }) width!: string;
+
   open = false;
 
   mounted() {
@@ -94,8 +96,7 @@ export default class VDropDown extends Vue {
     absolute
     shadow-lg
     border
-    w-48
-    max-h-36
+    max-h-48
     overflow-y-auto
     rounded
     py-1
