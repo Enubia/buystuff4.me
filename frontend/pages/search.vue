@@ -36,7 +36,8 @@
     <client-only>
       <InfiniteScroll
         v-if="users.length > 0"
-        :enough="false"
+        id="users"
+        :enough="loaderDisabled"
         class="flex justify-center w-full h-40"
         @load-more="getUsers(true)"
       >
@@ -93,9 +94,7 @@ export default class Search extends Vue {
 
   categoryFilter = [];
 
-  offset = 10;
-
-  useOffset = true;
+  offset = 0;
 
   loaderDisabled = false;
 
@@ -131,10 +130,15 @@ export default class Search extends Vue {
       },
     });
 
-    const preparedResult = new Set<IPreparedUser>();
-    const users = result.data.userManyLean;
+    if (result.data.userManyLean.length < 10) {
+      // we are done loading users if the result is smaller than the limit
+      this.loaderDisabled = true;
+    }
 
-    console.log(users);
+    this.offset += 10;
+
+    const preparedResult: IPreparedUser[] = [];
+    const users = result.data.userManyLean;
 
     for (const user of users) {
       const categories = [];
@@ -166,7 +170,7 @@ export default class Search extends Vue {
         wishLists,
       };
 
-      preparedResult.add(data);
+      preparedResult.push(data);
     }
 
     this.users.push(...preparedResult);
