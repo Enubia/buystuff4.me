@@ -27,22 +27,22 @@
           alt="A cat"
         />
       </div>
-      <div class="p-8">
+      <div class="p-8 text-center md:text-left">
         <div
-          class="uppercase tracking-wide text-sm text-purple-500 font-semibold"
+          class="uppercase tracking-wide text-lg text-purple-500 font-semibold"
         >
           {{ (user && user.firstName) || 'John' }}
           {{ (user && user.lastName.charAt(0)) || 'D' }}.
         </div>
-        <a class="block mt-1 text-lg leading-tight font-medium text-black">
+        <p class="block mt-1 leading-tight font-medium text-black break-words">
           {{
             (user && user.wishLists[0].description) ||
             'Some wishlist description'
           }}
-        </a>
-        <p class="mt-2 text-orange-200 hover:underline">
-          <a :href="(user && user.wishLists[0].link) || '#'">
-            {{ (user && user.wishLists[0].link) || 'Some wishlist link' }}
+        </p>
+        <p class="mt-2 text-orange-200 hover:underline break-words">
+          <a :href="(user && user.wishLists[0].link) || '#'" target="_blank">
+            {{ $t('search.card.link') }}
           </a>
         </p>
       </div>

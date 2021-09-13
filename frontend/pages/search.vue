@@ -1,7 +1,11 @@
 <template>
   <div>
-    <div v-if="users.length > 0" class="flex flex-wrap w-full">
-      <div v-for="user in users" :key="user._id" class="px-2 w-1/3">
+    <div v-if="users.length > 0" class="md:flex md:flex-wrap w-full">
+      <div
+        v-for="user in users"
+        :key="user._id"
+        class="px-6 w-full lg:w-1/2 xl:w-1/3"
+      >
         <Card :user="user" />
       </div>
       <div v-if="showLoaderButton" class="flex w-full justify-center my-2">
@@ -67,9 +71,9 @@
             transition transition-colors
             hover:border-deep-purple-accent-200
             shadow
-            h-32
+            h-48
             m-2
-            p-4
+            p-8
             w-full
           "
         >
@@ -100,7 +104,7 @@ import { IPreparedUser } from '../types/IUser';
   components: { Card },
 })
 export default class Search extends Vue {
-  sampleCards = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  sampleCards = new Array(12);
 
   client = this.$apollo.getClient();
 

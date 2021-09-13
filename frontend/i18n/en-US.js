@@ -82,6 +82,9 @@ export default {
   },
   search: {
     link: 'Browse Lists',
+    card: {
+      link: 'Go to Wishlist',
+    },
   },
   profile: {
     link: 'Profile',
