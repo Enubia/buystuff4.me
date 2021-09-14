@@ -8,8 +8,6 @@
           justify-center
           h-8
           px-6
-          font-semibold
-          tracking-wide
           text-teal-900
           transition
           duration-200
@@ -23,6 +21,26 @@
       >
         Filter
       </button>
+      <button
+        class="
+          inline-flex
+          items-center
+          justify-center
+          h-8
+          px-6
+          text-teal-900
+          transition
+          duration-200
+          rounded
+          shadow-md
+          hover:text-deep-purple-900
+          bg-teal-accent-400
+          hover:bg-deep-purple-accent-100
+        "
+        @click="getWishLists(false, true)"
+      >
+        Search
+      </button>
     </div>
     <div v-if="wishLists.length > 0" class="md:flex md:flex-wrap w-full">
       <div v-if="showFilter" class="flex flex-wrap w-full mx-4">
@@ -35,7 +53,7 @@
           :value="category._id"
           class="w-1/5"
           :alt="category.name"
-          @checkbox-ticked="applyFilter"
+          @checkbox-ticked="addToFilter"
         />
       </div>
       <div
@@ -67,7 +85,7 @@
             focus:shadow-outline focus:outline-none
           "
           :disabled="!loaderDisabled"
-          @click="getWishLists({ useOffset: true })"
+          @click="getWishLists(true)"
         >
           <svg
             v-if="!loaderDisabled"
@@ -135,9 +153,8 @@
 </template>
 
 <script lang="ts">
-// TODO: fix weird error that happens on category select
-// checkboxes get unticked and if you select more than one box and uncheck one
-// the results will be empty for some weird reason
+// TODO: split up filter and standard query into separate components
+// issue is due to apollo caching
 import { Component, Vue } from 'nuxt-property-decorator';
 import gql from 'graphql-tag';
 import Card from '../components/search/Card.vue';
@@ -156,6 +173,7 @@ interface IWishListManyResult {
   }[];
 
   userByWishListId: {
+    _id: string;
     firstName: string;
     lastName: string;
     image: string;
@@ -188,7 +206,9 @@ export default class Search extends Vue {
   categories: { _id: string; name: string }[] = [];
 
   async mounted() {
-    await this.getWishLists({ useOffset: false });
+    if (this.wishLists.length === 0) {
+      await this.getWishLists(false);
+    }
     if (this.categories.length === 0) {
       await this.getCategories();
     }
@@ -205,7 +225,6 @@ export default class Search extends Vue {
             }
           }
         `,
-        fetchPolicy: 'cache-first',
       });
 
       this.categories = result.data.categoryManyLean;
@@ -214,37 +233,20 @@ export default class Search extends Vue {
     }
   }
 
-  applyFilter({ value }) {
-    let empty = false;
+  addToFilter({ value }: { value: string }) {
     if (this.selectedCategories.has(value)) {
       this.selectedCategories.delete(value);
-      empty = true;
     } else {
       this.selectedCategories.add(value);
     }
-
-    this.getWishLists({
-      useOffset: false,
-      listIds: [...this.selectedCategories],
-      empty,
-    });
   }
 
-  async getWishLists({
-    useOffset,
-    listIds,
-    empty = false,
-  }: {
-    useOffset: boolean;
-    listIds?: string[];
-    empty?: boolean;
-  }) {
+  async getWishLists(useOffset: boolean, clearList = false) {
+    if (clearList) {
+      this.wishLists = [];
+    }
     try {
       this.loaderDisabled = false;
-
-      if (empty) {
-        this.wishLists = [];
-      }
 
       const variables: {
         limit: number;
@@ -261,10 +263,8 @@ export default class Search extends Vue {
         },
       };
 
-      if (listIds?.length > 0) {
-        variables.wishListManyLeanFilter.categoryIds = listIds;
-      } else if (variables.wishListManyLeanFilter.categoryIds) {
-        delete variables.wishListManyLeanFilter.categoryIds;
+      if (this.categoryFilter.length > 0) {
+        variables.wishListManyLeanFilter.categoryIds = this.categoryFilter;
       }
 
       const result = await this.client.query({
@@ -288,6 +288,7 @@ export default class Search extends Vue {
                 name
               }
               userByWishListId {
+                _id
                 firstName
                 lastName
                 image
@@ -296,16 +297,9 @@ export default class Search extends Vue {
           }
         `,
         variables,
-        fetchPolicy: 'no-cache',
       });
 
       const wishListResult = result.data.wishListManyLean;
-
-      if (wishListResult.length < 10) {
-        // we are done loading users if the result is smaller than the limit
-        this.loaderDisabled = true;
-        this.showLoaderButton = false;
-      }
 
       this.offset += 9;
 
@@ -336,6 +330,12 @@ export default class Search extends Vue {
       this.loaderDisabled = true;
 
       this.wishLists.push(...preparedResult);
+
+      if (wishListResult.length < 9) {
+        // we are done loading users if the result is smaller than the limit
+        this.loaderDisabled = true;
+        this.showLoaderButton = false;
+      }
     } catch (error) {
       console.error(error);
       this.loaderDisabled = true;

@@ -5,7 +5,7 @@ export interface IWishList {
   categories: {
     _id: string;
     name: string;
-  };
+  }[];
   user: {
     _id: string;
     firstName: string;
