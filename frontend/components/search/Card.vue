@@ -11,7 +11,7 @@
       border-gray-100
       md:max-w-2xl
       transition transition-colors
-      hover:border-deep-purple-accent-200
+      hover:border-primary-200
     "
   >
     <div class="md:flex">
@@ -52,9 +52,9 @@
               duration-200
               rounded
               hover:shadow-md
-              text-teal-200
+              text-secondary-focus-200
               break-words
-              hover:text-deep-purple-900 hover:bg-deep-purple-accent-100
+              hover:text-deep-purple-900 hover:bg-primary-100
             "
           >
             {{ $t('search.card.link') }}

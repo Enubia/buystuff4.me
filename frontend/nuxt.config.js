@@ -10,6 +10,7 @@ export default {
       title: 'buystuff4.me',
       htmlAttrs: {
         lang: 'en',
+        'data-theme': 'pastel',
         ...i18nHead.htmlAttrs,
       },
       meta: [

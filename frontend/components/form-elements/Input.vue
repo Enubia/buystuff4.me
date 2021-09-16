@@ -4,12 +4,20 @@
     <input
       v-if="inputType === 'url'"
       ref="urlLink"
+      v-model="inputValue"
       :type="inputType"
       :pattern="urlPattern"
       placeholder="https://www.amazon.de/hz/wishlist/ls/A0HIAAQDEIOV?ref_=wl_share"
+      class="input-primary"
       @focusout="verifyUrl"
     />
-    <input v-else :type="inputType" @change="dataChange($event.target.value)" />
+    <input
+      v-else
+      v-model="inputValue"
+      :type="inputType"
+      class="input-primary"
+      @change="dataChange"
+    />
   </label>
 </template>
 
@@ -35,8 +43,10 @@ export default class Input extends Vue {
   urlPattern =
     /(https:\/\/)([w]{3}.amazon.[a-z]{2})(\/[a-z]{2})(\/wishlist)(\/[a-z]{2})(\/[A-Z\d]+)(\?ref_=wl_share)/;
 
-  dataChange(value: string) {
-    this.$emit('input-data-change', value.trim());
+  inputValue = '';
+
+  dataChange() {
+    this.$emit('input-data-change', this.inputValue.trim());
   }
 
   verifyUrl() {
@@ -44,32 +54,16 @@ export default class Input extends Vue {
 
     if (value !== '') {
       if (!String(value.trim()).match(this.urlPattern)) {
-        this.urlLink.classList.add('error');
+        this.urlLink.classList.remove('input-primary');
+        this.urlLink.classList.add('input-error');
       } else {
         this.urlLink.classList.remove('error');
-        this.dataChange(value);
+        this.urlLink.classList.add('input-primary');
+        this.dataChange();
       }
     } else {
-      this.urlLink.classList.remove('error');
+      this.urlLink.classList.remove('input-error');
     }
   }
 }
 </script>
-
-<style scoped lang="scss">
-input {
-  @apply rounded
-  focus:ring focus:ring-purple-500 focus:ring-opacity-50
-  border-gray-300
-  shadow-sm
-  focus:border-purple-200
-  w-full;
-}
-
-.error {
-  @apply rounded
-  ring ring-red-400 focus:ring-opacity-50
-  shadow-sm
-  border-red-400;
-}
-</style>

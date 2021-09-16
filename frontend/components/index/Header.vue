@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-deep-purple-accent-400">
+  <div class="bg-neutral-focus">
     <div
       class="
         px-4
@@ -14,33 +14,6 @@
     >
       <div class="max-w-xl sm:mx-auto lg:max-w-2xl">
         <div class="flex flex-col mb-16 sm:text-center sm:mb-0">
-          <div class="mb-6 sm:mx-auto">
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                w-12
-                h-12
-                rounded-full
-                bg-teal-accent-400
-              "
-            >
-              <svg
-                class="w-10 h-10 text-deep-purple-900"
-                stroke="currentColor"
-                viewBox="0 0 52 52"
-              >
-                <polygon
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  fill="none"
-                  points="29 13 14 29 25 29 23 39 38 23 27 23"
-                ></polygon>
-              </svg>
-            </div>
-          </div>
           <div
             class="
               max-w-xl
@@ -71,14 +44,13 @@
                   fill="currentColor"
                   class="
                     absolute
-                    top-0
+                    top-1
                     left-0
                     z-0
                     hidden
                     w-32
                     -mt-8
                     -ml-20
-                    text-deep-purple-accent-100
                     lg:w-32 lg:-ml-28 lg:-mt-10
                     sm:block
                   "
@@ -104,32 +76,12 @@
               </span>
               {{ $t('index.header.titleTwo') }}
             </h2>
-            <p class="text-base text-indigo-100 md:text-lg">
+            <p class="text-base text-white md:text-lg">
               {{ $t('index.header.description') }}
             </p>
           </div>
           <div>
-            <nuxt-link
-              :to="localePath('sign-in')"
-              class="
-                inline-flex
-                items-center
-                justify-center
-                h-12
-                px-6
-                font-semibold
-                tracking-wide
-                text-teal-900
-                transition
-                duration-200
-                rounded
-                shadow-md
-                hover:text-deep-purple-900
-                bg-teal-accent-400
-                hover:bg-deep-purple-accent-100
-                focus:shadow-outline focus:outline-none
-              "
-            >
+            <nuxt-link :to="localePath('sign-in')" class="btn btn-primary">
               {{ $t('index.header.button') }}
             </nuxt-link>
           </div>

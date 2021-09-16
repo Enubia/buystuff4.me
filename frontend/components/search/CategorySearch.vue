@@ -1,29 +1,15 @@
 <template>
   <div>
-    <div class="w-full flex justify-center mt-4">
-      <button
-        class="
-          inline-flex
-          items-center
-          justify-center
-          h-8
-          px-6
-          text-teal-900
-          transition
-          duration-200
-          rounded
-          shadow-md
-          hover:text-deep-purple-900
-          bg-teal-accent-400
-          hover:bg-deep-purple-accent-100
-        "
-        @click="showFilter = !showFilter"
-      >
-        Filter
-      </button>
+    <div class="hidden lg:w-full lg:flex lg:justify-end lg:mt-3">
+      <div class="form-control mr-6">
+        <label class="cursor-pointer label" @click="showFilter = !showFilter">
+          <span class="label-text mr-2">Filter</span>
+          <input type="checkbox" class="toggle toggle-primary" />
+        </label>
+      </div>
     </div>
     <div v-if="showFilter" class="mx-4">
-      <div class="flex flex-wrap">
+      <div class="flex flex-wrap justify-evenly mt-2">
         <Checkbox
           v-for="category in categories"
           :id="category._id"
@@ -31,31 +17,14 @@
           :name="category.name"
           :label="category.name"
           :value="category._id"
-          class="w-1/5"
+          class="w-1/6"
           :alt="category.name"
           @checkbox-ticked="pushCategory"
         />
       </div>
-      <div class="w-full flex justify-center">
-        <button
-          class="
-            inline-flex
-            items-center
-            justify-center
-            h-8
-            px-6
-            text-teal-900
-            transition
-            duration-200
-            rounded
-            shadow-md
-            hover:text-deep-purple-900
-            bg-teal-accent-400
-            hover:bg-deep-purple-accent-100
-          "
-          @click="$emit('search')"
-        >
-          Search
+      <div class="w-full flex justify-end mt-3">
+        <button class="btn btn-sm btn-secondary mr-4" @click="applyFilter">
+          Apply
         </button>
       </div>
     </div>
@@ -104,6 +73,11 @@ export default class CategorySearch extends Vue {
 
   pushCategory(value: { name: string; value: string }) {
     console.log(value);
+  }
+
+  applyFilter() {
+    this.showFilter = false;
+    this.$emit('search');
   }
 }
 </script>

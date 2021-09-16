@@ -59,8 +59,8 @@
           origin-left
           transform
           scale-x-0
-          bg-deep-purple-accent-400
-          group-hover:scale-x-100
+          bg-gray-300
+          group-hover:bg-secondary group-hover:scale-x-100
         "
       ></div>
       <div
@@ -73,9 +73,9 @@
           duration-300
           origin-bottom
           transform
+          bg-gray-300
           scale-y-0
-          bg-deep-purple-accent-400
-          group-hover:scale-y-100
+          group-hover:bg-secondary group-hover:scale-y-100
         "
       ></div>
       <div
@@ -89,8 +89,8 @@
           origin-right
           transform
           scale-x-0
-          bg-deep-purple-accent-400
-          group-hover:scale-x-100
+          bg-gray-300
+          group-hover:bg-secondary group-hover:scale-x-100
         "
       ></div>
       <div
@@ -103,9 +103,9 @@
           duration-300
           origin-top
           transform
+          bg-gray-300
           scale-y-0
-          bg-deep-purple-accent-400
-          group-hover:scale-y-100
+          group-hover:bg-secondary group-hover:scale-y-100
         "
       ></div>
       <div
@@ -124,9 +124,7 @@
         "
       >
         <div class="px-12 py-8 text-center">
-          <h6
-            class="text-4xl font-bold text-deep-purple-accent-400 sm:text-5xl"
-          >
+          <h6 class="text-4xl font-bold text-secondary sm:text-5xl">
             {{ registeredUsers }}
           </h6>
           <p class="text-center md:text-base">
@@ -142,14 +140,12 @@
             transform
             bg-gray-300
             rounded-full
-            group-hover:bg-deep-purple-accent-400 group-hover:scale-110
+            group-hover:bg-secondary group-hover:scale-110
             sm:h-auto sm:w-1
           "
         ></div>
         <div class="px-12 py-8 text-center">
-          <h6
-            class="text-4xl font-bold text-deep-purple-accent-400 sm:text-5xl"
-          >
+          <h6 class="text-4xl font-bold text-secondary sm:text-5xl">
             {{ listedWishlists }}
           </h6>
           <p class="text-center md:text-base">

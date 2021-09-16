@@ -137,7 +137,7 @@ export default class SearchResult extends Vue {
   showLoaderButton = true;
 
   async mounted() {
-    if (this.wishLists > 0) {
+    if (this.wishLists.length > 0) {
       return;
     }
 

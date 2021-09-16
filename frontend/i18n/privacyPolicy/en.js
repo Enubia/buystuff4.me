@@ -2,7 +2,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>Privacy Policy for buystuff4.me</strong>
+        <strong class='text-secondary-focus'>Privacy Policy for buystuff4.me</strong>
       </p>
     `,
     block: `
@@ -19,7 +19,7 @@ export default [
         This policy is not applicable to any information collected offline
         or via channels other than this website.
         Our Privacy Policy was created with the help of the
-        <a class='underline text-amber-300'
+        <a class='link link-primary'
           rel='canonical'
           target='_blank'
           href='https://www.termsfeed.com/privacy-policy-generator/'
@@ -32,7 +32,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>Consent</strong>
+        <strong class='text-secondary-focus'>Consent</strong>
       </p>
     `,
     block: `
@@ -44,7 +44,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>Information we collect</strong>
+        <strong class='text-secondary-focus'>Information we collect</strong>
       </p>
     `,
     block: `
@@ -62,7 +62,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>How we use your information</strong>
+        <strong class='text-secondary-focus'>How we use your information</strong>
       </p>
     `,
     block: `
@@ -92,7 +92,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>Log Files</strong>
+        <strong class='text-secondary-focus'>Log Files</strong>
       </p>
     `,
     block: `
@@ -104,7 +104,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>What Are Cookies</strong>
+        <strong class='text-secondary-focus'>What Are Cookies</strong>
       </p>
     `,
     block: `
@@ -121,7 +121,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>Cookies and Web Beacons</strong>
+        <strong class='text-secondary-focus'>Cookies and Web Beacons</strong>
       </p>
     `,
     block: `
@@ -134,7 +134,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>How We Use Cookies</strong>
+        <strong class='text-secondary-focus'>How We Use Cookies</strong>
       </p>
     `,
     block: `
@@ -151,7 +151,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>Disabling Cookies</strong>
+        <strong class='text-secondary-focus'>Disabling Cookies</strong>
       </p>
     `,
     block: `
@@ -164,7 +164,7 @@ export default [
         it is recommended that you do not disable cookies. This Cookies Policy was
         created with the help of the
         <a
-          class='underline text-amber-300'
+          class='link link-primary'
           rel='canonical'
           target='_blank'
           href='https://www.cookiepolicygenerator.com/cookie-policy-generator/'
@@ -177,7 +177,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>The Cookies We Set</strong>
+        <strong class='text-secondary-focus'>The Cookies We Set</strong>
       </p>
     `,
     block: `
@@ -194,7 +194,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>Third Party Cookies</strong>
+        <strong class='text-secondary-focus'>Third Party Cookies</strong>
       </p>
     `,
     block: `
@@ -223,7 +223,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>More Information</strong>
+        <strong class='text-secondary-focus'>More Information</strong>
       </p>
     `,
     block: `
@@ -236,7 +236,7 @@ export default [
       <p class='mb-4'>
         For more general information on cookies, please read
         <a
-          class='underline text-amber-300'
+          class='link link-primary'
           rel='canonical'
           target='_blank'
           href='https://www.generateprivacypolicy.com/#cookies'
@@ -257,7 +257,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>Advertising Partners Privacy Policies</strong>
+        <strong class='text-secondary-focus'>Advertising Partners Privacy Policies</strong>
       </p>
     `,
     block: `
@@ -275,7 +275,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>Third Party Privacy Policies</strong>
+        <strong class='text-secondary-focus'>Third Party Privacy Policies</strong>
       </p>
     `,
     block: `
@@ -290,7 +290,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>CCPA Privacy Rights (Do Not Sell My Personal Information)</strong>
+        <strong class='text-secondary-focus'>CCPA Privacy Rights (Do Not Sell My Personal Information)</strong>
       </p>
     `,
     block: `
@@ -314,7 +314,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>GDPR Data Protection Rights</strong>
+        <strong class='text-secondary-focus'>GDPR Data Protection Rights</strong>
       </p>
     `,
     block: `
@@ -347,7 +347,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-teal-accent-700'>Children's Information</strong>
+        <strong class='text-secondary-focus'>Children's Information</strong>
       </p>
     `,
     block: `

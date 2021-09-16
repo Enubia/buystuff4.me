@@ -6,9 +6,7 @@
     <main>
       <Nuxt />
     </main>
-    <footer>
-      <Footer />
-    </footer>
+    <Footer />
     <client-only>
       <CookieBanner />
     </client-only>

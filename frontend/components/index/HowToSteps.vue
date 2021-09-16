@@ -45,7 +45,7 @@
           <div class="sm:mr-5">
             <div class="lightning-svg">
               <svg
-                class="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
+                class="w-12 h-12 text-primary sm:w-16 sm:h-16"
                 stroke="currentColor"
                 viewBox="0 0 52 52"
               >
@@ -84,7 +84,7 @@
           <div class="sm:mr-5">
             <div class="lightning-svg">
               <svg
-                class="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
+                class="w-12 h-12 text-primary sm:w-16 sm:h-16"
                 stroke="currentColor"
                 viewBox="0 0 52 52"
               >
@@ -120,7 +120,7 @@
           <div class="sm:mr-5">
             <div class="lightning-svg">
               <svg
-                class="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
+                class="w-12 h-12 text-primary sm:w-16 sm:h-16"
                 stroke="currentColor"
                 viewBox="0 0 52 52"
               >
@@ -156,7 +156,7 @@
           <div class="sm:mr-5">
             <div class="lightning-svg">
               <svg
-                class="w-12 h-12 text-deep-purple-accent-400 sm:w-16 sm:h-16"
+                class="w-12 h-12 text-primary sm:w-16 sm:h-16"
                 stroke="currentColor"
                 viewBox="0 0 52 52"
               >

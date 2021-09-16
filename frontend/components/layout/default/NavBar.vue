@@ -27,16 +27,7 @@
             :to="localePath('search')"
             aria-label="Browse Lists"
             title="Browse Lists"
-            class="
-              hidden
-              lg:block
-              font-medium
-              tracking-wide
-              text-gray-100
-              transition-colors
-              duration-200
-              hover:text-teal-accent-400
-            "
+            class="hidden lg:block text-gray-100 link link-hover"
           >
             {{ $t('search.link') }}
           </nuxt-link>
@@ -49,7 +40,7 @@
             class="inline-flex items-center"
           >
             <svg
-              class="w-8 text-teal-accent-400"
+              class="w-8 text-secondary-400"
               viewBox="0 0 24 24"
               stroke-linejoin="round"
               stroke-width="2"
@@ -82,16 +73,7 @@
             :to="localePath('sign-in')"
             aria-label="Sign in"
             title="Sign in"
-            class="
-              hidden
-              lg:block
-              font-medium
-              tracking-wide
-              text-gray-100
-              transition-colors
-              duration-200
-              hover:text-teal-accent-400
-            "
+            class="hidden lg:block text-gray-100 link link-hover"
           >
             {{ $t('signIn.link') }}
           </nuxt-link>
@@ -198,14 +180,7 @@
                       :to="localePath('search')"
                       aria-label="Browse Lists"
                       title="Browse Lists"
-                      class="
-                        font-medium
-                        tracking-wide
-                        text-gray-700
-                        transition-colors
-                        duration-200
-                        hover:text-teal-accent-400
-                      "
+                      class="font-medium tracking-wide text-gray-700"
                     >
                       {{ $t('search.link') }}
                     </nuxt-link>
@@ -215,14 +190,7 @@
                       :to="localePath('sign-in')"
                       aria-label="Sign in"
                       title="Sign in"
-                      class="
-                        font-medium
-                        tracking-wide
-                        text-gray-700
-                        transition-colors
-                        duration-200
-                        hover:text-teal-accent-400
-                      "
+                      class="font-medium tracking-wide text-gray-700"
                     >
                       {{ $t('signIn.link') }}
                     </nuxt-link>
@@ -231,15 +199,9 @@
               </nav>
             </div>
           </div>
-          <div
-            v-if="isMenuOpen"
-            class="fixed w-full h-full inset-0 bg-gray-900 opacity-50"
-            style="z-index: -1"
-            @click="isMenuOpen = false"
-          ></div>
         </div>
       </div>
-      <div class="hidden lg:block lg:absolute lg:top-8 lg:right-8">
+      <div class="hidden lg:block lg:absolute lg:top-5 lg:right-8">
         <LanguageSwitcher />
       </div>
     </div>
