@@ -169,15 +169,13 @@ import gql from 'graphql-tag';
   name: 'StatsSection',
 })
 export default class StatsSection extends Vue {
-  client = this.$apollo.getClient();
-
   registeredUsers = 0;
 
   listedWishlists = 0;
 
   async mounted() {
     try {
-      const users = await this.client.query({
+      const users = await this.$apollo.query({
         query: gql`
           query getUsersTotal {
             userCount {
@@ -187,7 +185,7 @@ export default class StatsSection extends Vue {
         `,
       });
 
-      const wishLists = await this.client.query({
+      const wishLists = await this.$apollo.query({
         query: gql`
           query getWishlistsTotal {
             wishListCount {

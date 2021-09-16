@@ -57,9 +57,9 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 @Component({
-  name: 'V-Checkbox',
+  name: 'Checkbox',
 })
-export default class VCheckbox extends Vue {
+export default class Checkbox extends Vue {
   @Prop({ type: String, required: true }) id!: string;
 
   @Prop({ type: String, required: true }) name!: string;

@@ -37,8 +37,26 @@
         <p class="block mt-1 leading-tight font-medium text-black break-words">
           {{ (list && list.description) || 'Some wishlist description' }}
         </p>
-        <p class="mt-2 text-orange-200 hover:underline break-words">
-          <a :href="(list && list.link) || '#'" target="_blank">
+        <p class="mt-2">
+          <a
+            :href="(list && list.link) || '#'"
+            target="_blank"
+            class="
+              inline-flex
+              items-center
+              h-12
+              px-6
+              font-semibold
+              tracking-wide
+              transition
+              duration-200
+              rounded
+              hover:shadow-md
+              text-teal-200
+              break-words
+              hover:text-deep-purple-900 hover:bg-deep-purple-accent-100
+            "
+          >
             {{ $t('search.card.link') }}
           </a>
         </p>
@@ -54,10 +72,6 @@ import { IWishList } from '../../types/IWishList';
   name: 'Card',
 })
 export default class Card extends Vue {
-  @Prop({
-    type: Object,
-    default: () => {},
-  })
-  list!: IWishList;
+  @Prop({ type: Object }) list!: IWishList;
 }
 </script>
