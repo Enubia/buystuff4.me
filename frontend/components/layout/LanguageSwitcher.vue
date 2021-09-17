@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown dropdown-end">
-    <div tabindex="0" class="m-1 btn btn-ghost">
+    <div tabindex="0" class="btn btn-ghost">
       <span :class="`mr-2 ml-2 flag-icon flag-icon-${currentLocale.ico}`" />
     </div>
     <ul

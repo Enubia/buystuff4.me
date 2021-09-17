@@ -1,10 +1,17 @@
 <template>
   <div>
-    <div class="hidden lg:w-full lg:flex lg:justify-end lg:mt-3">
+    <div class="w-full flex align-middle justify-end mt-3">
+      <button class="btn btn-sm btn-secondary mr-4" @click="applyFilter">
+        Apply
+      </button>
       <div class="form-control mr-6">
         <label class="cursor-pointer label" @click="showFilter = !showFilter">
           <span class="label-text mr-2">Filter</span>
-          <input type="checkbox" class="toggle toggle-primary" />
+          <input
+            type="checkbox"
+            class="toggle toggle-primary"
+            :checked="showFilter"
+          />
         </label>
       </div>
     </div>
@@ -17,15 +24,10 @@
           :name="category.name"
           :label="category.name"
           :value="category._id"
-          class="w-1/6"
+          class="w-full md:w-1/3 lg:w-1/5"
           :alt="category.name"
           @checkbox-ticked="pushCategory"
         />
-      </div>
-      <div class="w-full flex justify-end mt-3">
-        <button class="btn btn-sm btn-secondary mr-4" @click="applyFilter">
-          Apply
-        </button>
       </div>
     </div>
   </div>

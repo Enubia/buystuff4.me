@@ -33,8 +33,8 @@ module.exports = {
     logs: true,
     rtl: false,
     themes: [
-      'pastel', // first one will be the default theme
-      'dark',
+      'garden', // first one will be the default theme
+      'halloween',
     ],
   },
 };

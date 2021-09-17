@@ -21,14 +21,13 @@
           font-bold
           leading-none
           tracking-tight
-          text-gray-900
           sm:text-4xl
           md:mx-auto
         "
       >
         {{ $t('index.steps.title') }}
       </h2>
-      <p class="text-base text-gray-700 md:text-lg">
+      <p class="text-base md:text-lg">
         {{ $t('index.steps.description') }}
       </p>
     </div>
@@ -39,7 +38,7 @@
           <div>
             <div class="number-indicator">1</div>
           </div>
-          <div class="w-px h-full bg-gray-300"></div>
+          <div class="w-px h-full bg-base-200"></div>
         </div>
         <div class="flex flex-col pb-6 sm:items-center sm:flex-row sm:pb-0">
           <div class="sm:mr-5">
@@ -63,7 +62,7 @@
             <p class="text-xl font-semibold sm:text-base">
               {{ $t('index.steps.one.title') }}
             </p>
-            <p class="text-sm text-gray-700">
+            <p class="text-sm">
               {{ $t('index.steps.one.description.text') }}
               <b>
                 {{ $t('index.steps.one.description.hint') }}
@@ -74,11 +73,11 @@
       </div>
       <div class="flex">
         <div class="flex flex-col items-center mr-6">
-          <div class="w-px h-10 bg-gray-300 sm:h-full"></div>
+          <div class="w-px h-10 bg-base-200 sm:h-full"></div>
           <div>
             <div class="number-indicator">2</div>
           </div>
-          <div class="w-px h-full bg-gray-300"></div>
+          <div class="w-px h-full bg-base-200"></div>
         </div>
         <div class="flex flex-col pb-6 sm:items-center sm:flex-row sm:pb-0">
           <div class="sm:mr-5">
@@ -102,7 +101,7 @@
             <p class="text-xl font-semibold sm:text-base">
               {{ $t('index.steps.two.title') }}
             </p>
-            <p class="text-sm text-gray-700">
+            <p class="text-sm">
               {{ $t('index.steps.two.description') }}
             </p>
           </div>
@@ -110,11 +109,11 @@
       </div>
       <div class="flex">
         <div class="flex flex-col items-center mr-6">
-          <div class="w-px h-10 bg-gray-300 sm:h-full"></div>
+          <div class="w-px h-10 bg-base-200 sm:h-full"></div>
           <div>
             <div class="number-indicator">3</div>
           </div>
-          <div class="w-px h-full bg-gray-300"></div>
+          <div class="w-px h-full bg-base-200"></div>
         </div>
         <div class="flex flex-col pb-6 sm:items-center sm:flex-row sm:pb-0">
           <div class="sm:mr-5">
@@ -138,7 +137,7 @@
             <p class="text-xl font-semibold sm:text-base">
               {{ $t('index.steps.three.title') }}
             </p>
-            <p class="text-sm text-gray-700">
+            <p class="text-sm">
               {{ $t('index.steps.three.description') }}
             </p>
           </div>
@@ -146,7 +145,7 @@
       </div>
       <div class="flex">
         <div class="flex flex-col items-center mr-6">
-          <div class="w-px h-10 bg-gray-300 sm:h-full"></div>
+          <div class="w-px h-10 bg-base-200 sm:h-full"></div>
           <div>
             <div class="number-indicator">4</div>
           </div>
@@ -174,7 +173,7 @@
             <p class="text-xl font-semibold sm:text-base">
               {{ $t('index.steps.four.title') }}
             </p>
-            <p class="text-sm text-gray-700">
+            <p class="text-sm">
               {{ $t('index.steps.four.description') }}
             </p>
           </div>
@@ -202,6 +201,7 @@ export default class HowToSteps extends Vue {}
   text-xs
   font-medium
   border
+  border-primary-focus
   rounded-full;
 }
 
@@ -213,7 +213,8 @@ export default class HowToSteps extends Vue {}
   h-16
   my-3
   rounded-full
-  bg-indigo-50
-  sm:w-24 sm:h-24;
+  bg-primary-content
+  sm:w-24
+  sm:h-24;
 }
 </style>

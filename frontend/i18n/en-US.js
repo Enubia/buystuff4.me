@@ -3,8 +3,7 @@ import ppEn from './privacyPolicy/en';
 export default {
   index: {
     header: {
-      titleOne: 'Your',
-      titleTwo: 'wish is someones pleasure',
+      title: 'Your wish is someones pleasure',
       description: `
         List your public amazon wishlist for others to donate,
         or browse all the registered lists and make donations yourself.

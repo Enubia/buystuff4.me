@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-900">
+  <div class="bg-primary-focus">
     <div
       class="
         px-4
@@ -39,21 +39,6 @@
             title="buystuff4.me"
             class="inline-flex items-center"
           >
-            <svg
-              class="w-8 text-secondary-400"
-              viewBox="0 0 24 24"
-              stroke-linejoin="round"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-miterlimit="10"
-              stroke="currentColor"
-              fill="none"
-            >
-              <rect x="3" y="1" width="7" height="12"></rect>
-              <rect x="3" y="17" width="7" height="6"></rect>
-              <rect x="14" y="1" width="7" height="6"></rect>
-              <rect x="14" y="11" width="7" height="12"></rect>
-            </svg>
             <span
               class="
                 ml-2
@@ -201,8 +186,24 @@
           </div>
         </div>
       </div>
-      <div class="hidden lg:block lg:absolute lg:top-5 lg:right-8">
+      <div class="hidden lg:block lg:absolute lg:top-5 lg:right-28">
         <LanguageSwitcher />
+      </div>
+      <div class="hidden lg:block lg:absolute lg:top-5 lg:right-8">
+        <div class="btn btn-ghost" @click="switchTheme(!darkMode)">
+          <img
+            v-if="darkMode"
+            src="../../../assets/svg/sun.svg"
+            alt="sun"
+            class="w-8"
+          />
+          <img
+            v-else
+            src="../../../assets/svg/moon.svg"
+            alt="moon"
+            class="w-8"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -218,5 +219,16 @@ import LanguageSwitcher from '../LanguageSwitcher.vue';
 })
 export default class NavBar extends Vue {
   isMenuOpen = false;
+
+  darkMode = false;
+
+  switchTheme(dark = false) {
+    if (dark) {
+      document.querySelector('html').setAttribute('data-theme', 'halloween');
+    } else {
+      document.querySelector('html').setAttribute('data-theme', 'garden');
+    }
+    this.darkMode = dark;
+  }
 }
 </script>

@@ -21,131 +21,28 @@
           font-bold
           leading-none
           tracking-tight
-          text-gray-900
           sm:text-4xl
           md:mx-auto
         "
       >
         {{ $t('index.stats.title') }}
       </h2>
-      <p class="text-base text-gray-700 md:text-lg">
+      <p class="text-base md:text-lg">
         {{ $t('index.stats.description') }}
       </p>
     </div>
-    <div
-      class="
-        relative
-        w-full
-        p-px
-        mx-auto
-        mb-4
-        transition-shadow
-        duration-300
-        border
-        rounded
-        lg:mb-8 lg:max-w-4xl
-        group
-        hover:shadow-xl
-      "
-    >
-      <div
-        class="
-          absolute
-          bottom-0
-          left-0
-          w-full
-          h-1
-          duration-300
-          origin-left
-          transform
-          scale-x-0
-          bg-gray-300
-          group-hover:bg-secondary group-hover:scale-x-100
-        "
-      ></div>
-      <div
-        class="
-          absolute
-          bottom-0
-          left-0
-          w-1
-          h-full
-          duration-300
-          origin-bottom
-          transform
-          bg-gray-300
-          scale-y-0
-          group-hover:bg-secondary group-hover:scale-y-100
-        "
-      ></div>
-      <div
-        class="
-          absolute
-          top-0
-          left-0
-          w-full
-          h-1
-          duration-300
-          origin-right
-          transform
-          scale-x-0
-          bg-gray-300
-          group-hover:bg-secondary group-hover:scale-x-100
-        "
-      ></div>
-      <div
-        class="
-          absolute
-          bottom-0
-          right-0
-          w-1
-          h-full
-          duration-300
-          origin-top
-          transform
-          bg-gray-300
-          scale-y-0
-          group-hover:bg-secondary group-hover:scale-y-100
-        "
-      ></div>
-      <div
-        class="
-          relative
-          flex flex-col
-          items-center
-          justify-center
-          h-full
-          py-10
-          duration-300
-          bg-white
-          rounded-sm
-          transition-color
-          sm:items-stretch sm:flex-row
-        "
-      >
+    <div class="card border border-secondary-content shadow-2xl">
+      <div class="card-body">
         <div class="px-12 py-8 text-center">
-          <h6 class="text-4xl font-bold text-secondary sm:text-5xl">
+          <h6 class="text-4xl font-bold text-primary-focus sm:text-5xl">
             {{ registeredUsers }}
           </h6>
           <p class="text-center md:text-base">
             {{ $t('index.stats.users') }}
           </p>
         </div>
-        <div
-          class="
-            w-56
-            h-1
-            transition
-            duration-300
-            transform
-            bg-gray-300
-            rounded-full
-            group-hover:bg-secondary group-hover:scale-110
-            sm:h-auto sm:w-1
-          "
-        ></div>
         <div class="px-12 py-8 text-center">
-          <h6 class="text-4xl font-bold text-secondary sm:text-5xl">
+          <h6 class="text-4xl font-bold text-primary-focus sm:text-5xl">
             {{ listedWishlists }}
           </h6>
           <p class="text-center md:text-base">

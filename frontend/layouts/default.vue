@@ -23,5 +23,5 @@ import CookieBanner from '../components/layout/CookieBanner.vue';
   name: 'Layout',
   components: { Footer, NavBar, CookieBanner },
 })
-export default class extends Vue {}
+export default class Layout extends Vue {}
 </script>
