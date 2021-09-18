@@ -30,7 +30,7 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.15.4",
+    "@babel/eslint-parser": "^7.15.7",
     "@hokify/eslint-config-vue": "^1.1.13",
     "@nuxt/types": "^2.15.8",
     "@nuxt/typescript-build": "^2.1.0",
