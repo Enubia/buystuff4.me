@@ -77,7 +77,7 @@
             "
             @click="isMenuOpen = true"
           >
-            <svg class="w-5 text-gray-600" viewBox="0 0 24 24">
+            <svg class="w-5 text-base-200" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
                 d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
@@ -222,11 +222,18 @@ export default class NavBar extends Vue {
 
   darkMode = false;
 
+  mounted() {
+    this.darkMode =
+      localStorage.getItem('data-theme') === ('halloween' || 'garden');
+  }
+
   switchTheme(dark = false) {
     if (dark) {
       document.querySelector('html').setAttribute('data-theme', 'halloween');
+      localStorage.setItem('data-theme', 'halloween');
     } else {
       document.querySelector('html').setAttribute('data-theme', 'garden');
+      localStorage.setItem('data-theme', 'garden');
     }
     this.darkMode = dark;
   }

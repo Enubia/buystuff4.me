@@ -1,7 +1,8 @@
 {
   "extends": [
     "config:base",
-    ":preserveSemverRanges"
+    ":preserveSemverRanges",
+    "schedule:earlyMondays"
   ],
   "rangeStrategy": "bump",
   "packageRules": [

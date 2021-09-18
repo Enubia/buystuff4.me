@@ -33,21 +33,31 @@
     </div>
     <div class="card border border-secondary-content shadow-2xl">
       <div class="card-body">
-        <div class="px-12 py-8 text-center">
-          <h6 class="text-4xl font-bold text-primary-focus sm:text-5xl">
-            {{ registeredUsers }}
-          </h6>
-          <p class="text-center md:text-base">
-            {{ $t('index.stats.users') }}
-          </p>
-        </div>
-        <div class="px-12 py-8 text-center">
-          <h6 class="text-4xl font-bold text-primary-focus sm:text-5xl">
-            {{ listedWishlists }}
-          </h6>
-          <p class="text-center md:text-base">
-            {{ $t('index.stats.wishlists') }}
-          </p>
+        <div class="flex w-full">
+          <div class="w-1/2 px-12 py-8 text-center">
+            <div class="flex justify-end">
+              <div>
+                <h6 class="text-4xl font-bold text-primary-focus sm:text-5xl">
+                  {{ registeredUsers }}
+                </h6>
+                <p class="text-center md:text-base">
+                  {{ $t('index.stats.users') }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="w-1/2 px-12 py-8 text-center">
+            <div class="flex justif-start">
+              <div>
+                <h6 class="text-4xl font-bold text-primary-focus sm:text-5xl">
+                  {{ listedWishlists }}
+                </h6>
+                <p class="text-center md:text-base">
+                  {{ $t('index.stats.wishlists') }}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

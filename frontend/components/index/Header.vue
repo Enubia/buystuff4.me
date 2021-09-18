@@ -49,7 +49,7 @@
               {{ $t('index.header.description') }}
             </p>
           </div>
-          <div>
+          <div class="flex justify-center">
             <nuxt-link :to="localePath('sign-in')" class="btn btn-primary">
               {{ $t('index.header.button') }}
             </nuxt-link>

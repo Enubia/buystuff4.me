@@ -23,5 +23,13 @@ import CookieBanner from '../components/layout/CookieBanner.vue';
   name: 'Layout',
   components: { Footer, NavBar, CookieBanner },
 })
-export default class Layout extends Vue {}
+export default class Layout extends Vue {
+  mounted() {
+    const mode = localStorage.getItem('data-theme');
+
+    if (mode) {
+      document.querySelector('html')?.setAttribute('data-theme', mode);
+    }
+  }
+}
 </script>

@@ -1,65 +1,49 @@
 <template>
-  <div
-    class="
-      max-w-md
-      my-3
-      mx-auto
-      bg-white
-      shadow-xl
-      border
-      rounded-xl
-      border-gray-100
-      md:max-w-2xl
-      transition transition-colors
-      hover:border-primary-200
-    "
-  >
-    <div class="md:flex">
-      <div class="md:flex-shrink-0">
-        <img
-          class="h-48 w-full object-cover md:w-48"
-          :src="
-            require(`../../assets/svg/avatar/${
-              (list && list.user && list.user.image) ||
-              'anime-away-face-no-nobody-spirited_113254.svg'
-            }`)
-          "
-          alt="A cat"
-        />
-      </div>
-      <div class="p-8 text-center md:text-left">
+  <div class="card sm:card-side bordered shadow-md mb-3">
+    <figure>
+      <div class="avatar">
         <div
-          class="uppercase tracking-wide text-lg text-purple-500 font-semibold"
+          class="
+            rounded-full
+            w-24
+            h-24
+            mt-5
+            ml-5
+            ring ring-accent-focus ring-offset-base-100 ring-offset-2
+          "
         >
-          {{ (list.user && list.user.firstName) || 'John' }}
-          {{ (list.user && list.user.lastName.charAt(0)) || 'D' }}.
-        </div>
-        <p class="block mt-1 leading-tight font-medium text-black break-words">
-          {{ (list && list.description) || 'Some wishlist description' }}
-        </p>
-        <p class="mt-2">
-          <a
-            :href="(list && list.link) || '#'"
-            target="_blank"
-            class="
-              inline-flex
-              items-center
-              h-12
-              px-6
-              font-semibold
-              tracking-wide
-              transition
-              duration-200
-              rounded
-              hover:shadow-md
-              text-secondary-focus-200
-              break-words
-              hover:text-deep-purple-900 hover:bg-primary-100
+          <img
+            :src="
+              require(`../../assets/svg/avatar/${
+                (list && list.user && list.user.image) ||
+                'anime-away-face-no-nobody-spirited_113254.svg'
+              }`)
             "
-          >
-            {{ $t('search.card.link') }}
-          </a>
-        </p>
+            class="h-48 w-full object-cover md:w-48"
+            alt="A User Avatar"
+          />
+        </div>
+      </div>
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title">
+        {{ (list.user && list.user.firstName) || 'John' }}
+        {{ (list.user && list.user.lastName.charAt(0)) || 'D' }}.
+      </h2>
+      <p>
+        {{ (list && list.description) || 'Some wishlist description' }}
+      </p>
+      <p class="truncate max-w-xs">
+        {{ list.categories.map((item) => item.name).join(', ') }}
+      </p>
+      <div class="card-actions">
+        <a
+          :href="(list && list.link) || '#'"
+          target="_blank"
+          class="btn btn-primary"
+        >
+          {{ $t('search.card.link') }}
+        </a>
       </div>
     </div>
   </div>

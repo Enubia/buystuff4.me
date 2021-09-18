@@ -1,10 +1,7 @@
 <template>
   <div class="my-1 mx-0.5 px-5 py-1 card shadow">
     <div class="form-control">
-      <label
-        class="cursor-pointer label text-center"
-        @click="$emit('checkbox-ticked', { name, value: $refs.checkbox.value })"
-      >
+      <label class="cursor-pointer label text-center" @mouseup="checkboxTicked">
         <span class="label-text">{{ label }}</span>
         <input
           :id="id"
@@ -33,5 +30,18 @@ export default class Checkbox extends Vue {
   @Prop({ type: String, required: true }) value!: string;
 
   @Prop({ type: String, required: true }) label!: string;
+
+  checkboxTicked() {
+    const checkbox = <HTMLInputElement>this.$refs.checkbox;
+
+    if (!checkbox.checked) {
+      this.$store.commit('ADD_CATEGORY', {
+        name: this.name,
+        _id: this.value,
+      });
+    } else {
+      this.$store.commit('REMOVE_CATEGORY', this.value);
+    }
+  }
 }
 </script>
