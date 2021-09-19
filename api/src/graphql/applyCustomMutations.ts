@@ -55,6 +55,7 @@ export function applyCustomMutations({
             email,
             firstName: given_name,
             lastName: family_name,
+            wishListIds: [],
           },
           { new: true, upsert: true },
         )

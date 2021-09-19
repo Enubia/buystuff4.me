@@ -34,7 +34,7 @@ module.exports = {
     rtl: false,
     themes: [
       'garden', // first one will be the default theme
-      'halloween',
+      'dark',
     ],
   },
 };

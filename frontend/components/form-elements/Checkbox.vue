@@ -35,12 +35,12 @@ export default class Checkbox extends Vue {
     const checkbox = <HTMLInputElement>this.$refs.checkbox;
 
     if (!checkbox.checked) {
-      this.$store.commit('addCategoryToFilter', {
+      this.$store.commit('search/addCategoryToFilter', {
         name: this.name,
         _id: this.value,
       });
     } else {
-      this.$store.commit('removeCategoryFromFilter', this.value);
+      this.$store.commit('search/removeCategoryFromFilter', this.value);
     }
   }
 }

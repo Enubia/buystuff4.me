@@ -28,7 +28,7 @@ const UserSchema = new Schema<IUser>(
         ref: 'wishlist',
         required: true,
         trim: true,
-        unique: true,
+        default: [],
       },
     ],
     image: {

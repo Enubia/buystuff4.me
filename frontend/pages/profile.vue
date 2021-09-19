@@ -1,12 +1,24 @@
 <template>
-  <div></div>
+  <div>
+    {{ user }}
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
+import { ProfileRootState } from 'store/profile';
 
 @Component({
   name: 'Profile',
+  asyncData: ({ store, redirect }) => {
+    if (!Object.keys(store.state.profile.user).length) {
+      redirect(404, '/sign-in');
+    }
+  },
 })
-export default class Profile extends Vue {}
+export default class Profile extends Vue {
+  get user() {
+    return (this.$store.state.profile as ProfileRootState).user;
+  }
+}
 </script>

@@ -61,7 +61,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { RootState } from 'store';
+import { SearchRootState } from 'store/search';
 import CategorySearch from '../components/search/CategorySearch.vue';
 import Card from '../components/search/Card.vue';
 
@@ -79,7 +79,11 @@ export default class Search extends Vue {
   showLoaderButton = true;
 
   get wishLists() {
-    return (this.$store.state as RootState).wishLists;
+    return (this.$store.state.search as SearchRootState).wishLists;
+  }
+
+  get searchFilter() {
+    return (this.$store.state.search as SearchRootState).searchFilter;
   }
 
   async mounted() {
@@ -94,7 +98,7 @@ export default class Search extends Vue {
     try {
       this.loaderDisabled = false;
 
-      await this.$store.dispatch('fetchWishLists', {
+      await this.$store.dispatch('search/fetchWishLists', {
         useOffset,
         offset: this.offset,
       });
@@ -118,15 +122,17 @@ export default class Search extends Vue {
     try {
       this.loaderDisabled = false;
 
-      if ((this.$store.state as RootState).searchFilter.length === 0) {
-        await this.$store.commit('reset');
-        await this.$store.dispatch('fetchWishLists', {
+      if (
+        (this.$store.state.search as SearchRootState).searchFilter.length === 0
+      ) {
+        this.$store.commit('search/reset');
+        await this.$store.dispatch('search/fetchWishLists', {
           useOffset: false,
           offset: this.wishLists.length >= 9 ? this.offset : 0,
         });
         this.showLoaderButton = true;
       } else {
-        await this.$store.dispatch('fetchWishlistsWithCategoryFilter');
+        await this.$store.dispatch('search/fetchWishlistsWithCategoryFilter');
       }
 
       this.loaderDisabled = true;

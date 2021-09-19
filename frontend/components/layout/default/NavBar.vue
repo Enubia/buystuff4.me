@@ -54,7 +54,22 @@
           </nuxt-link>
         </div>
         <div class="flex w-1/3 justify-start">
+          <div v-if="Object.keys(user).length" class="flex w-1/2">
+            <span
+              class="hidden w-1/2 lg:block text-gray-100 link link-hover"
+              @click="signOut"
+            >
+              Logout
+            </span>
+            <nuxt-link
+              :to="localePath('/profile')"
+              class="hidden w-1/2 lg:block text-gray-100 link link-hover"
+            >
+              Profile
+            </nuxt-link>
+          </div>
           <nuxt-link
+            v-else
             :to="localePath('sign-in')"
             aria-label="Sign in"
             title="Sign in"
@@ -170,7 +185,28 @@
                       {{ $t('search.link') }}
                     </nuxt-link>
                   </li>
-                  <li>
+                  <li v-if="Object.keys(user).length">
+                    <span
+                      class="
+                        font-medium
+                        tracking-wide
+                        text-gray-700
+                        cursor-pointer
+                      "
+                      @click="signOut"
+                    >
+                      Logout
+                    </span>
+                  </li>
+                  <li v-if="Object.keys(user).length">
+                    <nuxt-link
+                      :to="localePath('/profile')"
+                      class="font-medium tracking-wide text-gray-700"
+                    >
+                      Profile
+                    </nuxt-link>
+                  </li>
+                  <li v-if="!Object.keys(user).length">
                     <nuxt-link
                       :to="localePath('sign-in')"
                       aria-label="Sign in"
@@ -209,9 +245,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import LanguageSwitcher from '../LanguageSwitcher.vue';
+import { ProfileRootState } from '../../../store/profile';
 
 @Component({
   name: 'NavBar',
@@ -222,20 +259,33 @@ export default class NavBar extends Vue {
 
   darkMode = false;
 
+  get user() {
+    return (this.$store.state.profile as ProfileRootState).user;
+  }
+
   mounted() {
-    this.darkMode =
-      localStorage.getItem('data-theme') === ('halloween' || 'garden');
+    this.darkMode = localStorage.getItem('data-theme') === ('dark' || 'garden');
   }
 
   switchTheme(dark = false) {
     if (dark) {
-      document.querySelector('html').setAttribute('data-theme', 'halloween');
-      localStorage.setItem('data-theme', 'halloween');
+      document.querySelector('html')?.setAttribute('data-theme', 'dark');
+      localStorage.setItem('data-theme', 'dark');
     } else {
-      document.querySelector('html').setAttribute('data-theme', 'garden');
+      document.querySelector('html')?.setAttribute('data-theme', 'garden');
       localStorage.setItem('data-theme', 'garden');
     }
     this.darkMode = dark;
+  }
+
+  async signOut() {
+    const { gapi } = window as any;
+
+    const auth2 = gapi.auth2.getAuthInstance();
+    await auth2.signOut();
+
+    this.$store.commit('profile/reset');
+    this.$router.push('/');
   }
 }
 </script>

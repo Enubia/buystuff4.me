@@ -17,6 +17,11 @@ export default {
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: '' },
         { name: 'format-detection', content: 'telephone=no' },
+        {
+          name: 'google-signin-client_id',
+          content:
+            '623656119704-d7ovmjp6gtbgdseuchf6884sgi62v2ug.apps.googleusercontent.com',
+        },
         ...i18nHead.meta,
       ],
       link: [
@@ -26,6 +31,11 @@ export default {
           href: 'https://fonts.googleapis.com/icon?family=Material+Icons',
         },
         ...i18nHead.link,
+      ],
+      script: [
+        {
+          src: 'https://apis.google.com/js/platform.js?onload=renderButton',
+        },
       ],
     };
   },

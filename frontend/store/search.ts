@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-shadow */
+import { IWishListManyResult, IWishList } from 'types/IWishList';
+import { MutationTree, ActionTree } from 'vuex';
 import gql from 'graphql-tag';
-import { IWishList, IWishListManyResult } from 'types/IWishList';
-import { GetterTree, ActionTree, MutationTree } from 'vuex';
 
-interface ICategory {
+export interface ICategory {
   _id: string;
   name: string;
 }
@@ -14,11 +14,9 @@ export const state = () => ({
   wishLists: [] as IWishList[],
 });
 
-export type RootState = ReturnType<typeof state>;
+export type SearchRootState = ReturnType<typeof state>;
 
-export const getters: GetterTree<RootState, RootState> = {};
-
-export const mutations: MutationTree<RootState> = {
+export const mutations: MutationTree<SearchRootState> = {
   reset: (state) => {
     state.searchFilter = [];
     state.wishLists = [];
@@ -52,7 +50,7 @@ export const mutations: MutationTree<RootState> = {
   },
 };
 
-export const actions: ActionTree<RootState, RootState> = {
+export const actions: ActionTree<SearchRootState, SearchRootState> = {
   async fetchCategories(context) {
     if (context.state.categories.length === 0) {
       const client = this.app.apolloProvider?.defaultClient;

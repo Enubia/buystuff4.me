@@ -37,7 +37,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import Checkbox from '../form-elements/Checkbox.vue';
-import { RootState } from '../../store';
+import { SearchRootState } from '../../store/search';
 
 @Component({
   name: 'CategorySearch',
@@ -51,7 +51,7 @@ export default class CategorySearch extends Vue {
   showFilter = false;
 
   get filter() {
-    return (this.$store.state as RootState).searchFilter;
+    return (this.$store.state.search as SearchRootState).searchFilter;
   }
 
   async mounted() {
@@ -59,8 +59,8 @@ export default class CategorySearch extends Vue {
       return;
     }
 
-    await this.$store.dispatch('fetchCategories');
-    this.categories = (this.$store.state as RootState).categories;
+    await this.$store.dispatch('search/fetchCategories');
+    this.categories = (this.$store.state.search as SearchRootState).categories;
   }
 
   applyFilter() {
