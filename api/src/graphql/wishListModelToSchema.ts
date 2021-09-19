@@ -49,7 +49,7 @@ export function applyCustomWishListResolver({
         .lean()
         .exec();
 
-      return user || null;
+      return user;
     },
   });
 }

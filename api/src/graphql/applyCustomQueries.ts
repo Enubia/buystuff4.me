@@ -6,6 +6,7 @@ import {
   GraphQLObjectType,
   GraphQLString,
 } from 'graphql';
+import { Types } from 'mongoose';
 import { ICategory } from '../db/models/category';
 import { IUser } from '../db/models/user';
 import { IWishList } from '../db/models/wishList';
@@ -13,7 +14,9 @@ import { IContext } from '../types/IContext';
 import { logger } from '../helper/logger';
 import { ErrorMessages } from '../helper/errorMessages';
 
-export function applyCustomQueries(_: {
+export function applyCustomQueries({
+  WishListTC,
+}: {
   UserTC: ObjectTypeComposerWithMongooseResolvers<IUser>;
   WishListTC: ObjectTypeComposerWithMongooseResolvers<IWishList>;
   CategoryTC: ObjectTypeComposerWithMongooseResolvers<ICategory>;
@@ -81,6 +84,33 @@ export function applyCustomQueries(_: {
       } catch (error) {
         logger.error(error);
         return { count: 0, message: ErrorMessages.WISHLIST_QUEUE_COUNT };
+      }
+    },
+  });
+
+  schemaComposer.Query.setField('wishListsByCategoryIds', {
+    type: [WishListTC],
+    args: {
+      categoryIds: [GraphQLString]!,
+    },
+    resolve: async (
+      source,
+      args: { categoryIds: string[] },
+      context: IContext,
+      _info,
+    ) => {
+      try {
+        return await context.mongo.WishList.find({
+          categoryIds: {
+            $in: args.categoryIds.map((id) => new Types.ObjectId(id)),
+          },
+          isPublished: true,
+        })
+          .lean()
+          .exec();
+      } catch (error) {
+        logger.error(error);
+        return null;
       }
     },
   });
