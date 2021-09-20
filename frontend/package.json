@@ -21,7 +21,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/i18n": "^7.0.3",
     "@tailwindcss/typography": "^0.4.1",
-    "core-js": "^3.17.3",
+    "core-js": "^3.18.0",
     "daisyui": "^1.14.0",
     "flag-icon-css": "^3.5.0",
     "graphql-tag": "^2.12.5",
