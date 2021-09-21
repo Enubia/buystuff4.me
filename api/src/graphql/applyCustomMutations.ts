@@ -37,14 +37,14 @@ export function applyCustomMutations({
       context: IContext,
       _info,
     ) => {
-      const clientId = String(process.env.G_CLIENT_ID);
       const client = new OAuth2Client();
       const { token } = args;
 
       try {
         const ticket = await client.verifyIdToken({
           idToken: token,
-          audience: clientId,
+          audience:
+            '623656119704-d7ovmjp6gtbgdseuchf6884sgi62v2ug.apps.googleusercontent.com',
         });
         const payload = ticket.getPayload();
         const { given_name, family_name, email } = payload;

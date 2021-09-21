@@ -71,6 +71,7 @@ export default {
   },
   faq: {
     link: 'FAQ',
+    title: 'Frequently asked questions',
   },
   signIn: {
     link: 'Sign In',
@@ -83,6 +84,12 @@ export default {
     link: 'Browse Lists',
     card: {
       link: 'Go to Wishlist',
+    },
+    loadMoreButton: 'Load More',
+    category: {
+      filter: 'Filter',
+      apply: 'Apply',
+      reset: 'Reset',
     },
   },
   profile: {

@@ -17,7 +17,7 @@
           :disabled="!loaderDisabled"
           @click="getWishLists(true)"
         >
-          Load More
+          {{ $t('search.loadMoreButton') }}
         </button>
       </div>
     </div>

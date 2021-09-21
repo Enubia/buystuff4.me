@@ -3,11 +3,17 @@
     <div class="w-full flex justify-end mt-3 mb-3">
       <div class="flex items-center">
         <button class="btn btn-sm mr-4" @click="applyFilter">
-          {{ filter.length > 0 ? 'Apply' : 'Reset' }}
+          {{
+            filter.length > 0
+              ? $t('search.category.apply')
+              : $t('search.category.reset')
+          }}
         </button>
         <div class="form-control mr-6">
           <label class="cursor-pointer label" @click="showFilter = !showFilter">
-            <span class="label-text mr-2"> Filter </span>
+            <span class="label-text mr-2">
+              {{ $t('search.category.filter') }}
+            </span>
             <input
               type="checkbox"
               class="toggle toggle-primary"
@@ -17,7 +23,7 @@
         </div>
       </div>
     </div>
-    <div :class="!showFilter ? 'hidden' : ''" class="mx-4 mb-3">
+    <div :class="!showFilter ? 'hidden' : ''" class="mx-4 mb-4">
       <div class="flex flex-wrap justify-evenly mt-2">
         <Checkbox
           v-for="category in categories"

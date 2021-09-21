@@ -1,5 +1,5 @@
 <template>
-  <div class="my-1 mx-0.5 px-5 py-1 card shadow">
+  <div class="my-1 mx-0.5 px-5 py-1 card bg-accent-focus">
     <div class="form-control">
       <label class="cursor-pointer label text-center" @mouseup="checkboxTicked">
         <span class="label-text">{{ label }}</span>
@@ -9,7 +9,7 @@
           type="checkbox"
           :name="name"
           :value="value"
-          class="checkbox checkbox-secondary"
+          class="checkbox checkbox-primary"
         />
       </label>
     </div>

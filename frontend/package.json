@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rimraf ./.nuxt ./node_modules",
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "NODE_ENV=production nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".ts,.js,.vue\" .",

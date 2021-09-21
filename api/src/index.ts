@@ -143,9 +143,9 @@ export const boot = async (): Promise<void> => {
     logger.info(
       `Server ready at http://localhost:${PORT}${server.graphqlPath}`,
     );
-    logger.info(
-      `Subscriptions ready at ws://localhost:${PORT}${server.graphqlPath}`,
-    );
+    // logger.info(
+    //   `Subscriptions ready at ws://localhost:${PORT}${server.graphqlPath}`,
+    // );
     if (process.env.NODE_ENV !== 'production') {
       logger.info(
         'Navigate to https://studio.apollographql.com/sandbox/schema/reference to use the introspection stuff',
