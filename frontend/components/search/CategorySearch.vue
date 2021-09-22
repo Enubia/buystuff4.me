@@ -102,7 +102,7 @@ export default class CategorySearch extends Vue {
 <style scoped lang="scss">
 .category-container {
   @media (min-width: 1024px) {
-    max-height: 45vh;
+    max-height: 480px;
   }
 }
 </style>
