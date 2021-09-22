@@ -12,6 +12,9 @@
     <img alt="David (path)" src="https://img.shields.io/david/enubia/buystuff4.me?label=frontend%20dependencies&path=frontend&style=flat-square">
     <img alt="GitHub" src="https://img.shields.io/github/license/enubia/buystuff4.me?style=flat-square">
 </p>
+<p align='center'>
+    <img height=240 src="./frontend/assets/svg/logo.svg" alt="Logo">
+</p>
 
 # Welcome to buystuff4.me
 
@@ -26,3 +29,7 @@ wishlist links of course).
 ### Project status
 
 Right now it's in the beginning phase but a lot of motivation/coffee to ship this site ASAP is already present.
+
+### Translators needed 📝
+Since the goal of this website is to serve as many people around the globe as possible, we are already developing the site as a multi language page.
+So if you are a native speaker of a language we don't have implemented yet, you're more than welcome to file an issue with the language you want to add and we can have a discussion about it.
