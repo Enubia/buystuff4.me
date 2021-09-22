@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="categories.length > 0"
-    :class="showFilter ? 'lg:max-h-96' : 'max-h-16'"
+    :class="showFilter ? 'category-container' : 'max-h-16'"
     class="w-full lg:flex lg:justify-end"
   >
     <div class="border rounded-md shadow-md border-base-200 px-4">
@@ -39,7 +39,15 @@
         :class="!showFilter ? 'hidden' : 'lg:flex'"
         class="lg:w-full lg:justify-center"
       >
-        <div class="px-4 max-h-72 overflow-y-auto overflow-x-hidden mt-2">
+        <div
+          class="
+            px-4
+            lg:max-h-96 lg:overflow-y-auto
+            overflow-x-hidden
+            mt-2
+            mb-2
+          "
+        >
           <Checkbox
             v-for="category in categories"
             :id="category._id"
@@ -90,3 +98,11 @@ export default class CategorySearch extends Vue {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.category-container {
+  @media (min-width: 1024px) {
+    max-height: 45vh;
+  }
+}
+</style>
