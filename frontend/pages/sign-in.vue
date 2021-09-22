@@ -9,7 +9,7 @@
       md:max-w-full
       lg:max-w-screen-xl
       md:px-24
-      lg:px-8 lg:py-36
+      lg:px-8 lg:my-36
       grid
       place-content-center
     "
@@ -29,23 +29,8 @@
       <div class="flex justify-center w-full mt-2 mb-5">
         <div id="google-signin-button"></div>
       </div>
-      <!-- <div class="flex items-center w-full mb-5">
-        <hr class="flex-1 border-gray-300" />
-        <div class="px-3 text-xs sm:text-sm">or</div>
-        <hr class="flex-1 border-gray-300" />
-      </div> -->
-      <!-- <div
-        class="fb-login-button"
-        data-width="240"
-        data-size="medium"
-        data-button-type="login_with"
-        data-layout="rounded"
-        data-auto-logout-link="false"
-        data-use-continue-as="false"
-      ></div> -->
       <p class="max-w-md px-5 mt-3 text-2xs sm:text-sm md:mb-5">
-        Signing in with google will only grant us access to your email and
-        profile.
+        {{ $t('signIn.infoText') }}
       </p>
     </div>
   </div>
@@ -73,8 +58,18 @@ export default class SignIn extends Vue {
   async onSignIn(user: any) {
     const { id_token } = user.getAuthResponse();
 
-    await this.$store.dispatch('profile/signIn', id_token);
-    this.$router.push('/profile');
+    try {
+      await this.$store.dispatch('profile/signIn', id_token);
+    } catch (error) {
+      console.error(error);
+      this.$toast.open({
+        message: 'Network Error, please try again later.',
+        position: 'top',
+        type: 'error',
+      });
+    }
+
+    await this.$router.push('/profile');
   }
 }
 </script>

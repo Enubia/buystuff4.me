@@ -104,10 +104,19 @@ export default class Search extends Vue {
     try {
       this.loaderDisabled = false;
 
-      await this.$store.dispatch('search/fetchWishLists', {
-        useOffset,
-        offset: this.offset,
-      });
+      try {
+        await this.$store.dispatch('search/fetchWishLists', {
+          useOffset,
+          offset: this.offset,
+        });
+      } catch (error) {
+        console.error(error);
+        this.$toast.open({
+          message: 'Network Error, please try again later.',
+          position: 'top',
+          type: 'error',
+        });
+      }
 
       this.offset += 9;
 
@@ -132,13 +141,32 @@ export default class Search extends Vue {
         (this.$store.state.search as SearchRootState).searchFilter.length === 0
       ) {
         this.$store.commit('search/reset');
-        await this.$store.dispatch('search/fetchWishLists', {
-          useOffset: false,
-          offset: this.wishLists.length >= 9 ? this.offset : 0,
-        });
+
+        try {
+          await this.$store.dispatch('search/fetchWishLists', {
+            useOffset: false,
+            offset: this.wishLists.length >= 9 ? this.offset : 0,
+          });
+        } catch (error) {
+          console.error(error);
+          this.$toast.open({
+            message: 'Network Error, please try again later.',
+            position: 'top',
+            type: 'error',
+          });
+        }
         this.showLoaderButton = true;
       } else {
-        await this.$store.dispatch('search/fetchWishlistsWithCategoryFilter');
+        try {
+          await this.$store.dispatch('search/fetchWishlistsWithCategoryFilter');
+        } catch (error) {
+          console.error(error);
+          this.$toast.open({
+            message: 'Network Error, please try again later.',
+            position: 'top',
+            type: 'error',
+          });
+        }
       }
 
       this.loaderDisabled = true;

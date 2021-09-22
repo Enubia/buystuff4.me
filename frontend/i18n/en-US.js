@@ -75,6 +75,8 @@ export default {
   },
   signIn: {
     link: 'Sign In',
+    infoText:
+      'Signing in with google will only grant us access to your public profile and email.',
   },
   privacyPolicy: {
     link: 'Privacy Policy',
@@ -117,5 +119,17 @@ export default {
     end: 'for more information.',
     yes: 'Yes, Sure',
     no: 'Decline',
+  },
+  404: {
+    headline: 'Oops. This page has gone missing.',
+    info: 'You may have mistyped the address or the page may have moved.',
+    button: 'Go Home',
+  },
+  500: {
+    headline: 'Network Error.',
+    infoOne: 'Seems like something bricked...',
+    infoTwo:
+      'One of our developers will get his coffe removed until this is fixed.',
+    button: 'Great, take me home.',
   },
 };

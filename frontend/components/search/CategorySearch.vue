@@ -78,7 +78,7 @@ import { SearchRootState } from '../../store/search';
 export default class CategorySearch extends Vue {
   categories: { _id: string; name: string }[] = [];
 
-  showFilter = false;
+  showFilter = true;
 
   get filter() {
     return (this.$store.state.search as SearchRootState).searchFilter;
@@ -89,7 +89,17 @@ export default class CategorySearch extends Vue {
       return;
     }
 
-    await this.$store.dispatch('search/fetchCategories');
+    try {
+      await this.$store.dispatch('search/fetchCategories');
+    } catch (error) {
+      console.error(error);
+      this.$toast.open({
+        message: 'Network Error, please try again later.',
+        position: 'top',
+        type: 'error',
+      });
+    }
+
     this.categories = (this.$store.state.search as SearchRootState).categories;
   }
 

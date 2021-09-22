@@ -50,6 +50,10 @@ export default {
       src: './plugins/gtag.js',
       mode: 'client',
     },
+    {
+      src: '~/plugins/vue-toast-notification.js',
+      mode: 'client',
+    },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
