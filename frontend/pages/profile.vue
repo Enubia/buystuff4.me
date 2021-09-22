@@ -20,6 +20,7 @@ export default class Profile extends Vue {
   head() {
     return {
       title: 'buystuff4.me | Profile',
+      meta: [{ hid: '', name: '', content: '' }],
     };
   }
 

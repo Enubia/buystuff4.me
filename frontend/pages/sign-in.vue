@@ -46,11 +46,12 @@ export default class SignIn extends Vue {
   head() {
     return {
       title: 'buystuff4.me | Sign In',
+      meta: [{ hid: '', name: '', content: '' }],
     };
   }
 
   mounted() {
-    const { gapi } = window as any;
+    const { gapi } = window;
     gapi.signin2.render('google-signin-button', {
       scope: 'profile email',
       width: 240,
@@ -61,7 +62,7 @@ export default class SignIn extends Vue {
     });
   }
 
-  async onSignIn(user: any) {
+  async onSignIn(user: { getAuthResponse: () => { id_token: string } }) {
     const { id_token } = user.getAuthResponse();
 
     try {

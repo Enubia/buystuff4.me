@@ -1,6 +1,6 @@
 export default [
   {
-    title: 'Can I change my credentials ? (email/first name/last name)',
+    title: 'Can I change my credentials? (email/first name/last name)',
     body: `
         <p>
           Short answer: <span class="font-medium">UNFORTUNATELY NOT</span>
@@ -13,7 +13,7 @@ export default [
       `,
   },
   {
-    title: 'I want to add a new category, can I do that ?',
+    title: 'I want to add a new category, can I do that?',
     body: `
         <p>
           Our categories are taken from amazon directly. We looked up the
@@ -23,7 +23,7 @@ export default [
       `,
   },
   {
-    title: "I created a list entry but it doesn't show up ?",
+    title: "I created a list entry but it doesn't show up?",
     body: `
         <p>
           Most likely it got put into the publishing queue. We only
@@ -35,7 +35,7 @@ export default [
       `,
   },
   {
-    title: 'How do I publish my listing again ?',
+    title: 'How do I publish my listing again?',
     body: `
         <p>
           On your profile there's a button called
@@ -46,7 +46,7 @@ export default [
       `,
   },
   {
-    title: 'I found a bug / translation error, can I report that ?',
+    title: 'I found a bug / translation error, can I report that?',
     body: `
         <p>
           Yes please do so, we are always trying to improve our site for

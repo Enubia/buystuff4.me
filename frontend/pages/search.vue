@@ -11,7 +11,7 @@
       <div
         v-for="list of wishLists"
         :key="list._id"
-        class="lg:pl-6 w-full xl:w-1/2 2xl:w-1/3"
+        class="lg:pl-6 w-full xl:w-1/2"
       >
         <Card :list="list" />
       </div>
@@ -87,6 +87,7 @@ export default class Search extends Vue {
   head() {
     return {
       title: 'buystuff4.me | Search',
+      meta: [{ hid: '', name: '', content: '' }],
     };
   }
 

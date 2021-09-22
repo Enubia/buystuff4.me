@@ -1,20 +1,13 @@
 <template>
   <div class="w-full flex justify-center mt-8 mb-8 md:mt-36 md:mb-36">
     <div class="flex flex-col lg:flex-row lg:max-w-6xl">
-      <div
-        class="
-          lg:w-1/3
-          p-4
-          text-sm
-          lg:relative lg:sticky lg:top-28 lg:left-0 lg:h-1/4
-        "
-      >
-        <div class="text-3xl" v-html="$t('faq.title')" />
+      <div class="lg:w-1/3 p-4 text-sm">
+        <div class="text-3xl uppercase" v-html="$t('faq.title')" />
       </div>
       <div class="lg:w-2/3">
         <div class="p-4">
           <div
-            v-for="(item, index) of $t('faq.questions')"
+            v-for="(item, index) of questions"
             :key="index"
             class="my-8 collapse border-b border-base-300 collapse-arrow"
           >
@@ -33,14 +26,19 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { LocaleMessages } from 'vue-i18n';
 
 @Component({
   name: 'Faq',
 })
 export default class Faq extends Vue {
+  questions = this.$t('faq.questions') as LocaleMessages;
+
   head() {
     return {
       title: 'buystuff4.me | FAQ',
+      meta: [{ hid: '', name: '', content: '' }],
     };
   }
 }

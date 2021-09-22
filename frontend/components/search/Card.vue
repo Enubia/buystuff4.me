@@ -33,7 +33,7 @@
       <p>
         {{ (list && list.description) || 'Some wishlist description' }}
       </p>
-      <p class="truncate max-w-xs">
+      <p class="truncate max-w-xs 2xl:max-w-sm">
         {{ list.categories.map((item) => item.name).join(', ') }}
       </p>
       <div class="card-actions">

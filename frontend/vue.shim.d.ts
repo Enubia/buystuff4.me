@@ -25,3 +25,16 @@ declare module '@nuxt/types' {
     $axios: NuxtAxiosInstance;
   }
 }
+
+declare global {
+  interface Window {
+    gapi: {
+      signin2: {
+        render: (
+          key: string,
+          options: Record<string, string | number | boolean | Function>,
+        ) => void;
+      };
+    };
+  }
+}
