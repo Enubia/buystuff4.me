@@ -9,91 +9,21 @@
           lg:relative lg:sticky lg:top-28 lg:left-0 lg:h-1/4
         "
       >
-        <div class="text-3xl">
-          Frequently asked <span class="font-medium">Questions</span>
-        </div>
-        <div class="my-2">Wondering how our service works ?</div>
-        <div class="mb-2">
-          Confused about how we can improve your business ?
-        </div>
-        <div class="text-xs">Dive into our FAQ for more details</div>
+        <div class="text-3xl" v-html="$t('faq.title')" />
       </div>
       <div class="lg:w-2/3">
         <div class="p-4">
-          <div class="my-8 collapse border-b border-base-300 collapse-arrow">
+          <div
+            v-for="(item, index) of $t('faq.questions')"
+            :key="index"
+            class="my-8 collapse border-b border-base-300 collapse-arrow"
+          >
             <input type="checkbox" />
-            <div class="collapse-title text-xl font-medium">
-              I open/close with click
-            </div>
-            <div class="collapse-content">
-              <p>
-                Collapse content reveals with focus. If you add a checkbox, you
-                can control it using checkbox instead of focus. Or you can
-                force-open/force-close using
-                <span class="badge badge-outline">collapse-open</span> and
-                <span class="badge badge-outline">collapse-close</span> classes.
-              </p>
-            </div>
-          </div>
-          <div class="my-8 collapse border-b border-base-300 collapse-arrow">
-            <input type="checkbox" />
-            <div class="collapse-title text-xl font-medium">
-              I open/close with click
-            </div>
-            <div class="collapse-content">
-              <p>
-                Collapse content reveals with focus. If you add a checkbox, you
-                can control it using checkbox instead of focus. Or you can
-                force-open/force-close using
-                <span class="badge badge-outline">collapse-open</span> and
-                <span class="badge badge-outline">collapse-close</span> classes.
-              </p>
-            </div>
-          </div>
-          <div class="my-8 collapse border-b border-base-300 collapse-arrow">
-            <input type="checkbox" />
-            <div class="collapse-title text-xl font-medium">
-              I open/close with click
-            </div>
-            <div class="collapse-content">
-              <p>
-                Collapse content reveals with focus. If you add a checkbox, you
-                can control it using checkbox instead of focus. Or you can
-                force-open/force-close using
-                <span class="badge badge-outline">collapse-open</span> and
-                <span class="badge badge-outline">collapse-close</span> classes.
-              </p>
-            </div>
-          </div>
-          <div class="my-8 collapse border-b border-base-300 collapse-arrow">
-            <input type="checkbox" />
-            <div class="collapse-title text-xl font-medium">
-              I open/close with click
-            </div>
-            <div class="collapse-content">
-              <p>
-                Collapse content reveals with focus. If you add a checkbox, you
-                can control it using checkbox instead of focus. Or you can
-                force-open/force-close using
-                <span class="badge badge-outline">collapse-open</span> and
-                <span class="badge badge-outline">collapse-close</span> classes.
-              </p>
-            </div>
-          </div>
-          <div class="my-8 collapse border-b border-base-300 collapse-arrow">
-            <input type="checkbox" />
-            <div class="collapse-title text-xl font-medium">
-              I open/close with click
-            </div>
-            <div class="collapse-content">
-              <p>
-                Collapse content reveals with focus. If you add a checkbox, you
-                can control it using checkbox instead of focus. Or you can
-                force-open/force-close using
-                <span class="badge badge-outline">collapse-open</span> and
-                <span class="badge badge-outline">collapse-close</span> classes.
-              </p>
-            </div>
+            <div
+              class="collapse-title text-xl font-medium"
+              v-html="item.title"
+            />
+            <div class="collapse-content" v-html="item.body" />
           </div>
         </div>
       </div>
@@ -107,5 +37,11 @@ import { Component, Vue } from 'nuxt-property-decorator';
 @Component({
   name: 'Faq',
 })
-export default class Faq extends Vue {}
+export default class Faq extends Vue {
+  head() {
+    return {
+      title: 'buystuff4.me | FAQ',
+    };
+  }
+}
 </script>

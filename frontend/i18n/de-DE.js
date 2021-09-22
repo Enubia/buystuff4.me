@@ -1,28 +1,122 @@
-import ppDE from './privacyPolicy/de';
+import ppDe from './privacyPolicy/de';
+import faqDE from './faq/de';
 
 export default {
+  index: {
+    header: {
+      title: '',
+      description: `
+
+      `,
+      button: '',
+    },
+    steps: {
+      title: '',
+      description: `
+
+      `,
+      one: {
+        title: '',
+        description: {
+          text: `
+
+          `,
+          hint: `
+
+          `,
+        },
+      },
+      two: {
+        title: '',
+        description: `
+
+        `,
+      },
+      three: {
+        title: '',
+        description: `
+
+        `,
+      },
+      four: {
+        title: '',
+        description: `
+
+        `,
+      },
+    },
+    stats: {
+      title: '',
+      description: `
+
+      `,
+      wishlists: '',
+      users: '',
+    },
+  },
   about: {
-    link: 'Über uns',
+    link: '',
   },
   howTo: {
-    link: "Wie funktioniert's",
+    link: '',
   },
   faq: {
-    link: 'FAQ',
+    link: '',
+    title: '',
+    questions: faqDE,
   },
   signIn: {
-    link: 'Einloggen',
+    link: '',
+    infoText: '',
   },
   privacyPolicy: {
-    link: 'Datenschutz-Bestimmungen',
-    sections: ppDE,
+    link: '',
+    sections: ppDe,
   },
-  navbartitle: 'Dein Wunsch ist jemandes Vergnügen',
+  search: {
+    link: '',
+    card: {
+      link: '',
+    },
+    loadMoreButton: '',
+    category: {
+      filter: '',
+      apply: '',
+      reset: '',
+    },
+  },
+  profile: {
+    link: '',
+  },
+  navbarTitle: '',
+  footer: {
+    descriptionPartOne: `
+
+    `,
+    descriptionPartTwo: `
+
+    `,
+    links: {
+      header: '',
+    },
+    copyright: '.',
+  },
   cookieBanner: {
-    start: 'Kann ich cookies für analytics verwenden? Lies',
-    link: 'die Datenschutz-Bestimmungen',
-    end: 'für mehr Information.',
-    yes: 'Ja, Sicher',
-    no: 'Nein',
+    start: '',
+    link: '',
+    end: '.',
+    yes: '',
+    no: '',
+  },
+  404: {
+    headline: '',
+    info: '',
+    button: '',
+  },
+  500: {
+    headline: '',
+    infoOne: '',
+    infoTwo: '',
+    button: '',
   },
 };

@@ -1,4 +1,5 @@
 import ppEn from './privacyPolicy/en';
+import faqEn from './faq/en';
 
 export default {
   index: {
@@ -34,7 +35,7 @@ export default {
         title: 'Login into our website',
         description: `
           We use google sign-in to make it fast and secure for you. The only
-          things we ask you for are access to your name and email address
+          things we ask you for are access to your profile and email address
           from your google account to identify you on recurring logins.
         `,
       },
@@ -71,7 +72,8 @@ export default {
   },
   faq: {
     link: 'FAQ',
-    title: 'Frequently asked questions',
+    title: 'Frequently asked <span class="font-medium">Questions</span>',
+    questions: faqEn,
   },
   signIn: {
     link: 'Sign In',

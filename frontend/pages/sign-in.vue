@@ -43,6 +43,12 @@ import { Component, Vue } from 'nuxt-property-decorator';
   name: 'SignIn',
 })
 export default class SignIn extends Vue {
+  head() {
+    return {
+      title: 'buystuff4.me | Sign In',
+    };
+  }
+
   mounted() {
     const { gapi } = window as any;
     gapi.signin2.render('google-signin-button', {

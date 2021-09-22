@@ -21,5 +21,11 @@ import StatsSection from '../components/index/StatsSection.vue';
     StatsSection,
   },
 })
-export default class extends Vue {}
+export default class extends Vue {
+  head() {
+    return {
+      title: 'buystuff4.me | Home',
+    };
+  }
+}
 </script>

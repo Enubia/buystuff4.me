@@ -24,5 +24,11 @@ import { Component, Vue } from 'nuxt-property-decorator';
 @Component({
   name: 'PrivacyPolicy',
 })
-export default class PrivacyPolicy extends Vue {}
+export default class PrivacyPolicy extends Vue {
+  head() {
+    return {
+      title: 'buystuff4.me | Privacy Policy',
+    };
+  }
+}
 </script>

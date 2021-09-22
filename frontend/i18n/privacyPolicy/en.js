@@ -2,7 +2,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>Privacy Policy for buystuff4.me</strong>
+        <strong class='text-primary'>Privacy Policy for buystuff4.me</strong>
       </p>
     `,
     block: `
@@ -32,7 +32,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>Consent</strong>
+        <strong class='text-primary'>Consent</strong>
       </p>
     `,
     block: `
@@ -44,7 +44,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>Information we collect</strong>
+        <strong class='text-primary'>Information we collect</strong>
       </p>
     `,
     block: `
@@ -62,7 +62,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>How we use your information</strong>
+        <strong class='text-primary'>How we use your information</strong>
       </p>
     `,
     block: `
@@ -92,7 +92,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>Log Files</strong>
+        <strong class='text-primary'>Log Files</strong>
       </p>
     `,
     block: `
@@ -104,7 +104,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>What Are Cookies</strong>
+        <strong class='text-primary'>What Are Cookies</strong>
       </p>
     `,
     block: `
@@ -121,7 +121,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>Cookies and Web Beacons</strong>
+        <strong class='text-primary'>Cookies and Web Beacons</strong>
       </p>
     `,
     block: `
@@ -134,7 +134,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>How We Use Cookies</strong>
+        <strong class='text-primary'>How We Use Cookies</strong>
       </p>
     `,
     block: `
@@ -151,7 +151,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>Disabling Cookies</strong>
+        <strong class='text-primary'>Disabling Cookies</strong>
       </p>
     `,
     block: `
@@ -177,7 +177,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>The Cookies We Set</strong>
+        <strong class='text-primary'>The Cookies We Set</strong>
       </p>
     `,
     block: `
@@ -194,7 +194,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>Third Party Cookies</strong>
+        <strong class='text-primary'>Third Party Cookies</strong>
       </p>
     `,
     block: `
@@ -223,7 +223,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>More Information</strong>
+        <strong class='text-primary'>More Information</strong>
       </p>
     `,
     block: `
@@ -257,7 +257,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>Advertising Partners Privacy Policies</strong>
+        <strong class='text-primary'>Advertising Partners Privacy Policies</strong>
       </p>
     `,
     block: `
@@ -275,7 +275,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>Third Party Privacy Policies</strong>
+        <strong class='text-primary'>Third Party Privacy Policies</strong>
       </p>
     `,
     block: `
@@ -290,7 +290,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>CCPA Privacy Rights (Do Not Sell My Personal Information)</strong>
+        <strong class='text-primary'>CCPA Privacy Rights (Do Not Sell My Personal Information)</strong>
       </p>
     `,
     block: `
@@ -314,7 +314,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>GDPR Data Protection Rights</strong>
+        <strong class='text-primary'>GDPR Data Protection Rights</strong>
       </p>
     `,
     block: `
@@ -347,7 +347,7 @@ export default [
   {
     title: `
       <p class='mb-4'>
-        <strong class='text-secondary-focus'>Children's Information</strong>
+        <strong class='text-primary'>Children's Information</strong>
       </p>
     `,
     block: `

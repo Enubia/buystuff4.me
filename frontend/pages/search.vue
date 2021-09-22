@@ -6,7 +6,7 @@
     />
     <div
       v-if="wishLists.length > 0"
-      class="lg:w-3/4 xl:w-4/5 lg:flex lg:flex-wrap w-full mt-4 mb-4"
+      class="lg:w-3/4 xl:w-5/7 lg:flex lg:flex-wrap w-full mt-4 mb-4"
     >
       <div
         v-for="list of wishLists"
@@ -83,6 +83,12 @@ export default class Search extends Vue {
   loaderDisabled = true;
 
   showLoaderButton = true;
+
+  head() {
+    return {
+      title: 'buystuff4.me | Search',
+    };
+  }
 
   get wishLists() {
     return (this.$store.state.search as SearchRootState).wishLists;

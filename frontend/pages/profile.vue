@@ -17,6 +17,12 @@ import { ProfileRootState } from 'store/profile';
   },
 })
 export default class Profile extends Vue {
+  head() {
+    return {
+      title: 'buystuff4.me | Profile',
+    };
+  }
+
   get user() {
     return (this.$store.state.profile as ProfileRootState).user;
   }
