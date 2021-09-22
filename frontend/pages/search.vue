@@ -1,11 +1,17 @@
 <template>
-  <div>
-    <CategorySearch @search="fetchWishlistsWithCategoryFilter" />
-    <div v-if="wishLists.length > 0" class="md:flex md:flex-wrap w-full mb-4">
+  <div class="lg:flex flex-row mx-8">
+    <CategorySearch
+      class="mt-4 lg:mt-0 lg:w-1/4 xl:w-1/5 lg:sticky lg:top-28 lg:left-0"
+      @search="fetchWishlistsWithCategoryFilter"
+    />
+    <div
+      v-if="wishLists.length > 0"
+      class="lg:w-3/4 xl:w-4/5 lg:flex lg:flex-wrap w-full mt-4 mb-4"
+    >
       <div
         v-for="list of wishLists"
         :key="list._id"
-        class="px-6 w-full lg:w-1/2 xl:w-1/3"
+        class="lg:pl-6 w-full xl:w-1/2"
       >
         <Card :list="list" />
       </div>
