@@ -50,23 +50,28 @@ export const mutations: MutationTree<SearchRootState> = {
   },
 };
 
+// TODO: handle errors properly
 export const actions: ActionTree<SearchRootState, SearchRootState> = {
   async fetchCategories(context) {
     if (context.state.categories.length === 0) {
       const client = this.app.apolloProvider?.defaultClient;
 
-      const result = await client?.query({
-        query: gql`
-          query allCategories {
-            categoryManyLean {
-              _id
-              name
+      try {
+        const result = await client?.query({
+          query: gql`
+            query allCategories {
+              categoryManyLean {
+                _id
+                name
+              }
             }
-          }
-        `,
-      });
+          `,
+        });
 
-      context.commit('applyCategories', result?.data.categoryManyLean);
+        context.commit('applyCategories', result?.data.categoryManyLean);
+      } catch (error) {
+        console.error(error);
+      }
     }
   },
   async fetchWishLists(
@@ -99,64 +104,68 @@ export const actions: ActionTree<SearchRootState, SearchRootState> = {
       variables.limit = 50;
     }
 
-    const result = await client?.query({
-      query: gql`
-        query wishListManyLean(
-          $limit: Int
-          $skip: Int
-          $wishListManyLeanFilter: FilterFindManyWishListInput
-        ) {
-          wishListManyLean(
-            limit: $limit
-            skip: $skip
-            filter: $wishListManyLeanFilter
+    try {
+      const result = await client?.query({
+        query: gql`
+          query wishListManyLean(
+            $limit: Int
+            $skip: Int
+            $wishListManyLeanFilter: FilterFindManyWishListInput
           ) {
-            link
-            description
-            _id
-            categoryIds
-            categories {
+            wishListManyLean(
+              limit: $limit
+              skip: $skip
+              filter: $wishListManyLeanFilter
+            ) {
+              link
+              description
               _id
-              name
-            }
-            userByWishListId {
-              _id
-              firstName
-              lastName
-              image
+              categoryIds
+              categories {
+                _id
+                name
+              }
+              userByWishListId {
+                _id
+                firstName
+                lastName
+                image
+              }
             }
           }
-        }
-      `,
-      variables,
-    });
-
-    const wishListResult = result?.data
-      .wishListManyLean as IWishListManyResult[];
-
-    const wishLists: IWishList[] = [];
-
-    for (const list of wishListResult) {
-      wishLists.push({
-        _id: list._id,
-        link: list.link,
-        description: list.description,
-        categories: list.categories,
-        user: {
-          _id: list.userByWishListId._id,
-          firstName: list.userByWishListId.firstName,
-          lastName: list.userByWishListId.lastName,
-          image:
-            list.userByWishListId.image ||
-            'anime-away-face-no-nobody-spirited_113254.svg',
-        },
+        `,
+        variables,
       });
-    }
 
-    context.commit('updateWishListSate', {
-      wishLists,
-      pushToState: context.state.searchFilter.length === 0,
-    });
+      const wishListResult = result?.data
+        .wishListManyLean as IWishListManyResult[];
+
+      const wishLists: IWishList[] = [];
+
+      for (const list of wishListResult) {
+        wishLists.push({
+          _id: list._id,
+          link: list.link,
+          description: list.description,
+          categories: list.categories,
+          user: {
+            _id: list.userByWishListId._id,
+            firstName: list.userByWishListId.firstName,
+            lastName: list.userByWishListId.lastName,
+            image:
+              list.userByWishListId.image ||
+              'anime-away-face-no-nobody-spirited_113254.svg',
+          },
+        });
+      }
+
+      context.commit('updateWishListSate', {
+        wishLists,
+        pushToState: context.state.searchFilter.length === 0,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   },
   async fetchWishlistsWithCategoryFilter(context) {
     const client = this.app.apolloProvider?.defaultClient;
@@ -173,59 +182,63 @@ export const actions: ActionTree<SearchRootState, SearchRootState> = {
       ),
     };
 
-    const result = await client?.query({
-      query: gql`
-        query wishListsByCategoryIds(
-          $wishListsByCategoryIdsCategoryIds: [String]
-        ) {
-          wishListsByCategoryIds(
-            categoryIds: $wishListsByCategoryIdsCategoryIds
+    try {
+      const result = await client?.query({
+        query: gql`
+          query wishListsByCategoryIds(
+            $wishListsByCategoryIdsCategoryIds: [String]
           ) {
-            link
-            description
-            _id
-            categoryIds
-            categories {
+            wishListsByCategoryIds(
+              categoryIds: $wishListsByCategoryIdsCategoryIds
+            ) {
+              link
+              description
               _id
-              name
-            }
-            userByWishListId {
-              _id
-              firstName
-              lastName
-              image
+              categoryIds
+              categories {
+                _id
+                name
+              }
+              userByWishListId {
+                _id
+                firstName
+                lastName
+                image
+              }
             }
           }
-        }
-      `,
-      variables,
-    });
-
-    const wishListResult = result?.data
-      .wishListsByCategoryIds as IWishListManyResult[];
-
-    const wishLists: IWishList[] = [];
-
-    for (const list of wishListResult) {
-      wishLists.push({
-        _id: list._id,
-        link: list.link,
-        description: list.description,
-        categories: list.categories,
-        user: {
-          _id: list.userByWishListId._id,
-          firstName: list.userByWishListId.firstName,
-          lastName: list.userByWishListId.lastName,
-          image:
-            list.userByWishListId.image ||
-            'anime-away-face-no-nobody-spirited_113254.svg',
-        },
+        `,
+        variables,
       });
-    }
 
-    context.commit('updateWishListSate', {
-      wishLists,
-      pushToState: false,
-    });
+      const wishListResult = result?.data
+        .wishListsByCategoryIds as IWishListManyResult[];
+
+      const wishLists: IWishList[] = [];
+
+      for (const list of wishListResult) {
+        wishLists.push({
+          _id: list._id,
+          link: list.link,
+          description: list.description,
+          categories: list.categories,
+          user: {
+            _id: list.userByWishListId._id,
+            firstName: list.userByWishListId.firstName,
+            lastName: list.userByWishListId.lastName,
+            image:
+              list.userByWishListId.image ||
+              'anime-away-face-no-nobody-spirited_113254.svg',
+          },
+        });
+      }
+
+      context.commit('updateWishListSate', {
+        wishLists,
+        pushToState: false,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   },
 };

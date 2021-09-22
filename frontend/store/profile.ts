@@ -18,35 +18,40 @@ export const mutations: MutationTree<ProfileRootState> = {
   },
 };
 
+// TODO: handle errors properly
 export const actions: ActionTree<ProfileRootState, ProfileRootState> = {
   async signIn(context, token: string) {
     const client = this.app.apolloProvider?.defaultClient;
 
-    const result = await client?.mutate({
-      mutation: gql`
-        mutation GoogleMutation($googleToken: String!) {
-          google(token: $googleToken) {
-            _id
-            firstName
-            lastName
-            image
-            wishListIds
-            wishLists {
-              link
-              description
-              categoryIds
-              categories {
-                name
+    try {
+      const result = await client?.mutate({
+        mutation: gql`
+          mutation GoogleMutation($googleToken: String!) {
+            google(token: $googleToken) {
+              _id
+              firstName
+              lastName
+              image
+              wishListIds
+              wishLists {
+                link
+                description
+                categoryIds
+                categories {
+                  name
+                }
               }
             }
           }
-        }
-      `,
-      variables: {
-        googleToken: token,
-      },
-    });
+        `,
+        variables: {
+          googleToken: token,
+        },
+      });
 
-    context.commit('updateUser', result?.data.google);
+      context.commit('updateUser', result?.data.google);
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
