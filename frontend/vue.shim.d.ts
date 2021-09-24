@@ -35,6 +35,9 @@ declare global {
           options: Record<string, string | number | boolean | Function>,
         ) => void;
       };
+      auth2: {
+        getAuthInstance: () => { signOut: () => Promise<void> };
+      };
     };
   }
 }

@@ -260,7 +260,7 @@ export default class NavBar extends Vue {
   darkMode = false;
 
   get user() {
-    return (this.$store.state.profile as ProfileRootState).user;
+    return (<ProfileRootState>this.$store.state.profile).user;
   }
 
   mounted() {
@@ -279,13 +279,14 @@ export default class NavBar extends Vue {
   }
 
   async signOut() {
-    const { gapi } = window as any;
+    const { gapi } = window;
 
     const auth2 = gapi.auth2.getAuthInstance();
     await auth2.signOut();
 
     this.$store.commit('profile/reset');
-    this.$router.push('/');
+    await this.$router.push('/');
+    this.$toast.success('Logged out, see you soon.');
   }
 }
 </script>

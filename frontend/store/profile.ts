@@ -4,14 +4,14 @@ import { IUser } from 'types/IUser';
 import { MutationTree, ActionTree } from 'vuex';
 
 export const state = () => ({
-  user: {} as IUser,
+  user: <IUser>{},
 });
 
 export type ProfileRootState = ReturnType<typeof state>;
 
 export const mutations: MutationTree<ProfileRootState> = {
   reset(state) {
-    state.user = {} as IUser;
+    state.user = <IUser>{};
   },
   updateUser(state, user: IUser) {
     state.user = user;
@@ -31,6 +31,7 @@ export const actions: ActionTree<ProfileRootState, ProfileRootState> = {
             firstName
             lastName
             image
+            email
             wishListIds
             wishLists {
               link

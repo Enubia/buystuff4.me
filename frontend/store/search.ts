@@ -56,22 +56,18 @@ export const actions: ActionTree<SearchRootState, SearchRootState> = {
     if (context.state.categories.length === 0) {
       const client = this.app.apolloProvider?.defaultClient;
 
-      try {
-        const result = await client?.query({
-          query: gql`
-            query allCategories {
-              categoryManyLean {
-                _id
-                name
-              }
+      const result = await client?.query({
+        query: gql`
+          query allCategories {
+            categoryManyLean {
+              _id
+              name
             }
-          `,
-        });
+          }
+        `,
+      });
 
-        context.commit('applyCategories', result?.data.categoryManyLean);
-      } catch (error) {
-        console.error(error);
-      }
+      context.commit('applyCategories', result?.data.categoryManyLean);
     }
   },
   async fetchWishLists(
@@ -136,8 +132,7 @@ export const actions: ActionTree<SearchRootState, SearchRootState> = {
       variables,
     });
 
-    const wishListResult = result?.data
-      .wishListManyLean as IWishListManyResult[];
+    const wishListResult = <IWishListManyResult[]>result?.data.wishListManyLean;
 
     const wishLists: IWishList[] = [];
 
@@ -206,8 +201,9 @@ export const actions: ActionTree<SearchRootState, SearchRootState> = {
       variables,
     });
 
-    const wishListResult = result?.data
-      .wishListsByCategoryIds as IWishListManyResult[];
+    const wishListResult = <IWishListManyResult[]>(
+      result?.data.wishListsByCategoryIds
+    );
 
     const wishLists: IWishList[] = [];
 
