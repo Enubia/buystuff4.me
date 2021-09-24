@@ -122,3 +122,6 @@ dist
 
 # graphql
 schema.graphql
+
+# mac
+.DS_Store
