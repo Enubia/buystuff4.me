@@ -40,14 +40,7 @@
             class="inline-flex items-center"
           >
             <span
-              class="
-                ml-2
-                text-xl
-                font-bold
-                tracking-wide
-                text-gray-100
-                uppercase
-              "
+              class="text-xl font-bold tracking-wide text-gray-100 uppercase"
             >
               buystuff4.me
             </span>
@@ -134,7 +127,6 @@
                     </svg>
                     <span
                       class="
-                        ml-2
                         text-xl
                         font-bold
                         tracking-wide

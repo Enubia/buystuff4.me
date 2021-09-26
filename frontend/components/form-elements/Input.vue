@@ -1,6 +1,8 @@
 <template>
-  <label class="block">
-    <span v-if="label" class="text-gray-700">{{ label }}</span>
+  <div class="form-control">
+    <label class="label">
+      <span v-if="label">{{ label }}</span>
+    </label>
     <input
       v-if="inputType === 'url'"
       ref="urlLink"
@@ -8,17 +10,20 @@
       :type="inputType"
       :pattern="urlPattern"
       placeholder="https://www.amazon.de/hz/wishlist/ls/A0HIAAQDEIOV?ref_=wl_share"
-      class="input-primary"
+      class="input input-bordered"
       @focusout="verifyUrl"
     />
     <input
       v-else
       v-model="inputValue"
       :type="inputType"
-      class="input-primary"
+      class="input input-bordered"
       @change="dataChange"
     />
-  </label>
+    <label v-if="showError" class="label">
+      <span class="text-xs text-red-500"> URL doesn't match pattern! </span>
+    </label>
+  </div>
 </template>
 
 <script lang="ts">
@@ -37,13 +42,21 @@ export default class Input extends Vue {
   })
   inputType!: string;
 
+  @Prop({
+    type: String,
+    default: '',
+  })
+  defaultValue!: string;
+
   @Ref('urlLink') urlLink!: Element;
 
   // https://regex101.com/r/AISC65/1
   urlPattern =
     /(https:\/\/)([w]{3}.amazon.[a-z]{2})(\/[a-z]{2})(\/wishlist)(\/[a-z]{2})(\/[A-Z\d]+)(\?ref_=wl_share)/;
 
-  inputValue = '';
+  inputValue = this.defaultValue;
+
+  showError = false;
 
   dataChange() {
     this.$emit('input-data-change', this.inputValue.trim());
@@ -54,15 +67,16 @@ export default class Input extends Vue {
 
     if (value !== '') {
       if (!String(value.trim()).match(this.urlPattern)) {
-        this.urlLink.classList.remove('input-primary');
         this.urlLink.classList.add('input-error');
+        this.showError = true;
       } else {
-        this.urlLink.classList.remove('error');
-        this.urlLink.classList.add('input-primary');
+        this.urlLink.classList.remove('input-error');
+        this.showError = false;
         this.dataChange();
       }
     } else {
       this.urlLink.classList.remove('input-error');
+      this.showError = false;
     }
   }
 }

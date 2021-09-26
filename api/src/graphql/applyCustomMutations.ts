@@ -49,18 +49,18 @@ export function applyCustomMutations({
         const payload = ticket.getPayload();
         const { given_name, family_name, email } = payload;
 
-        return await context.mongo.User.findOneAndUpdate(
-          { email },
-          {
+        const user = await context.mongo.User.countDocuments({ email }).exec();
+
+        if (user > 0) {
+          return await context.mongo.User.findOne({ email }).lean().exec();
+        } else {
+          return await context.mongo.User.create({
             email,
             firstName: given_name,
             lastName: family_name,
             wishListIds: [],
-          },
-          { new: true, upsert: true },
-        )
-          .lean()
-          .exec();
+          });
+        }
       } catch (error) {
         logger.error(error);
         return null;
