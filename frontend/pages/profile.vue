@@ -1,5 +1,5 @@
 <template>
-  <div class="my-24 mx-8 md:mx-36 space-y-5">
+  <div class="my-24 mx-8 lg:mx-36 space-y-5">
     <h2 class="md:ml-12 lg:ml-24 xl:ml-36 uppercase font-medium text-2xl">
       Your Profile
     </h2>
@@ -10,7 +10,7 @@
           rounded-md
           bg-base-200
           w-full
-          md:w-5/6
+          lg:w-5/6
           h-auto
           p-8
           block
@@ -62,7 +62,7 @@
           rounded-md
           bg-base-200
           w-full
-          md:w-5/6
+          lg:w-5/6
           h-auto
           p-8
           block

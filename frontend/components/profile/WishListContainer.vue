@@ -10,7 +10,7 @@
           label="Wishlist link"
           input-type="url"
           :default-value="list.link"
-          class="w-2/3"
+          class="lg:w-2/3"
         />
       </div>
     </div>
