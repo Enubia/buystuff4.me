@@ -5,6 +5,12 @@ on: [ push ]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: "development"
+      MONGO_URL: ${{ secrets.MONGO_URL }}
+      USER: ${{ secrets.USER }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
 
     if: github.event.pull_request.draft == false
 
