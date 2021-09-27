@@ -1,4 +1,4 @@
-name: Run build and deploy
+name: Run build and deploy frontend
 
 on: [ workflow_dispatch ]
 
