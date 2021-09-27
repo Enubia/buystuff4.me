@@ -1,6 +1,6 @@
 name: Run build and test pipeline
 
-on: [ push ]
+on: [ pull_request ]
 
 jobs:
   build:

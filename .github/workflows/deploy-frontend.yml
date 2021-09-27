@@ -20,9 +20,6 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: Install NPM 7
-        run: npm install -g npm@7
-
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -40,7 +37,7 @@ jobs:
         run: cd frontend && npm install
 
       - name: Build project
-        run: cd frontend && npm run generate
+        run: cd frontend && npm run build && npm run generate
 
       - name: Build, Push and Release Frontend
         uses: gonuit/heroku-docker-deploy@v1.3.3
