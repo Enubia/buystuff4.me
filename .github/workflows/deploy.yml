@@ -39,7 +39,7 @@ jobs:
         with:
           email: ${{ secrets.HEROKU_EMAIL }}
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME_API }}
           dockerfile_directory: ./api
           dockerfile_name: dockerfile
           docker_options: "--no-cache"
@@ -50,7 +50,7 @@ jobs:
         with:
           email: ${{ secrets.HEROKU_EMAIL }}
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME_FRONTEND }}
           dockerfile_directory: ./frontend
           dockerfile_name: dockerfile
           docker_options: "--no-cache"
