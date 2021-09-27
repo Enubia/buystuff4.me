@@ -3,8 +3,14 @@ name: Run build and deploy
 on: [ workflow_dispatch ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: "production"
+      MONGO_URL: ${{ secrets.MONGO_URL }}
+      USER: ${{ secrets.USER }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -34,16 +40,16 @@ jobs:
       - name: Build project
         run: cd api && npm run build && cd ../frontend && npm run build
 
-      - name: Build, Push and Release Api
-        uses: gonuit/heroku-docker-deploy@v1.3.3
-        with:
-          email: ${{ secrets.HEROKU_EMAIL }}
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME_API }}
-          dockerfile_directory: ./api
-          dockerfile_name: dockerfile
-          docker_options: "--no-cache"
-          process_type: web
+#      - name: Build, Push and Release Api
+#        uses: gonuit/heroku-docker-deploy@v1.3.3
+#        with:
+#          email: ${{ secrets.HEROKU_EMAIL }}
+#          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+#          heroku_app_name: ${{ secrets.HEROKU_APP_NAME_API }}
+#          dockerfile_directory: ./api
+#          dockerfile_name: dockerfile
+#          docker_options: "--no-cache"
+#          process_type: web
 
       - name: Build, Push and Release Frontend
         uses: gonuit/heroku-docker-deploy@v1.3.3
