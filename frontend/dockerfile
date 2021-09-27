@@ -10,7 +10,6 @@ ADD build/ /app/build/
 RUN npm ci --only=production
 
 ENV NODE_ENV=${NODE_ENV}
-ENV G_CLIENT_ID=${G_CLIENT_ID}
 
 EXPOSE 3000
 
