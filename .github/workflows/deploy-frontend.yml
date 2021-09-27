@@ -34,22 +34,10 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install modules
-        run:
-          cd api && npm install && cd ../frontend && npm install
+        run: cd frontend && npm install
 
       - name: Build project
-        run: cd api && npm run build && cd ../frontend && npm run build
-
-#      - name: Build, Push and Release Api
-#        uses: gonuit/heroku-docker-deploy@v1.3.3
-#        with:
-#          email: ${{ secrets.HEROKU_EMAIL }}
-#          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-#          heroku_app_name: ${{ secrets.HEROKU_APP_NAME_API }}
-#          dockerfile_directory: ./api
-#          dockerfile_name: dockerfile
-#          docker_options: "--no-cache"
-#          process_type: web
+        run: cd frontend && npm run generate
 
       - name: Build, Push and Release Frontend
         uses: gonuit/heroku-docker-deploy@v1.3.3

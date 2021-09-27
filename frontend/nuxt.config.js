@@ -1,16 +1,16 @@
 export default {
-  // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head() {
-    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
+    let i18nHead;
+    if (this.$nuxtI18nHead) {
+      i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
+    }
 
-    return {
+    const headObject = {
       title: 'buystuff4.me',
       htmlAttrs: {
         lang: 'en',
-        ...i18nHead.htmlAttrs,
       },
       meta: [
         { charset: 'utf-8' },
@@ -21,7 +21,6 @@ export default {
           content:
             '623656119704-d7ovmjp6gtbgdseuchf6884sgi62v2ug.apps.googleusercontent.com',
         },
-        ...i18nHead.meta,
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -29,7 +28,6 @@ export default {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/icon?family=Material+Icons',
         },
-        ...i18nHead.link,
       ],
       script: [
         {
@@ -37,12 +35,22 @@ export default {
         },
       ],
     };
+
+    if (i18nHead) {
+      headObject.htmlAttrs = {
+        ...headObject.htmlAttrs,
+        ...i18nHead.htmlAttrs,
+      };
+
+      headObject.meta.push(...i18nHead.meta);
+      headObject.link.push(...i18nHead?.link);
+    }
+
+    return headObject;
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['./node_modules/flag-icon-css/css/flag-icon.css', '~/assets/scss/main'],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/i18n.js',
     {
@@ -55,16 +63,11 @@ export default {
     },
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: false,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
-    // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
-    // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     [
       '@nuxtjs/eslint-module',
@@ -74,9 +77,7 @@ export default {
     ],
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/apollo',
     [

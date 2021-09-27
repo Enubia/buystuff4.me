@@ -5,11 +5,12 @@ RUN mkdir -p /app
 WORKDIR app/
 
 ADD package*.json /app/
-ADD build/ /app/build/
+ADD dist/ /app/dist/
 
 RUN npm ci --only=production
 
 ENV NODE_ENV=${NODE_ENV}
+ENV API_ENDPOINT=${API_ENDPOINT}
 
 EXPOSE 3000
 
