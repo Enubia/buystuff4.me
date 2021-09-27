@@ -37,7 +37,7 @@ jobs:
         run: cd api && npm install
 
       - name: Build project
-        run: cd api && npm run build && cd ../frontend && npm run generate
+        run: cd api && npm run build
 
       - name: Build, Push and Release Api
         uses: gonuit/heroku-docker-deploy@v1.3.3
