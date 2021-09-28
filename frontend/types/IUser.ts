@@ -11,6 +11,6 @@ export interface IUser {
     categoryIds: string[];
     categories: {
       name: string;
-    };
+    }[];
   }[];
 }

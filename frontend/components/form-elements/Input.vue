@@ -9,6 +9,7 @@
       v-model="inputValue"
       :type="inputType"
       :pattern="urlPattern"
+      :disabled="disabled"
       placeholder="https://www.amazon.de/hz/wishlist/ls/A0HIAAQDEIOV?ref_=wl_share"
       class="input input-bordered"
       @focusout="verifyUrl"
@@ -17,6 +18,7 @@
       v-else
       v-model="inputValue"
       :type="inputType"
+      :disabled="disabled"
       class="input input-bordered"
       @change="dataChange"
     />
@@ -47,6 +49,8 @@ export default class Input extends Vue {
     default: '',
   })
   defaultValue!: string;
+
+  @Prop({ type: Boolean, default: false }) disabled!: boolean;
 
   @Ref('urlLink') urlLink!: Element;
 
