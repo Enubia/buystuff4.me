@@ -1,78 +1,59 @@
 <template>
   <div class="my-24 mx-8 lg:mx-36 space-y-5">
-    <h2 class="md:ml-12 lg:ml-24 xl:ml-36 uppercase font-medium text-2xl">
-      Your Profile
-    </h2>
     <div class="w-full flex justify-center">
-      <div
-        class="
-          shadow-sm
-          rounded-md
-          bg-base-200
-          w-full
-          lg:w-5/6
-          h-auto
-          p-8
-          block
-          flex flex-wrap
-          items-center
-          justify-center
-          lg:justify-start
-          sm:space-x-14
-        "
-      >
+      <div class="shadow-sm rounded-md bg-base-200 w-full lg:w-5/6 h-auto p-8">
+        <h2 class="uppercase font-medium text-2xl text-center md:text-left">
+          Your Profile
+        </h2>
+        <hr class="mt-1 mb-6" />
         <div
           class="
-            rounded-full
-            w-48
-            h-48
-            ring ring-accent-focus ring-offset-base-100 ring-offset-2
+            flex flex-wrap
+            items-center
+            justify-center
+            px-8
+            lg:justify-start
+            sm:space-x-14
           "
         >
-          <img
-            :src="
-              require(`../assets/svg/avatar/${
-                user.image || 'anime-away-face-no-nobody-spirited_113254.svg'
-              }`)
+          <div
+            class="
+              rounded-full
+              w-48
+              h-48
+              ring ring-accent-focus ring-offset-base-100 ring-offset-2
             "
-            alt="A User Avatar"
-          />
-        </div>
-        <div>
-          <div class="mt-4 lg:mt-0">
-            <span class="font-medium text-2xl">
-              {{ user.firstName + ' ' + user.lastName }}
-            </span>
+          >
+            <img
+              :src="
+                require(`../assets/svg/avatar/${
+                  user.image || 'anime-away-face-no-nobody-spirited_113254.svg'
+                }`)
+              "
+              alt="A User Avatar"
+            />
           </div>
-          <div class="mt-4 lg:mt-0">
-            <span class="text-xl">
-              {{ user.email }}
-            </span>
+          <div>
+            <div class="mt-4 lg:mt-0">
+              <span class="font-medium text-2xl">
+                {{ user.firstName + ' ' + user.lastName }}
+              </span>
+            </div>
+            <div class="mt-4 lg:mt-0">
+              <span class="text-xl">
+                {{ user.email }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <h2 class="md:ml-12 lg:ml-24 xl:ml-36 uppercase font-medium text-2xl">
-      Your Wishlists
-    </h2>
     <div class="w-full flex justify-center">
-      <div
-        class="
-          shadow-sm
-          rounded-md
-          bg-base-200
-          w-full
-          lg:w-5/6
-          h-auto
-          p-8
-          block
-          flex flex-wrap
-          items-center
-          justify-center
-          lg:justify-start
-          sm:space-x-14
-        "
-      >
+      <div class="shadow-sm rounded-md bg-base-200 w-full lg:w-5/6 h-auto p-8">
+        <h2 class="uppercase font-medium text-2xl text-center md:text-left">
+          Your Wishlists
+        </h2>
+        <hr class="mt-1 mb-6" />
         <WishListContainer :wish-lists="user.wishLists" />
       </div>
     </div>
