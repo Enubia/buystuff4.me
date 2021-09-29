@@ -20,7 +20,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-basic-auth": "^1.2.0",
-    "google-auth-library": "^7.9.2",
+    "google-auth-library": "^7.10.0",
     "graphql": "^15.6.0",
     "graphql-compose": "^9.0.3",
     "graphql-compose-mongoose": "^9.6.0",
