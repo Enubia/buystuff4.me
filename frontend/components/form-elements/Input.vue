@@ -20,10 +20,12 @@
       :type="inputType"
       :disabled="disabled"
       class="input input-bordered"
-      @change="dataChange"
+      @keyup="dataChange"
     />
-    <label v-if="showError" class="label">
-      <span class="text-xs text-red-500"> URL doesn't match pattern! </span>
+    <label v-if="urlInputError || parentValidateError" class="label">
+      <span class="text-xs text-red-500">
+        {{ urlInputError ? "URL doesn't match pattern!" : 'No input given!' }}
+      </span>
     </label>
   </div>
 </template>
@@ -52,7 +54,9 @@ export default class Input extends Vue {
 
   @Prop({ type: Boolean, default: false }) disabled!: boolean;
 
-  @Ref('urlLink') urlLink!: Element;
+  @Prop({ type: Boolean, default: false }) parentValidateError!: boolean;
+
+  @Ref('urlLink') urlLink!: Element & { value: string };
 
   // https://regex101.com/r/AISC65/1
   urlPattern =
@@ -60,27 +64,34 @@ export default class Input extends Vue {
 
   inputValue = this.defaultValue;
 
-  showError = false;
+  urlInputError = false;
+
+  validateError = this.parentValidateError;
 
   dataChange() {
     this.$emit('input-data-change', this.inputValue.trim());
   }
 
   verifyUrl() {
-    const { value }: any = this.urlLink;
+    const { value } = this.urlLink;
 
     if (value !== '') {
       if (!String(value.trim()).match(this.urlPattern)) {
         this.urlLink.classList.add('input-error');
-        this.showError = true;
+        this.urlInputError = true;
       } else {
         this.urlLink.classList.remove('input-error');
-        this.showError = false;
+        this.urlLink.classList.add('input-success');
+        this.urlInputError = false;
+        this.validateError = false;
+        this.$emit('reset-error');
         this.dataChange();
       }
     } else {
       this.urlLink.classList.remove('input-error');
-      this.showError = false;
+      this.urlInputError = false;
+      this.validateError = false;
+      this.$emit('reset-error');
     }
   }
 }

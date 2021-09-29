@@ -36,7 +36,7 @@ export const boot = async (): Promise<void> => {
 
         const { locations, path } = err;
 
-        logger.error(err.originalError);
+        logger.error(err);
 
         return {
           ...new ApolloError(message),

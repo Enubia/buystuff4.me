@@ -129,7 +129,7 @@ export function applyCustomMutations({
     type: schemaComposer.createObjectTC({
       name: 'WishListCreateResult',
       fields: {
-        wishListId: GraphQLString,
+        wishListId: { type: GraphQLString },
         isPublished: { type: GraphQLNonNull(GraphQLBoolean) },
         message: { type: GraphQLString },
       },
@@ -195,12 +195,18 @@ export function applyCustomMutations({
       }
 
       try {
-        await context.mongo.User.updateOne(
-          { _id: userId },
+        // TODO: list doesn't get saved on the user
+        const userR = await context.mongo.User.updateOne(
+          { _id: new Types.ObjectId(userId) },
           {
-            $addToSet: { wishlistIds: new Types.ObjectId(String(result._id)) },
+            $push: { wishlistIds: new Types.ObjectId(String(result._id)) },
           },
-        );
+          { safe: true, upsert: true },
+        )
+          .lean()
+          .exec();
+
+        logger.info(userR);
       } catch (error) {
         logger.error(error);
         return {
@@ -226,6 +232,68 @@ export function applyCustomMutations({
       return {
         wishListId: result._id,
         isPublished: result.isPublished,
+      };
+    },
+  });
+
+  schemaComposer.Mutation.setField('deleteListFromUser', {
+    type: schemaComposer.createObjectTC({
+      name: 'DeleteListFromUserResult',
+      fields: {
+        success: { type: GraphQLString },
+        message: { type: GraphQLString },
+      },
+    }),
+    args: {
+      id: GraphQLNonNull(GraphQLString),
+    },
+    resolve: async (
+      _source,
+      args: { id: string },
+      context: IContext,
+      _info,
+    ) => {
+      try {
+        await context.mongo.WishList.deleteOne({
+          _id: new Types.ObjectId(args.id),
+        }).exec();
+      } catch (error) {
+        logger.error(error);
+        return {
+          success: false,
+          message: ErrorMessages.REMOVE_LIST_FROM_WISHLISTS,
+        };
+      }
+
+      try {
+        await context.mongo.WishListQueue.deleteOne({
+          wishListId: new Types.ObjectId(args.id),
+        }).exec();
+      } catch (error) {
+        logger.error(error);
+        return {
+          success: false,
+          message: ErrorMessages.REMOVE_LIST_FROM_QUEUE,
+        };
+      }
+
+      try {
+        await context.mongo.User.updateOne(
+          { wishListIds: { $in: [new Types.ObjectId(args.id)] } },
+          { $pull: { wishListIds: args.id } },
+        )
+          .lean()
+          .exec();
+      } catch (error) {
+        logger.error(error);
+        return {
+          success: false,
+          message: ErrorMessages.REMOVE_LIST_FROM_USER,
+        };
+      }
+
+      return {
+        success: true,
       };
     },
   });

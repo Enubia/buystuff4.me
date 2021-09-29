@@ -1,5 +1,5 @@
 <template>
-  <div class="my-24 mx-8 lg:mx-36 space-y-5">
+  <div class="my-12 mx-8 lg:mx-36 space-y-5">
     <div class="w-full flex justify-center">
       <div class="shadow-sm rounded-md bg-base-200 w-full lg:w-5/6 h-auto p-8">
         <h2 class="uppercase font-medium text-2xl text-center md:text-left">
@@ -54,6 +54,7 @@
           Your Wishlists
         </h2>
         <hr class="mt-1 mb-6" />
+        <WishListCreate v-if="user.wishLists.length < 3" />
         <WishListContainer :wish-lists="user.wishLists" />
       </div>
     </div>
@@ -64,10 +65,12 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 import { ProfileRootState } from 'store/profile';
 import WishListContainer from '../components/profile/WishListContainer.vue';
+import WishListCreate from '../components/profile/WishListCreate.vue';
 
 @Component({
   name: 'Profile',
   components: {
+    WishListCreate,
     WishListContainer,
   },
   asyncData: ({ store, redirect }) => {

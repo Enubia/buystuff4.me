@@ -121,6 +121,7 @@ export default class Search extends Vue {
         this.$toast.open({
           message: 'Network Error, please try again later.',
           type: 'error',
+          position: 'top-right',
         });
       }
 
@@ -158,6 +159,7 @@ export default class Search extends Vue {
           this.$toast.open({
             message: 'Network Error, please try again later.',
             type: 'error',
+            position: 'top-right',
           });
         }
         this.showLoaderButton = true;
@@ -169,6 +171,7 @@ export default class Search extends Vue {
           this.$toast.open({
             message: 'Network Error, please try again later.',
             type: 'error',
+            position: 'top-right',
           });
         }
       }

@@ -6,6 +6,7 @@ export interface IUser {
   wishListIds: string[];
   image?: string;
   wishLists?: {
+    _id: string;
     link: string;
     description: string;
     categoryIds: string[];

@@ -278,7 +278,11 @@ export default class NavBar extends Vue {
 
     this.$store.commit('profile/reset');
     await this.$router.push('/');
-    this.$toast.success('Logged out, see you soon.');
+    this.$toast.open({
+      message: 'Logged out, see you soon.',
+      type: 'success',
+      position: 'top-right',
+    });
   }
 }
 </script>

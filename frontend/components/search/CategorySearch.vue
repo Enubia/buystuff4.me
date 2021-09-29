@@ -96,6 +96,7 @@ export default class CategorySearch extends Vue {
       this.$toast.open({
         message: 'Network Error, please try again later.',
         type: 'error',
+        position: 'top-right',
       });
     }
 
