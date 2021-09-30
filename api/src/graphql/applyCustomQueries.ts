@@ -51,9 +51,7 @@ export function applyCustomQueries({
     }),
     resolve: async (source, args, context: IContext, _info) => {
       try {
-        const result = await context.mongo.WishList.countDocuments({
-          isPublished: true,
-        })
+        const result = await context.mongo.WishList.countDocuments()
           .lean()
           .exec();
 

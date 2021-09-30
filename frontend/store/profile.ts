@@ -63,8 +63,6 @@ export const actions: ActionTree<ProfileRootState, ProfileRootState> = {
   async saveList(context, payload: { link: string; categories: ICategory[] }) {
     const client = this.app.apolloProvider?.defaultClient;
 
-    console.log(context.state.user);
-
     const result = await client?.mutate({
       mutation: gql`
         mutation saveList(
@@ -131,15 +129,16 @@ export const actions: ActionTree<ProfileRootState, ProfileRootState> = {
 
     const result = await client?.mutate({
       mutation: gql`
-        mutation deleteList($id: String!) {
-          deleteListFromUser(id: $id) {
+        mutation deleteList($wishListId: String!, $userId: String!) {
+          deleteListFromUser(wishListId: $wishListId, userId: $userId) {
             success
             message
           }
         }
       `,
       variables: {
-        id,
+        wishListId: id,
+        userId: context.state.user._id,
       },
     });
 

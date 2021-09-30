@@ -15,7 +15,6 @@ import { ICategory } from '../db/models/category';
 import { IUser } from '../db/models/user';
 import { IWishList } from '../db/models/wishList';
 import { ErrorMessages } from '../helper/errorMessages';
-import { MAX_DOCUMENT_COUNT } from '../config';
 
 export function applyCustomMutations({
   UserTC,
@@ -170,23 +169,26 @@ export function applyCustomMutations({
       let result: IWishList;
 
       try {
-        const documentCount = await context.mongo.WishList.countDocuments({
-          isPublished: true,
-        })
-          .lean()
-          .exec();
+        // const documentCount = await context.mongo.WishList.countDocuments({
+        //   isPublished: true,
+        // })
+        //   .lean()
+        //   .exec();
 
-        const data: Pick<IWishList, 'link' | 'categoryIds' | 'priority'> & {
-          lastPublishedAt?: Date;
-        } = {
+        const data: Pick<
+          IWishList,
+          | 'link'
+          | 'categoryIds'
+          | 'priority'
+          | 'isPublished'
+          | 'lastPublishedAt'
+        > = {
           link,
           categoryIds: categoryIds.map((id) => new Types.ObjectId(String(id))),
           priority,
+          isPublished: true,
+          lastPublishedAt: new Date(),
         };
-
-        if (documentCount < MAX_DOCUMENT_COUNT) {
-          data.lastPublishedAt = new Date();
-        }
 
         result = await context.mongo.WishList.create(data);
       } catch (error) {
@@ -195,18 +197,12 @@ export function applyCustomMutations({
       }
 
       try {
-        // TODO: list doesn't get saved on the user
-        const userR = await context.mongo.User.updateOne(
+        await context.mongo.User.updateOne(
           { _id: new Types.ObjectId(userId) },
           {
-            $push: { wishlistIds: new Types.ObjectId(String(result._id)) },
+            $addToSet: { wishListIds: new Types.ObjectId(String(result._id)) },
           },
-          { safe: true, upsert: true },
-        )
-          .lean()
-          .exec();
-
-        logger.info(userR);
+        ).exec();
       } catch (error) {
         logger.error(error);
         return {
@@ -245,17 +241,18 @@ export function applyCustomMutations({
       },
     }),
     args: {
-      id: GraphQLNonNull(GraphQLString),
+      userId: GraphQLNonNull(GraphQLString),
+      wishListId: GraphQLNonNull(GraphQLString),
     },
     resolve: async (
       _source,
-      args: { id: string },
+      args: { wishListId: string; userId: string },
       context: IContext,
       _info,
     ) => {
       try {
         await context.mongo.WishList.deleteOne({
-          _id: new Types.ObjectId(args.id),
+          _id: new Types.ObjectId(args.wishListId),
         }).exec();
       } catch (error) {
         logger.error(error);
@@ -267,7 +264,7 @@ export function applyCustomMutations({
 
       try {
         await context.mongo.WishListQueue.deleteOne({
-          wishListId: new Types.ObjectId(args.id),
+          wishListId: new Types.ObjectId(args.wishListId),
         }).exec();
       } catch (error) {
         logger.error(error);
@@ -279,8 +276,8 @@ export function applyCustomMutations({
 
       try {
         await context.mongo.User.updateOne(
-          { wishListIds: { $in: [new Types.ObjectId(args.id)] } },
-          { $pull: { wishListIds: args.id } },
+          { _id: new Types.ObjectId(args.userId) },
+          { $pull: { wishListIds: args.wishListId } },
         )
           .lean()
           .exec();
