@@ -39,8 +39,6 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
 import Input from '../form-elements/Input.vue';
 
-// TODO: add delete wishlist to trash can
-
 @Component({
   name: 'WishListContainer',
   components: {

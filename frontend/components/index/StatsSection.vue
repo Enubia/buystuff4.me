@@ -102,7 +102,6 @@ export default class StatsSection extends Vue {
         this.registeredUsers = users.data.userCount.count;
         this.listedWishlists = wishLists.data.wishListCount.count;
       } else if (process.env.NODE_ENV !== 'production') {
-        // TODO: only log in dev, ignore in production for now
         console.error({
           user: users.errors,
           wishLists: wishLists.errors,

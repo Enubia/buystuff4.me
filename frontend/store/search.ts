@@ -50,7 +50,6 @@ export const mutations: MutationTree<SearchRootState> = {
   },
 };
 
-// TODO: handle errors properly
 export const actions: ActionTree<SearchRootState, SearchRootState> = {
   async fetchCategories(context) {
     if (context.state.categories.length === 0) {
