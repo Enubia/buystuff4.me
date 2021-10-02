@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import * as faker from 'faker';
+import { config } from 'dotenv';
 import { Types } from 'mongoose';
 import { Category } from '../src/db/models/category';
 import { Mongoose } from '../src/db/connection';
@@ -7,7 +8,9 @@ import { Priority, WishList } from '../src/db/models/wishList';
 import { User } from '../src/db/models/user';
 import { WishListQueue } from '../src/db/models/wishListQueue';
 
+
 (async () => {
+  config();
   const connection = await Mongoose.connect();
 
   await connection.dropCollection('user');

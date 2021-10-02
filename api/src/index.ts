@@ -3,8 +3,6 @@ import { GraphQLError } from 'graphql';
 import { ApolloError, ApolloServer } from 'apollo-server-express';
 import * as express from 'express';
 import * as cors from 'cors';
-import * as expressBasicAuth from 'express-basic-auth';
-import * as Agendash from 'agendash';
 import { logger } from './helper/logger';
 import { schema } from './graphql/setup';
 import { environment, PORT } from './config';
@@ -12,7 +10,6 @@ import { Mongoose } from './db/connection';
 import { WishList } from './db/models/wishList';
 import { Category } from './db/models/category';
 import { User } from './db/models/user';
-import { createAgenda } from './scheduler/agenda';
 import { WishListQueue } from './db/models/wishListQueue';
 
 // load env file
@@ -23,7 +20,7 @@ if (process.env.NODE_ENV !== 'production') {
 export const boot = async (): Promise<void> => {
   await Mongoose.connect();
 
-  const agenda = await createAgenda();
+  // const agenda = await createAgenda();
 
   const server = new ApolloServer({
     schema,
@@ -83,15 +80,16 @@ export const boot = async (): Promise<void> => {
     }),
   );
 
-  app.use(
-    '/agendash',
-    cors(),
-    expressBasicAuth({
-      users: { [process.env.USER]: process.env.PASSWORD },
-      challenge: true,
-    }),
-    Agendash(agenda),
-  );
+  // TODO: weird stuff going on with agenda and mongo
+  // app.use(
+  //   '/agendash',
+  //   cors(),
+  //   expressBasicAuth({
+  //     users: { [process.env.USER]: process.env.PASSWORD },
+  //     challenge: true,
+  //   }),
+  //   Agendash(agenda),
+  // );
 
   app.use(
     (
