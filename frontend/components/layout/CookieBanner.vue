@@ -9,10 +9,11 @@
       md:flex
       items-center
       p-4
-      bg-base-100
+      bg-base-300
       shadow-sm
       justify-center
       w-full
+      lg:h-48
     "
   >
     <div class="flex items-center justify-center">
@@ -34,7 +35,7 @@
         </p>
       </div>
     </div>
-    <div class="flex justify-center mt-4 md:mt-0">
+    <div class="flex justify-center mt-4 md:mt-0 space-x-3">
       <div class="btn btn-secondary" @click="deny">
         {{ $t('cookieBanner.no') }}
       </div>

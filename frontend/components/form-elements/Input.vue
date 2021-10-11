@@ -24,7 +24,7 @@
     />
     <label v-if="urlInputError || parentValidateError" class="label">
       <span class="text-xs text-red-500">
-        {{ urlInputError ? "URL doesn't match pattern!" : 'No input given!' }}
+        {{ urlInputError ? $t('input.urlError') : $t('input.emptyError') }}
       </span>
     </label>
   </div>

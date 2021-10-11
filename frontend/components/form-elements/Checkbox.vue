@@ -2,7 +2,7 @@
   <div class="my-1 mx-0.5 px-5 py-1 card bg-accent-focus">
     <div class="form-control">
       <label class="cursor-pointer label text-center" @mouseup="checkboxTicked">
-        <span class="label-text capitalize">{{ label }}</span>
+        <span class="text-left label-text capitalize">{{ label }}</span>
         <input
           :id="id"
           ref="checkbox"

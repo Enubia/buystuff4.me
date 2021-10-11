@@ -7,7 +7,7 @@
     >
       <div class="card-body">
         <Input
-          label="Wishlist link"
+          :label="$t('profile.wishList.label')"
           input-type="url"
           :default-value="list.link"
           :disabled="true"
@@ -26,7 +26,7 @@
           v-if="list.description && list.description.length > 0"
           class="mt-4 pl-1"
         >
-          <h2>Your wishlist description:</h2>
+          <h2>{{ $t('profile.wishList.descriptionHeader') }}</h2>
           <span>{{ list.description }}</span>
         </div>
         <div class="flex justify-end">

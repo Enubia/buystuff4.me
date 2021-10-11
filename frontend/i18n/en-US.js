@@ -12,12 +12,8 @@ export default {
       button: 'Get started',
     },
     steps: {
-      title: 'Get started in less than five minutes',
-      description: `
-        Follow the steps below and you'll be
-        ready to publish your very own list
-        in not even five minutes.
-      `,
+      title: 'Get started in less less than 5 minutes',
+      description: '',
       one: {
         title: 'Grab your wishlist',
         description: {
@@ -32,7 +28,7 @@ export default {
         },
       },
       two: {
-        title: 'Login into our website',
+        title: 'Login to our website',
         description: `
           We use google sign-in to make it fast and secure for you. The only
           things we ask you for are access to your profile and email address
@@ -66,6 +62,26 @@ export default {
   },
   about: {
     link: 'About',
+    project: {
+      header: 'The Project',
+      items: [
+        'This project originated out of sheer curiosity. I was setting up a private wishlist for myself and thought about looking up a way to make it public just for giggles.',
+        'Soon I noticed that no such site exists. Nothing where you can actively share your wishlist with others (somewhat understandable since not everyone is willing to donate to strangers).',
+        'After some research I noticed that amazon had this feature in the past but they removed it for whatever reason. So I made it my personal task to bring such a site to life.',
+        'I hope that with the help of buystuff4.me, many people out there can get a little bit of support in their daily business of struggling to live through the day.',
+      ],
+    },
+    teamHeader: 'The team',
+    marco: {
+      name: 'Marco Schuster',
+      position: 'Fullstack Developer',
+      bio: '',
+    },
+    damjan: {
+      name: 'Damjan Petrovic',
+      position: 'Web Designer',
+      bio: '',
+    },
   },
   howTo: {
     link: 'How To',
@@ -98,6 +114,18 @@ export default {
   },
   profile: {
     link: 'Profile',
+    header: 'Your Profile',
+    wishListHeader: 'Your Wishlists',
+    wishList: {
+      label: 'Wishlist link',
+      descriptionHeader: 'Your wishlist description:',
+      create: {
+        header: 'Create a new list',
+        descriptionLabel: 'Add a description',
+        categoryLabel: 'Choose your categories',
+        saveButton: 'Save List',
+      },
+    },
   },
   navbarTitle: 'Your wish is someones pleasure',
   footer: {
@@ -133,5 +161,9 @@ export default {
     infoTwo:
       'One of our developers will get his coffe removed until this is fixed.',
     button: 'Great, take me home.',
+  },
+  input: {
+    urlError: "URL doesn't match pattern!",
+    emptyError: 'No input given!',
   },
 };

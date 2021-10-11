@@ -1,12 +1,12 @@
 name: Run build and test pipeline
 
-on: [ pull_request ]
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NODE_ENV: "development"
+      NODE_ENV: 'development'
       MONGO_URL: ${{ secrets.MONGO_URL }}
       USER: ${{ secrets.USER }}
       PASSWORD: ${{ secrets.PASSWORD }}
@@ -37,8 +37,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install modules
-        run:
-          npm install && cd api && npm install && cd ../frontend && npm install
+        run: npm install && cd api && npm install && cd ../frontend && npm install
 
       - name: Eslint
         run: npm run lint:api && npm run lint:frontend
@@ -46,10 +45,9 @@ jobs:
       - name: Build project
         run: cd api && npm run build && cd ../frontend && npm run build
 
-      - name: Test
-        run: npm run coverage --if-present
-
-#      - name: Upload coverage to Codecov
-#        uses: codecov/codecov-action@v2
-#        with:
-#          token: ${{ secrets.CODECOV_TOKEN}}
+      # - name: Test
+      #   run: npm run coverage --if-present
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v2
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN}}

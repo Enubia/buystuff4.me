@@ -1,9 +1,11 @@
 <template>
   <div class="card border rounded border-base-300 bg-base-100 my-3">
-    <div class="card-title pl-6 pt-6">Create a new list</div>
+    <div class="card-title pl-6 pt-6">
+      {{ $t('profile.wishList.create.header') }}
+    </div>
     <div class="card-body">
       <Input
-        label="Wishlist link"
+        :label="$t('profile.wishList.label')"
         input-type="url"
         class="w-full lg:w-2/3"
         :parent-validate-error="showError"
@@ -29,14 +31,14 @@
       </div>
       <div class="flex">
         <Input
-          label="Add a description"
+          :label="$t('profile.wishList.create.descriptionLabel')"
           class="w-full lg:w-2/3"
           @input-data-change="applyDescription"
         />
       </div>
       <div class="flex">
         <Input
-          label="Choose your categories"
+          :label="$t('profile.wishList.create.categoryLabel')"
           class="w-full lg:w-2/3"
           @input-data-change="filterCategories"
           @focusin.native="showCategoryDropdown = true"
@@ -69,7 +71,7 @@
     </div>
     <div class="flex justify-end pr-6 pb-6">
       <button type="button" class="btn btn-primary" @click="saveList">
-        Save List
+        {{ $t('profile.wishList.create.saveButton') }}
       </button>
     </div>
   </div>

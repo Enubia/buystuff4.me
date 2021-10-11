@@ -3,7 +3,7 @@
     <div class="w-full flex justify-center">
       <div class="shadow-sm rounded-md bg-base-200 w-full lg:w-5/6 h-auto p-8">
         <h2 class="uppercase font-medium text-2xl text-center md:text-left">
-          Your Profile
+          {{ $t('profile.header') }}
         </h2>
         <hr class="mt-1 mb-6" />
         <div
@@ -51,7 +51,7 @@
     <div class="w-full flex justify-center">
       <div class="shadow-sm rounded-md bg-base-200 w-full lg:w-5/6 h-auto p-8">
         <h2 class="uppercase font-medium text-2xl text-center md:text-left">
-          Your Wishlists
+          {{ $t('profile.wishListHeader') }}
         </h2>
         <hr class="mt-1 mb-6" />
         <WishListCreate v-if="user.wishLists && user.wishLists.length < 3" />

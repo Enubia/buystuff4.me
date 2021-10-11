@@ -5,7 +5,9 @@
       sm:card-side
       bordered
       transform
-      hover:shadow-md hover:scale-y-105
+      transition
+      duration-300
+      hover:shadow-md hover:scale-105
       mb-3
     "
   >
