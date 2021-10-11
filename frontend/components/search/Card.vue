@@ -1,5 +1,14 @@
 <template>
-  <div class="card sm:card-side bordered shadow-md mb-3">
+  <div
+    class="
+      card
+      sm:card-side
+      bordered
+      transform
+      hover:shadow-md hover:scale-y-105
+      mb-3
+    "
+  >
     <figure>
       <div class="avatar">
         <div

@@ -1,6 +1,6 @@
 <template>
   <footer class="p-10 footer bg-base-200 text-base-content footer-center">
-    <div class="grid grid-flow-col gap-4">
+    <div>
       <nuxt-link :to="localePath('about')" class="link link-hover">
         {{ $t('about.link') }}
       </nuxt-link>

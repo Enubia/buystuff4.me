@@ -249,7 +249,7 @@ export default [
         us through one of our preferred contact methods:
       </p>
       <p class='mb-4'>
-        Email: support&commat;buystuff4.me
+        Email: lettucekiing&commat;gmail.com
       </p>
     `,
   },

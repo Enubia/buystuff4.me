@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto my-6">
-    <h2 class="text-4xl font-medium text-center my-8 uppercase">The Project</h2>
+    <!-- <h2 class="text-4xl font-medium text-center my-8 uppercase">The Project</h2>
     <div class="flex justify-center">
       <div class="w-1/2">
         <p>
@@ -46,7 +46,7 @@
           sequi omnis cum!
         </p>
       </div>
-    </div>
+    </div> -->
     <h2 class="text-4xl font-medium text-center my-8 uppercase">The team</h2>
     <div class="border border-base-200 shadow-md">
       <div class="grid grid-cols-1 md:grid-cols-2">
@@ -61,15 +61,6 @@
           <div class="mb-auto mt-auto max-w-lg">
             <h1 class="text-3xl uppercase">Marco Schuster</h1>
             <p class="font-semibold mb-5">Fullstack Developer</p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-              odio. Quisque volutpat mattis eros. Nullam malesuada erat ut
-              turpis. Suspendisse urna nibh, viverra non, semper suscipit,
-              posuere a, pede.
-            </p>
-            <!-- <button class="bg-black rounded-md py-3 px-7 mt-6 text-white">
-              Email Me
-            </button> -->
           </div>
         </div>
       </div>
@@ -104,15 +95,6 @@
           <div class="mb-auto mt-auto max-w-lg">
             <h1 class="text-3xl uppercase">Damjan Petrovic</h1>
             <p class="font-semibold mb-5">Web Designer</p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-              odio. Quisque volutpat mattis eros. Nullam malesuada erat ut
-              turpis. Suspendisse urna nibh, viverra non, semper suscipit,
-              posuere a, pede.
-            </p>
-            <!-- <button class="bg-black rounded-md py-3 px-7 mt-6 text-white">
-              Email Me
-            </button> -->
           </div>
         </div>
       </div>

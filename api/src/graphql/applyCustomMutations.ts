@@ -137,6 +137,7 @@ export function applyCustomMutations({
       link: GraphQLNonNull(GraphQLString),
       userId: GraphQLNonNull(GraphQLString),
       categoryIds: [GraphQLNonNull(GraphQLString)],
+      description: GraphQLNonNull(GraphQLString),
       priority: GraphQLInt,
     },
     resolve: async (
@@ -145,12 +146,13 @@ export function applyCustomMutations({
         link: string;
         userId: string;
         categoryIds: string[];
+        description: string;
         priority: number;
       },
       context: IContext,
       _info,
     ) => {
-      const { link, userId, categoryIds, priority } = args;
+      const { link, userId, categoryIds, priority, description } = args;
 
       const wishListCount = await context.mongo.User.find(
         { _id: new Types.ObjectId(userId) },
@@ -182,11 +184,13 @@ export function applyCustomMutations({
           | 'priority'
           | 'isPublished'
           | 'lastPublishedAt'
+          | 'description'
         > = {
           link,
           categoryIds: categoryIds.map((id) => new Types.ObjectId(String(id))),
           priority,
           isPublished: true,
+          description,
           lastPublishedAt: new Date(),
         };
 

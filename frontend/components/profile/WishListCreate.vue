@@ -29,6 +29,13 @@
       </div>
       <div class="flex">
         <Input
+          label="Add a description"
+          class="w-full lg:w-2/3"
+          @input-data-change="applyDescription"
+        />
+      </div>
+      <div class="flex">
+        <Input
           label="Choose your categories"
           class="w-full lg:w-2/3"
           @input-data-change="filterCategories"
@@ -86,7 +93,8 @@ export default class WishListCreate extends Vue {
   payload: {
     link: string;
     categories: ICategory[];
-  } = { link: '', categories: [] };
+    description: string;
+  } = { link: '', categories: [], description: '' };
 
   showError = false;
 
@@ -134,6 +142,10 @@ export default class WishListCreate extends Vue {
       this.payload.categories.findIndex((item) => item._id === category._id),
       1,
     );
+  }
+
+  applyDescription(value: string) {
+    this.payload.description = value;
   }
 
   async saveList() {

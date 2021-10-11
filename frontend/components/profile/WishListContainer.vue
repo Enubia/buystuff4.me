@@ -22,6 +22,13 @@
             {{ category.name }}
           </div>
         </div>
+        <div
+          v-if="list.description && list.description.length > 0"
+          class="mt-4 pl-1"
+        >
+          <h2>Your wishlist description:</h2>
+          <span>{{ list.description }}</span>
+        </div>
         <div class="flex justify-end">
           <button class="btn btn-md btn-ghost" @click="deleteList(list._id)">
             <img

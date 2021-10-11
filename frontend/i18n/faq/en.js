@@ -22,29 +22,29 @@ export default [
         </p>
       `,
   },
-  {
-    title: "I created a list entry but it doesn't show up?",
-    body: `
-        <p>
-          Most likely it got put into the publishing queue. We only
-          publish 300 lists at a time for now to give everyone a fair
-          chance to receive donations. The list gets automatically updated
-          after 7 days through a scheduler. Once yours is on the to be
-          published list, you'll see it after the next update.
-        </p>
-      `,
-  },
-  {
-    title: 'How do I publish my listing again?',
-    body: `
-        <p>
-          On your profile there's a button called
-          <span class="font-medium">Add to publish queue</span>. This will
-          put your list into the publish queue again. We do this to not
-          clutter the queue with stale lists.
-        </p>
-      `,
-  },
+  // {
+  //   title: "I created a list entry but it doesn't show up?",
+  //   body: `
+  //       <p>
+  //         Most likely it got put into the publishing queue. We only
+  //         publish 300 lists at a time for now to give everyone a fair
+  //         chance to receive donations. The list gets automatically updated
+  //         after 7 days through a scheduler. Once yours is on the to be
+  //         published list, you'll see it after the next update.
+  //       </p>
+  //     `,
+  // },
+  // {
+  //   title: 'How do I publish my listing again?',
+  //   body: `
+  //       <p>
+  //         On your profile there's a button called
+  //         <span class="font-medium">Add to publish queue</span>. This will
+  //         put your list into the publish queue again. We do this to not
+  //         clutter the queue with stale lists.
+  //       </p>
+  //     `,
+  // },
   {
     title: 'I found a bug / translation error, can I report that?',
     body: `

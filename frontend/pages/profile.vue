@@ -54,7 +54,7 @@
           Your Wishlists
         </h2>
         <hr class="mt-1 mb-6" />
-        <WishListCreate v-if="user.wishLists.length < 3" />
+        <WishListCreate v-if="user.wishLists && user.wishLists.length < 3" />
         <WishListContainer :wish-lists="user.wishLists" />
       </div>
     </div>

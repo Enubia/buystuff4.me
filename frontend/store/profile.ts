@@ -60,7 +60,10 @@ export const actions: ActionTree<ProfileRootState, ProfileRootState> = {
 
     context.commit('updateUser', result?.data.google);
   },
-  async saveList(context, payload: { link: string; categories: ICategory[] }) {
+  async saveList(
+    context,
+    payload: { link: string; categories: ICategory[]; description: string },
+  ) {
     const client = this.app.apolloProvider?.defaultClient;
 
     const result = await client?.mutate({
@@ -69,11 +72,13 @@ export const actions: ActionTree<ProfileRootState, ProfileRootState> = {
           $link: String!
           $categories: [String!]!
           $userId: String!
+          $description: String!
         ) {
           wishListCreateOne(
             link: $link
             categoryIds: $categories
             userId: $userId
+            description: $description
           ) {
             isPublished
             message
@@ -84,6 +89,7 @@ export const actions: ActionTree<ProfileRootState, ProfileRootState> = {
         link: payload.link,
         categories: payload.categories.map((item) => item._id),
         userId: context.state.user._id,
+        description: payload.description,
       },
     });
 
