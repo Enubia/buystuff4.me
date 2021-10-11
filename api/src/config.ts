@@ -17,6 +17,10 @@ export const environment = {
     ],
   },
   production: {
-    origin: ['https://buystuff4.me'],
+    origin: [
+      'http://localhost:3001',
+      'http://localhost:3000',
+      'https://buystuff4.me',
+    ],
   },
 };
