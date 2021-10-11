@@ -115,7 +115,10 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'http://localhost:3001/graphql',
+        httpEndpoint:
+          process.env.NODE_ENV === 'production'
+            ? process.env.API_ENDPOINT
+            : 'http://localhost:3001/graphql',
       },
     },
   },
