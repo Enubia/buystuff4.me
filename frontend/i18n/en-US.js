@@ -3,6 +3,10 @@ import faqEn from './faq/en';
 
 export default {
   index: {
+    meta: {
+      content:
+        'List your public amazon wishlist for others to donate, or browse all the registered lists and make donations yourself.',
+    },
     header: {
       title: 'Your wish is someones pleasure',
       description: `
@@ -61,6 +65,10 @@ export default {
     },
   },
   about: {
+    meta: {
+      content:
+        'How buystuff4.me came to life nad why we chose amazon wishlists.',
+    },
     link: 'About',
     project: {
       header: 'The Project',
@@ -84,23 +92,42 @@ export default {
     },
   },
   howTo: {
+    meta: {
+      content: '',
+    },
     link: 'How To',
   },
   faq: {
+    meta: {
+      content:
+        'Frequently asked questions about amazon wishlist publishing and bug reporting.',
+    },
     link: 'FAQ',
     title: 'Frequently asked <span class="font-medium">Questions</span>',
     questions: faqEn,
   },
   signIn: {
+    meta: {
+      content:
+        'Sign in to buystuff4.me to share your personal amazon wishlist.',
+    },
     link: 'Sign In',
     infoText:
       'Signing in with google will only grant us access to your public profile and email.',
   },
   privacyPolicy: {
+    meta: {
+      content:
+        'Privacy policy of buystuff4.me. Here you can find all the information about how we handle user data and cookies.',
+    },
     link: 'Privacy Policy',
     sections: ppEn,
   },
   search: {
+    meta: {
+      content:
+        'Public listed amazon wishlists. Look through all the listings or search for specific categories.',
+    },
     link: 'Browse Lists',
     card: {
       link: 'Go to Wishlist',

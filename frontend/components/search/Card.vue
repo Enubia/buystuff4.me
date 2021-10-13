@@ -45,7 +45,13 @@
         {{ (list && list.description) || 'Some wishlist description' }}
       </p>
       <p class="truncate max-w-xs 2xl:max-w-sm">
-        {{ list.categories.map((item) => item.name).join(', ') }}
+        <span
+          v-for="(item, index) of list.categories"
+          :key="index"
+          class="badge mt-4 mx-1 capitalize ml-0"
+        >
+          {{ item.name }}
+        </span>
       </p>
       <div class="card-actions">
         <a

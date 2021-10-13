@@ -25,7 +25,13 @@ export default class extends Vue {
   head() {
     return {
       title: 'buystuff4.me | Home',
-      meta: [{ hid: '', name: '', content: '' }],
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('index.meta.content'),
+        },
+      ],
     };
   }
 }

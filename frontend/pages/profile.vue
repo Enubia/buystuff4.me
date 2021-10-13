@@ -2,9 +2,9 @@
   <div class="my-12 mx-8 lg:mx-36 space-y-5">
     <div class="w-full flex justify-center">
       <div class="shadow-sm rounded-md bg-base-200 w-full lg:w-5/6 h-auto p-8">
-        <h2 class="uppercase font-medium text-2xl text-center md:text-left">
+        <h1 class="uppercase font-medium text-2xl text-center md:text-left">
           {{ $t('profile.header') }}
-        </h2>
+        </h1>
         <hr class="mt-1 mb-6" />
         <div
           class="

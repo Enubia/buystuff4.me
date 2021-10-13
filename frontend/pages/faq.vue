@@ -38,7 +38,13 @@ export default class Faq extends Vue {
   head() {
     return {
       title: 'buystuff4.me | FAQ',
-      meta: [{ hid: '', name: '', content: '' }],
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('faq.meta.content'),
+        },
+      ],
     };
   }
 }

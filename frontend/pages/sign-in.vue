@@ -46,7 +46,13 @@ export default class SignIn extends Vue {
   head() {
     return {
       title: 'buystuff4.me | Sign In',
-      meta: [{ hid: '', name: '', content: '' }],
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('signIn.meta.content'),
+        },
+      ],
     };
   }
 

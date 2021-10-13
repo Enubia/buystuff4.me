@@ -32,7 +32,13 @@ export default class PrivacyPolicy extends Vue {
   head() {
     return {
       title: 'buystuff4.me | Privacy Policy',
-      meta: [{ hid: '', name: '', content: '' }],
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('privacyPolicy.meta.content'),
+        },
+      ],
     };
   }
 }

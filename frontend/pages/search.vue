@@ -87,7 +87,13 @@ export default class Search extends Vue {
   head() {
     return {
       title: 'buystuff4.me | Search',
-      meta: [{ hid: '', name: '', content: '' }],
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('search.meta.content'),
+        },
+      ],
     };
   }
 
