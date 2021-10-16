@@ -43,7 +43,7 @@ export default {
       };
 
       headObject.meta.push(...i18nHead.meta);
-      headObject.link.push(...i18nHead?.link);
+      headObject.link.push(...i18nHead.link);
     }
 
     return headObject;
