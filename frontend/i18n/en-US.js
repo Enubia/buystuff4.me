@@ -5,7 +5,7 @@ export default {
   index: {
     meta: {
       content:
-        'List your public amazon wishlist for others to donate, or browse all the registered lists and make donations yourself.',
+        "Share your amazon wishlist to get donations, or browse others' lists and donate.",
     },
     header: {
       title: 'Your wish is someones pleasure',
