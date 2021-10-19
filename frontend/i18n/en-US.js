@@ -9,10 +9,8 @@ export default {
     },
     header: {
       title: 'Your wish is someones pleasure',
-      description: `
-        List your public amazon wishlist for others to donate,
-        or browse all the registered lists and make donations yourself.
-      `,
+      description:
+        "Share your amazon wishlist to get donations, or browse others' lists and donate.",
       button: 'Get started',
     },
     steps: {
