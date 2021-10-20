@@ -9,7 +9,7 @@ export default ({ app }) => {
     {
       config: { id: 'G-748GVTX9HY' },
       bootstrap: getGDPR === 'true',
-      appName: 'APP_NAME',
+      appName: 'buystuff4.me',
       enabled: getGDPR === 'true',
       pageTrackerScreenviewEnabled: true,
     },
