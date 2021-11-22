@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.15.8",
-    "@hokify/eslint-config-vue": "^1.1.16",
+    "@hokify/eslint-config-vue": "^1.1.17",
     "@nuxt/types": "^2.15.8",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/eslint-config-typescript": "^6.0.1",
