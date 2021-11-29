@@ -24,7 +24,7 @@
     "core-js": "^3.18.3",
     "daisyui": "^1.14.5",
     "flag-icon-css": "^3.5.0",
-    "graphql-tag": "^2.12.5",
+    "graphql-tag": "^2.12.6",
     "nuxt": "^2.15.8",
     "vue-gtag": "^1.16.1",
     "vue-toast-notification": "0.6.2",
