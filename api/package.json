@@ -27,7 +27,7 @@
     "graphql-compose-mongoose": "^9.7.0",
     "graphql-subscriptions": "^1.2.1",
     "log4js": "^6.3.0",
-    "mongoose": "^6.0.13",
+    "mongoose": "^6.1.0",
     "subscriptions-transport-ws": "^0.9.19"
   },
   "devDependencies": {
