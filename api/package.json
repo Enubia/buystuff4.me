@@ -47,7 +47,7 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-unicorn": "^37.0.1",
+    "eslint-plugin-unicorn": "^39.0.0",
     "eslint-plugin-unused-imports": "^1.1.5",
     "faker": "^5.5.3",
     "jest": "^27.3.1",
